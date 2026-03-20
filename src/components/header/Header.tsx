@@ -1,8 +1,13 @@
 import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight } from './Header.style';
-import { SButton } from '../button/Button.style';
+import { Button } from '../button/Button';
 
 
 export const Header = () => {
+  const handleLogin = () => {
+    console.log('Нажали кнопку "Войти"');
+  };
+
+
   return (
     <SWrapper>
       <SHeaderContainer>
@@ -14,7 +19,11 @@ export const Header = () => {
             <SHeaderDescription>Онлайн-тренировки для занятий дома</SHeaderDescription>
           </SHeaderBlockLeft>
           <SHeaderBlockRight>
-            <SButton>Войти</SButton>
+            <Button
+              width={{ desktop: "103px", mobile: "83px" }}
+              onClick={handleLogin}
+              text='Войти'
+            />
           </SHeaderBlockRight>
         </SHeaderBlock>
       </SHeaderContainer>
