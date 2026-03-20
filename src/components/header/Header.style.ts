@@ -13,16 +13,21 @@ export const SHeaderContainer = styled.div`
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 140px;
+  padding: 50px 140px;
+
+  @media screen and (max-width: 375px) {
+    padding: 40px 16px;
+  }
 `;
 
 export const SHeaderBlock = styled.div`
-  height: 120px;
-  padding-top: 50px;
+  /* height: 120px; */
+  /* padding-top: 50px; */
   display: flex;
   flex-direction: row;
   gap: 15px;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
 `;
@@ -53,6 +58,10 @@ export const SHeaderDescription = styled.p`
   letter-spacing: 0px;
   color: #000000;
   opacity: 0.5;
+
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
 `;
 
 export const SHeaderBlockRight = styled.div`
