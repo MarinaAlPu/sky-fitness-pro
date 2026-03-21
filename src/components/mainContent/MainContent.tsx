@@ -1,8 +1,8 @@
-import { SCards, SContainer, SDescribe, SText, STitle, SWrapper } from "./Content.style";
+import { SCards, SContainer, SDescribe, SText, STitle, SWrapper } from "./MainContent.style";
 import { Card } from "../card/Card";
 
 
-export const Content = () => {
+export const MainContent = () => {
 
   return (
     <SWrapper>
