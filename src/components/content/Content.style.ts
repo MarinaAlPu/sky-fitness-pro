@@ -17,6 +17,8 @@ export const SContainer = styled.div`
   margin: 0 auto;
   padding: 60px 140px;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
   @media screen and (max-width: 375px) {
     padding: 40px 16px;
@@ -29,6 +31,10 @@ export const STitle = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 50px;
+  
+  @media screen and (max-width: 375px) {
+    margin-bottom: 34px;
+  }
 `;
 
 export const SDescribe = styled.div`
@@ -42,7 +48,6 @@ export const SDescribe = styled.div`
   font-size: 60px;
   line-height: 100%;
   letter-spacing: 0px;
-  padding-right: 5px;
 
   @media screen and (max-width: 375px) {
     font-size: 32px;
@@ -72,4 +77,15 @@ export const SText = styled.div`
   }
 `;
 
+export const SCards = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
 
+
+  @media screen and (max-width: 375px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+`;
