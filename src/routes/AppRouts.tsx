@@ -18,13 +18,14 @@ export function AppRoutes() {
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/registration" element={<RegistrationPage />} />
-      <Route path="*" element={<NotFoundPage />} />
 
       {/* <Route element={<PrivateRoute />}> */}
         {/* <Route path="/workout/:id" element={<WorkoutPage />} /> */}
         <Route path="/workout/1" element={<WorkoutPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       {/* </Route> */}
+      
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }
