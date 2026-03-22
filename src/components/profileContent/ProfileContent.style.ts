@@ -34,8 +34,9 @@ export const STitle = styled.div`
   margin-bottom: 40px;
 
   @media screen and (max-width: 375px) {
-    /* font-weight: 500;
-    font-size: 24px; */
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 24px;
   }
 `;
 
@@ -55,6 +56,10 @@ export const SUserPanel = styled.div`
 
   @media screen and (max-width: 375px) {
     /* padding: 40px 16px; */
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 24px;
   }
 `;
 
@@ -69,6 +74,8 @@ export const SUserIcon = styled.img`
 
   @media screen and (max-width: 375px) {
     /* padding: 40px 16px; */
+    width: 141px;
+    height: 141px;
   }
 `;
 
@@ -79,6 +86,8 @@ export const SUserPanelContent = styled.div`
 
   @media screen and (max-width: 375px) {
     /* padding: 40px 16px; */
+    gap: 20px;
+    align-items: flex-start;
   }
 `;
 
@@ -93,6 +102,7 @@ export const SUserData = styled.div`
 
   @media screen and (max-width: 375px) {
     /* padding: 40px 16px; */
+    gap: 20px;
   }
 `;
 
@@ -104,8 +114,8 @@ export const SUserName = styled.div`
   margin-bottom: 30px;
 
   @media screen and (max-width: 375px) {
-    /* font-weight: 500;
-    font-size: 24px; */
+    font-size: 24px;
+    margin-bottom: 0;
   }
 `;
 
@@ -117,8 +127,8 @@ export const SUserLogin = styled.div`
   margin-bottom: 44px;
 
   @media screen and (max-width: 375px) {
-    /* font-weight: 500;
-    font-size: 24px; */
+    font-size: 16px;
+    margin-bottom: 0;
   }
 `;
 
@@ -133,5 +143,7 @@ export const SCourses = styled.div`
 
   @media screen and (max-width: 375px) {
     /* padding: 40px 16px; */
+    flex-direction: column;
+    gap: 24px;
   }
 `;
