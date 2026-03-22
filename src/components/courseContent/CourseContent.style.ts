@@ -19,6 +19,7 @@ export const SContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* position: relative; */
 
   @media screen and (max-width: 375px) {
     padding: 40px 16px;
@@ -32,9 +33,13 @@ export const SBanner = styled.div`
   position: relative;
   border-radius: 30px;
   margin-bottom: 60px;
+  overflow: hidden;
 
   @media screen and (max-width: 375px) {
-    
+    /* justify-content: center;
+    align-items: center; */
+    height: 389px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -60,9 +65,16 @@ export const SImage = styled.img`
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
-  /* top: 0; */
-  right: 0;
+  top: -58px;
+  right: 105px;
   z-index: 10;
+
+  @media screen and (max-width: 375px) {
+    top: 58px;
+    right: -20px;
+    width: 360px;
+    height: 325px;
+  }
 `;
 
 export const SCentralBlock = styled.div`
@@ -72,6 +84,13 @@ export const SCentralBlock = styled.div`
   flex-direction: column;
   gap: 60px;
   margin-bottom: 102px;
+  position: relative;
+  z-index: 1;
+
+  @media screen and (max-width: 375px) {
+    gap: 40px;
+    margin-bottom: 156px;
+  }
 `;
 
 export const SCentralBlockDescription = styled.div`
@@ -79,6 +98,10 @@ export const SCentralBlockDescription = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  @media screen and (max-width: 375px) {
+    gap: 24px;
+  }
 `;
 
 export const SCentralBlockTitle = styled.div`
@@ -86,6 +109,11 @@ export const SCentralBlockTitle = styled.div`
   font-size: 40px;
   line-height: 110%;
   letter-spacing: 0px;
+
+  @media screen and (max-width: 375px) {
+    font-weight: 500;
+    font-size: 24px;
+  }
 `;
 
 export const SDescriptionBlocksWrapper = styled.div`
@@ -93,6 +121,10 @@ export const SDescriptionBlocksWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 17px;
+
+  @media screen and (max-width: 375px) {
+    flex-wrap: wrap;
+  }  
 `;
 
 export const SDescriptionBlock = styled.div`
@@ -130,6 +162,12 @@ export const SCentralBlockTypes = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  @media screen and (max-width: 375px) {
+    gap: 24px;
+    position: relative;
+    z-index: 10;
+  }
 `;
 
 // export const SDescriptionBlock = styled.div`
@@ -153,11 +191,17 @@ export const STypesWrapper = styled.div`
   flex-wrap: wrap;
   column-gap: 124px;
   row-gap: 34px;
+
+  @media screen and (max-width: 375px) {
+    flex-direction: column;
+    gap: 24px;
+  }
 `;
 
 export const STypesItem = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 284px;
   gap: 8px;
 `;
@@ -175,17 +219,38 @@ export const STypesText = styled.div`
   font-size: 24px;
   line-height: 110%;
   letter-spacing: 0px;
+
+  @media screen and (max-width: 375px) {
+    font-size: 18px;
+  }
+`;
+
+export const SBottomBlockWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  z-index: 5;
 `;
 
 export const SBottomBlock = styled.div`
   width: 100%;
-  height: 486px;
+  /* height: 486px; */
   padding: 40px;
   display: flex;
   flex-direction: row;
   box-shadow: 0px 4px 67px -12px #00000021;
   position: relative;
-  /* overflow: hidden; */
+  overflow: hidden;
+  z-index: 10;
+  border-radius: 30px;
+  background-color: #FAFAFA;
+
+  @media screen and (max-width: 375px) {
+    /* position: relative;
+    overflow: visible; */
+    padding: 30px;
+    /* height: 412px; */
+    z-index: 20;
+  }
 `;
 
 export const SBottomBlockText = styled.div`
@@ -193,11 +258,22 @@ export const SBottomBlockText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
+
+  @media screen and (max-width: 375px) {
+    width: 343px;
+    position: relative;
+    z-index: 1000;
+  }
 `;
 
 export const SBottomBlockTextTitleWrapper = styled.div`
   width: 400px;
   /* display: flex; */
+
+
+  @media screen and (max-width: 375px) {
+    width: 283px;
+  }
 `;
 
 export const SBottomBlockTextTitle = styled.div`
@@ -206,6 +282,11 @@ export const SBottomBlockTextTitle = styled.div`
   line-height: 100%;
   letter-spacing: 0px;
   vertical-align: middle;
+
+  @media screen and (max-width: 375px) {
+    font-size: 32px;
+    width: 225px;
+  }  
 `;
 
 // export const SBottomBlockItems = styled.div`
@@ -215,11 +296,16 @@ export const SBottomBlockTextTitle = styled.div`
 
 export const SList = styled.ul`
   list-style: none;
+  padding-left: 15px;
+
+  @media screen and (max-width: 375px) {
+    padding-left: 10px;
+  }  
 `;
 
 export const SListItem = styled.li`
   position: relative;
-  padding-left: 25px;
+  padding-left: 20px;
   margin-bottom: 10px;
   font-size: 18px;
   line-height: 1.4;
@@ -244,6 +330,11 @@ export const SListItem = styled.li`
     opacity: 60%;
     border-radius: 50%;
   }
+
+  @media screen and (max-width: 375px) {
+    font-size: 18px;
+    padding-left: 20px;
+  }   
 `;
 
 export const SBottomBlockImageWrapper = styled.div`
@@ -254,6 +345,17 @@ export const SBottomBlockImageWrapper = styled.div`
   left: 0;
   overflow: hidden;
   pointer-events: none;
+  z-index: 30;
+
+  @media screen and (max-width: 375px) {
+    /* position: relative; */
+    z-index: 10;
+    overflow: visible;
+  }
+`;
+
+export const SBottomBlockImageContainer = styled.picture`
+
 `;
 
 export const SBottomBlockImage = styled.img`
@@ -264,6 +366,18 @@ export const SBottomBlockImage = styled.img`
   position: absolute;
   top: 20px;
   right: -30px;
-  z-index: 10;
+  /* z-index: 10; */
   height: 690px;
+
+  position: absolute;
+  pointer-events: none;
+
+  @media screen and (max-width: 375px) {
+    /* display: none; */
+    top: -165px;
+    right: -23px;
+    height: 450px;
+    /* width: auto;
+    z-index: 100; */
+  }   
 `;

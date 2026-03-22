@@ -3,6 +3,8 @@ import {
   SWrapper, SContainer, SBanner, STitle, SImage, SBottomBlock, SBottomBlockText, SBottomBlockImage, SCentralBlock, SCentralBlockDescription, SCentralBlockTypes, SCentralBlockTitle, SDescriptionBlocksWrapper, SDescriptionBlock, SDescriptionNumber, SDescriptionText, STypesWrapper, STypesItem, STypesImage, STypesText, SBottomBlockImageWrapper, SBottomBlockTextTitle, SList,
   SListItem,
   SBottomBlockTextTitleWrapper,
+  SBottomBlockWrapper,
+  SBottomBlockImageContainer,
   //  SBottomBlockItems
 } from "./CourseContent.style";
 
@@ -19,7 +21,7 @@ export const CourseContent = () => {
       <SContainer>
         <SBanner>
           <STitle>Йога</STitle>
-          <SImage src="/images/skill-cards/skill-card-1.svg" alt="Йога" />
+          <SImage src="/images/skill-cards/skill-card-1-full.svg" alt="Йога" />
         </SBanner>
 
         <SCentralBlock>
@@ -83,35 +85,49 @@ export const CourseContent = () => {
           </SCentralBlockTypes>
         </SCentralBlock>
 
-        <SBottomBlock>
-          <SBottomBlockText>
-            <SBottomBlockTextTitleWrapper>
-              <SBottomBlockTextTitle>Начните путь к новому телу</SBottomBlockTextTitle>
-            </SBottomBlockTextTitleWrapper>
+        <SBottomBlockWrapper>
+          <SBottomBlock>
+            <SBottomBlockText>
+              <SBottomBlockTextTitleWrapper>
+                <SBottomBlockTextTitle>Начните путь к новому телу</SBottomBlockTextTitle>
+              </SBottomBlockTextTitleWrapper>
 
-            {/* <SBottomBlockItems>
+              {/* <SBottomBlockItems>
 
             </SBottomBlockItems> */}
 
-            <SList>
-              <SListItem>проработка всех групп мышц</SListItem>
-              <SListItem>тренировка суставов</SListItem>
-              <SListItem>улучшение циркуляции крови</SListItem>
-              <SListItem>упражнения заряжают бодростью</SListItem>
-              <SListItem>помогают противостоять стрессам</SListItem>
-            </SList>
+              <SList>
+                <SListItem>проработка всех групп мышц</SListItem>
+                <SListItem>тренировка суставов</SListItem>
+                <SListItem>улучшение циркуляции крови</SListItem>
+                <SListItem>упражнения заряжают бодростью</SListItem>
+                <SListItem>помогают противостоять стрессам</SListItem>
+              </SList>
 
-            <Button
-              width={{ desktop: "437px", mobile: "100%" }}
-              onClick={handleAddCourse}
-              text='Войдите, чтобы добавить курс'
-            ></Button>
-          </SBottomBlockText>
+              <Button
+                width={{ desktop: "437px", mobile: "100%" }}
+                onClick={handleAddCourse}
+                text='Войдите, чтобы добавить курс'
+              ></Button>
+            </SBottomBlockText>
+          </SBottomBlock>
+
           <SBottomBlockImageWrapper>
-            <SBottomBlockImage src="/images/skill-cards/runner.svg" alt="Мужик" />
+
+            {/* <SBottomBlockImage src="/images/skill-cards/runner.svg" alt="Мужик" /> */}
+
+            <SBottomBlockImageContainer>
+              {/* МП */}
+              <source media="(max-width: 375px)" srcSet="/images/skill-cards/runner-mobile.svg" />
+
+              {/* десктоп */}
+              <SBottomBlockImage src="/images/skill-cards/runner.svg" alt="Мужик" />
+
+            </SBottomBlockImageContainer>
           </SBottomBlockImageWrapper>
-        </SBottomBlock>
+        </SBottomBlockWrapper>
+
       </SContainer>
-    </SWrapper>
+    </SWrapper >
   )
 }
