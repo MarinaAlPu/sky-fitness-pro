@@ -180,6 +180,8 @@ border: ${({ $type, disabled }) => {
 
 
   @media screen and (max-width: 375px) {
+    height: 36px;
+
     width: ${({ $width }) => {
     if (typeof $width === "object") {
       return $width.mobile;
