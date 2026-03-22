@@ -7,7 +7,7 @@ export const SWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 360px;
-  height: 501px;
+  /* height: 501px; */
   text-decoration: none;
   color: inherit;
   border-radius: 30px;
@@ -20,12 +20,18 @@ export const SWrapper = styled.div`
   }
 `;
 
-// export const SContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 360px;
-//   height: 501px;
-// `;
+export const SContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 24px 30px 15px 30px;
+  /* width: 360px;
+  height: 501px; */
+
+  @media screen and (max-width: 375px) {
+    padding: 24px 21.5px 15px;
+  }
+`;
 
 export const SImageContainer = styled.div`
   width: 360px;
@@ -50,10 +56,10 @@ export const SImage = styled.img`
   }
 `;
 
-export const SButton = styled.div`
+export const SRoundButton = styled.img`
   width: 32px;
   height: 32px;
-  background-image: url("./icons/add-button.svg");
+  /* background-image: url("./icons/add-button.svg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -65,15 +71,15 @@ export const SButton = styled.div`
 `;
 
 export const SDescriptionContainer = styled.div`
-  padding: 24px 30px 15px;
+  /* padding: 24px 30px 15px; */
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 6px;
-
+  gap: 20px;
+/* 
   @media screen and (max-width: 375px) {
     padding: 24px 21.5px 15px;
-  }
+  } */
 `;
 
 export const STitle = styled.div`
@@ -92,6 +98,7 @@ export const SPropertiesContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 6px;
+  margin-bottom: 20px;
 `;
 
 export const SFirstRowProperties = styled.div`
@@ -192,3 +199,35 @@ export const SComplexityIcon = styled.div`
 //   letter-spacing: 0px;
 //   vertical-align: bottom;
 // `;
+
+export const SProgress = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* margin-bottom: 40px; */
+`;
+
+export const SProgressTitle = styled.div`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 110%;
+  letter-spacing: 0px;
+`;
+
+export const ProgressBar = styled.div`
+  width: 300px;
+  height: 6px;
+  border-radius: 50px;
+  background-color: #F7F7F7;
+  /* background-color: #00C1FF; */
+  border: none;
+  outline: none;
+`;
+
+export const SProgressFill = styled.div<{ $percent: number }>`
+  height: 100%;
+  background-color: #00C1FF;
+  border-radius: 50px;
+  
+  width: ${props => props.$percent}%; 
+`;
