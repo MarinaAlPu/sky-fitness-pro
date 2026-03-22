@@ -1,12 +1,16 @@
-import { SWrapper, SImage, STitle, SButton, SPropertyContainer, SDaysIcon, STimeIcon, SComplexityIcon, SDescriptionContainer, SPropertiesContainer, SFirstRowProperties, SPropertyText } from "./Card.style";
+import { SWrapper, SImage, STitle, SButton, SPropertyContainer, SDaysIcon, STimeIcon, SComplexityIcon, SDescriptionContainer, SPropertiesContainer, SFirstRowProperties, SPropertyText, SImageContainer } from "./Card.style";
 
 
 export const Card = () => {
 
   return (
     <SWrapper >
-      <SImage src="./images/main-page/mask-1.png" alt="Йога" />
-      <SButton title="Добавить курс"/>
+
+      <SImageContainer>
+        {/* <SImage src="./images/main-page/mask-1.png" alt="Йога" /> */}
+        <SImage src="./images/main-page/mask-1-1.svg" alt="Йога" />
+        <SButton title="Добавить курс" />
+      </SImageContainer>
 
       <SDescriptionContainer>
         <STitle>

@@ -27,6 +27,14 @@ export const SWrapper = styled.div`
 //   height: 501px;
 // `;
 
+export const SImageContainer = styled.div`
+  width: 360px;
+  height: 325px;
+  background-color: #FFC700;
+  border-radius: 30px;
+  display: flex;
+`;
+
 export const SImage = styled.img`
   width: 360px;
   height: 325px;
