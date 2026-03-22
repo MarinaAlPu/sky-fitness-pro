@@ -15,8 +15,8 @@ export const SWrapper = styled.div`
   box-shadow: 0px 4px 67px -12px #00000021;
 
   @media screen and (max-width: 375px) {
-    width: 343px;
-    height: 492px;
+    /* width: 343px;
+    height: 492px; */
   }
 `;
 
