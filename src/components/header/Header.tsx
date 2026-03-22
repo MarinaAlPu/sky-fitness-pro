@@ -21,6 +21,7 @@ export const Header = () => {
           <SHeaderBlockRight>
             <Button
               width={{ desktop: "103px", mobile: "83px" }}
+              height={{ desktop: "52px", mobile: "36px" }}
               onClick={handleLogin}
               text='Войти'
             />

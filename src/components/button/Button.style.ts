@@ -44,6 +44,11 @@ export type WidthType = {
   mobile: string;
 };
 
+export type HeightType = {
+  desktop: string;
+  mobile: string;
+};
+
 
 const backgroundColors: BackgroundColorsType = {
   primary: {
@@ -89,6 +94,7 @@ const borders: BorderType = {
 type SButtonProps = {
   $type: ButtonType, //"primary" | "secondary",
   $width?: string | WidthType,
+  $height?: string | HeightType;
   // $borderColor: string,
   disabled?: boolean,
   // onClick: () => void
@@ -98,8 +104,7 @@ type SButtonProps = {
 
 export const SButton = styled.button<SButtonProps>`
   /* cursor: pointer; */
-  
-  height: 52px;
+
   border-radius: 46px;
   
   display: flex;
@@ -118,6 +123,15 @@ export const SButton = styled.button<SButtonProps>`
       return $width.desktop;
     } else {
       return $width || "100%";
+    }
+  }};
+  
+  /* height: 52px; */
+  height: ${({ $height }) => {
+    if (typeof $height === "object") {
+      return $height.desktop;
+    } else {
+      return $height || "52px";
     }
   }};
 
@@ -180,7 +194,7 @@ border: ${({ $type, disabled }) => {
 
 
   @media screen and (max-width: 375px) {
-    height: 36px;
+    /* height: 52px; */
 
     width: ${({ $width }) => {
     if (typeof $width === "object") {
@@ -188,6 +202,13 @@ border: ${({ $type, disabled }) => {
     } else {
       return $width || "100%";
     }
+  }};
+
+    height: ${({ $height }) => {
+    if (typeof $height === "object") {
+      return $height.mobile;
+    }
+    return $height || "52px";
   }};
   }
 `
