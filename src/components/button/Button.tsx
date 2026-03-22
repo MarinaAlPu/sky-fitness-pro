@@ -7,10 +7,11 @@ type ButtonProps = {
   height?: HeightType | string,
   disabled?: boolean,
   onClick: () => void,
-  text: string
+  children: React.ReactNode,
+  // text?: string
 }
 
-export const Button: React.FC<ButtonProps> = ({ type = 'primary', width, height, disabled = false, onClick, text }) => {
+export const Button: React.FC<ButtonProps> = ({ type = 'primary', width, height, disabled = false, onClick, children }) => {
   return (
     <SButton
       $type={type}
@@ -19,7 +20,7 @@ export const Button: React.FC<ButtonProps> = ({ type = 'primary', width, height,
       disabled={disabled}
       onClick={onClick}
     >
-      {text}
+      {children}
     </SButton>
   );
 };

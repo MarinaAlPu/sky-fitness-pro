@@ -23,8 +23,9 @@ export const Header = () => {
               width={{ desktop: "103px", mobile: "83px" }}
               height={{ desktop: "52px", mobile: "36px" }}
               onClick={handleLogin}
-              text='Войти'
-            />
+            >
+              Войти
+            </Button>
           </SHeaderBlockRight>
         </SHeaderBlock>
       </SHeaderContainer>

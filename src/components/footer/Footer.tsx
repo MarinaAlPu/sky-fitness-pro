@@ -16,8 +16,9 @@ export const Footer = () => {
             // width={{ desktop: "127px", mobile: "127px" }}
             width="127px"
             onClick={handleUp}
-            text='Наверх ↑'
-          />
+          >
+            Наверх ↑
+          </Button>
         </SFooterBlock>
       </SFooterContainer>
     </SWrapper>

@@ -107,8 +107,9 @@ export const CourseContent = () => {
               <Button
                 width={{ desktop: "437px", mobile: "100%" }}
                 onClick={handleAddCourse}
-                text='Войдите, чтобы добавить курс'
-              ></Button>
+              >
+                Войдите, чтобы добавить курс
+              </Button>
             </SBottomBlockText>
           </SBottomBlock>
 
