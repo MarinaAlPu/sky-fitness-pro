@@ -1,5 +1,6 @@
 import { Button } from "../button/Button";
 import { Card } from "../card/Card";
+import { Footer } from "../footer/Footer";
 import { SContainer, STitle, SUserPanel, SWrapper, SCourses, SUserIcon, SUserData, SUserName, SUserLogin, SUserPanelContent } from "./ProfileContent.style";
 
 
@@ -10,36 +11,40 @@ export const ProfileContent = () => {
 
 
   return (
-    <SWrapper>
-      <SContainer>
+    <>
+      <SWrapper>
+        <SContainer>
 
-        <STitle>Профиль</STitle>
-        <SUserPanel>
-          <SUserIcon src="./icons/mask-group.svg" alt="Фото пользователя" />
+          <STitle>Профиль</STitle>
+          <SUserPanel>
+            <SUserIcon src="./icons/mask-group.svg" alt="Фото пользователя" />
 
-          <SUserPanelContent>
-            <SUserData>
-              <SUserName>Сергей</SUserName>
-              <SUserLogin>Логин: sergey.petrov96</SUserLogin>
-            </SUserData>
-            <Button
-              type='secondary'
-              width={{ desktop: "192px", mobile: "283px" }}
-              onClick={handleLogout}
-            >
-              Выйти
-            </Button>
-          </SUserPanelContent>
-        </SUserPanel>
+            <SUserPanelContent>
+              <SUserData>
+                <SUserName>Сергей</SUserName>
+                <SUserLogin>Логин: sergey.petrov96</SUserLogin>
+              </SUserData>
+              <Button
+                type='secondary'
+                width={{ desktop: "192px", mobile: "283px" }}
+                onClick={handleLogout}
+              >
+                Выйти
+              </Button>
+            </SUserPanelContent>
+          </SUserPanel>
 
-        <STitle>Мои курсы</STitle>
-        <SCourses>
-          <Card />
-          <Card />
-          <Card />
-        </SCourses>
+          <STitle>Мои курсы</STitle>
+          <SCourses>
+            <Card />
+            <Card />
+            <Card />
+          </SCourses>
 
-      </SContainer>
-    </SWrapper>
+        </SContainer>
+      </SWrapper>
+
+      <Footer buttonDisplay={{ desktop: 'none', mobile: 'flex' }}/>
+    </>
   )
 }
