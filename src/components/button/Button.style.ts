@@ -90,6 +90,11 @@ const borders: BorderType = {
   },
 };
 
+export type DisplayType = {
+  desktop: "flex" | "none";
+  mobile: "flex" | "none";
+};
+
 
 type SButtonProps = {
   $type: ButtonType, //"primary" | "secondary",
@@ -99,6 +104,7 @@ type SButtonProps = {
   disabled?: boolean,
   // onClick: () => void
   // text: string,
+  $display?: DisplayType
 }
 
 
@@ -107,7 +113,6 @@ export const SButton = styled.button<SButtonProps>`
 
   border-radius: 46px;
   
-  display: flex;
   align-items: center;
   justify-content: center;
   
@@ -116,6 +121,9 @@ export const SButton = styled.button<SButtonProps>`
   line-height: 110%;
   letter-spacing: 0px;
   text-align: center;
+
+  /* display: flex; */
+  display: ${({ $display }) => ($display ? $display.desktop : "flex")};
   
   /* width: 103px; */
   width: ${({ $width }) => {
@@ -194,7 +202,7 @@ border: ${({ $type, disabled }) => {
 
 
   @media screen and (max-width: 375px) {
-    /* height: 52px; */
+    display: ${({ $display }) => ($display ? $display.mobile : "flex")};
 
     width: ${({ $width }) => {
     if (typeof $width === "object") {

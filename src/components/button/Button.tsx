@@ -1,4 +1,4 @@
-import { SButton, type ButtonType, type HeightType, type WidthType } from './Button.style';
+import { SButton, type ButtonType, type DisplayType, type HeightType, type WidthType } from './Button.style';
 
 
 type ButtonProps = {
@@ -9,9 +9,10 @@ type ButtonProps = {
   onClick: () => void,
   children: React.ReactNode,
   // text?: string
+  display?: DisplayType
 }
 
-export const Button: React.FC<ButtonProps> = ({ type = 'primary', width, height, disabled = false, onClick, children }) => {
+export const Button: React.FC<ButtonProps> = ({ type = 'primary', width, height, disabled = false, onClick, children, display }) => {
   return (
     <SButton
       $type={type}
@@ -19,6 +20,7 @@ export const Button: React.FC<ButtonProps> = ({ type = 'primary', width, height,
       $height={height}
       disabled={disabled}
       onClick={onClick}
+      $display={display}
     >
       {children}
     </SButton>
