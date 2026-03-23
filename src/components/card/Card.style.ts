@@ -27,6 +27,7 @@ export const SContainer = styled.div`
   padding: 24px 30px 15px 30px;
   /* width: 360px;
   height: 501px; */
+  background-color: #FFFFFF;
 
   @media screen and (max-width: 375px) {
     padding: 24px 21.5px 15px;
