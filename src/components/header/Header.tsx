@@ -28,12 +28,12 @@ export const Header = () => {
               Войти
             </Button>
 
-            {/* <SHeaderUserInfoBlock>
-              <SHeaderUserIcon src="./icons/profile.svg" alt="Иконка пользователя" />
+            <SHeaderUserInfoBlock>
+              <SHeaderUserIcon src="/icons/profile.svg" alt="Иконка пользователя" />
               <SHeaderUserName>
                 Сергей
               </SHeaderUserName>
-            </SHeaderUserInfoBlock> */}
+            </SHeaderUserInfoBlock>
 
           </SHeaderBlockRight>
         </SHeaderBlock>
