@@ -51,7 +51,7 @@ export const SHeaderLogo = styled.img`
 export const SHeaderDescription = styled.p`
   font-weight: 400;
   font-size: 18px;
-  line-height: 110.00000000000001%;
+  line-height: 110%;
   letter-spacing: 0px;
   color: #000000;
   opacity: 0.5;
@@ -66,3 +66,39 @@ export const SHeaderBlockRight = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 `;
+
+export const SHeaderUserInfoBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+`;
+
+export const SHeaderUserIcon = styled.img`
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;
+
+export const SHeaderUserName = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+
+    &::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 1px;
+    border-left: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    margin: 5px 0px;
+    padding: 0;
+    transform: rotate(-45deg);
+  }
+`;
+

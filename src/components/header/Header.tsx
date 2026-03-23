@@ -1,4 +1,4 @@
-import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight } from './Header.style';
+import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight, SHeaderUserInfoBlock, SHeaderUserName, SHeaderUserIcon } from './Header.style';
 import { Button } from '../button/Button';
 
 
@@ -19,6 +19,7 @@ export const Header = () => {
             <SHeaderDescription>Онлайн-тренировки для занятий дома</SHeaderDescription>
           </SHeaderBlockLeft>
           <SHeaderBlockRight>
+
             <Button
               width={{ desktop: "103px", mobile: "83px" }}
               height={{ desktop: "52px", mobile: "36px" }}
@@ -26,6 +27,14 @@ export const Header = () => {
             >
               Войти
             </Button>
+
+            {/* <SHeaderUserInfoBlock>
+              <SHeaderUserIcon src="./icons/profile.svg" alt="Иконка пользователя" />
+              <SHeaderUserName>
+                Сергей
+              </SHeaderUserName>
+            </SHeaderUserInfoBlock> */}
+
           </SHeaderBlockRight>
         </SHeaderBlock>
       </SHeaderContainer>
