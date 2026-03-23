@@ -19,7 +19,7 @@ export const SContainer = styled.div`
   padding: 60px 140px 260px 140px;
   display: flex;
   flex-direction: column;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   /* flex-wrap: wrap; */
   /* position: relative; */
 
@@ -62,6 +62,7 @@ export const SWorkoutPanel = styled.div`
   box-shadow: 0px 4px 67px -12px #00000021;
   display: flex;
   flex-direction: column;
+  background-color: #FFFFFF;
   
   @media screen and (max-width: 375px) {
     padding: 30px;
