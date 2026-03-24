@@ -1,4 +1,4 @@
-import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight, SHeaderUserInfoBlock, SHeaderUserName, SHeaderUserIcon } from './Header.style';
+import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight, SHeaderUserInfoBlock, SHeaderUserName, SHeaderUserIcon, SArrow } from './Header.style';
 import { Button } from '../button/Button';
 
 
@@ -28,12 +28,11 @@ export const Header = () => {
               Войти
             </Button>
 
-            <SHeaderUserInfoBlock>
+            {/* <SHeaderUserInfoBlock>
               <SHeaderUserIcon src="/icons/profile.svg" alt="Иконка пользователя" />
-              <SHeaderUserName>
-                Сергей
-              </SHeaderUserName>
-            </SHeaderUserInfoBlock>
+              <SHeaderUserName>Сергей</SHeaderUserName>
+              <SArrow />
+            </SHeaderUserInfoBlock> */}
 
           </SHeaderBlockRight>
         </SHeaderBlock>

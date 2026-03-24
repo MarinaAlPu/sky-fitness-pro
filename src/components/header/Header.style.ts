@@ -81,14 +81,16 @@ export const SHeaderUserIcon = styled.img`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  order: 1;
 `;
 
 export const SHeaderUserName = styled.div`
   display: flex;
   flex-direction: row;
   gap: 12px;
+  order: 2;
 
-    &::after {
+    /* &::after {
     content: "";
     display: block;
     width: 8px;
@@ -99,6 +101,26 @@ export const SHeaderUserName = styled.div`
     margin: 5px 0px;
     padding: 0;
     transform: rotate(-45deg);
+  } */
+
+  @media screen and (max-width: 375px) {
+    display: none;
   }
 `;
 
+export const SArrow = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 1px;
+  border-left: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  /* margin: 5px 0px; */
+  /* padding: 0; */
+  transform: rotate(-45deg);
+  /* transform: rotate(135deg); */
+  order: 3;
+
+  @media screen and (max-width: 375px) {
+    order: 2;
+  }
+`;
