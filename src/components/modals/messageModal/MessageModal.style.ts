@@ -28,7 +28,7 @@ export const SWrapper = styled.div`
   border-radius: 30px;
   padding: 40px;
 
-  /* @media screen and (max-width: 495px) {
+  /* @media screen and (max-width: 375px) {
     display: flex;
     flex-direction: column;
   } */
@@ -42,7 +42,7 @@ export const STitle = styled.div`
   text-align: center;
   /* color: #000000; */
 
-  /* @media screen and (max-width: 495px) {
+  /* @media screen and (max-width: 375px) {
     display: flex;
     flex-direction: column;
   } */

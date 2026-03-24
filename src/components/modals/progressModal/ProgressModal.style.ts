@@ -77,7 +77,7 @@ export const SItemTitle = styled.div`
   line-height: 110%;
   letter-spacing: 0px;
 
-  @media screen and (max-width: 495px) {
+  @media screen and (max-width: 375px) {
     font-size: 16px;
   } 
 `;
