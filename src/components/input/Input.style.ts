@@ -13,11 +13,16 @@ const borders: BorderType = {
   error: "1px solid #DB0030",
 };
 
+export type HeightType = {
+  desktop: string;
+  mobile: string;
+};
+
 type SInputProps = {
-  $type?: InputType,
-  $height?: string,
+  type?: InputType,
+  $height?: HeightType | string,
   $border?: string
-  onChange: () => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 
@@ -29,9 +34,13 @@ export const SInput = styled.input<SInputProps>`
   letter-spacing: 0px;
   padding-left: 18px;
   width: 100%;
-  
+
   height: ${({ $height }) => {
-    return $height || "52px";
+    if (typeof $height === "object") {
+      return $height.desktop;
+    } else {
+      return $height || "52px";
+    }
   }};
 
   border: ${({ $border }) => {
@@ -54,7 +63,11 @@ export const SInput = styled.input<SInputProps>`
 
     @media screen and (max-width: 375px) {
     height: ${({ $height }) => {
-      return $height || "52px";
+      if (typeof $height === "object") {
+        return $height.mobile;
+      } else {
+        return $height || "47px";
+      }
     }};
   }
 `
