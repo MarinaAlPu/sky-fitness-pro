@@ -12,7 +12,7 @@ export type CourseType = {
     from: number,
     to: number
   };
-  workouts: string[];
+  workouts: WorkoutType[];
 }
 
 export type WorkoutType = {
