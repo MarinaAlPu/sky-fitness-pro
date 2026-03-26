@@ -182,10 +182,10 @@ export const STimeIcon = styled.div`
 //   gap: 6px;
 // `;
 
-export const SComplexityIcon = styled.div`
+export const SDifficultyIcon = styled.img`
   width: 18px;
   height: 18px;
-  background-image: url("./icons/сomplexity.svg");
+  /* background-image: url("./icons/сomplexity.svg"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
