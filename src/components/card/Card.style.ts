@@ -2,6 +2,19 @@
 import styled from "styled-components";
 
 
+const backgroundColors: Record<number, string> = {
+  1: "#FFC700",
+  2: "#2491D2",
+  3: "#F7A012",
+  4: "#FF7E65",
+  5: "#7D458C",
+};
+
+type SImageContainerProps = {
+  $order: number
+};
+ 
+
 // export const SWrapper = styled(Link)`
 export const SWrapper = styled.div`
   display: flex;
@@ -34,10 +47,13 @@ export const SContainer = styled.div`
   }
 `;
 
-export const SImageContainer = styled.div`
+export const SImageContainer = styled.div<SImageContainerProps>`
   width: 360px;
   height: 325px;
-  background-color: #FFC700;
+  /* background-color: #FFC700; */
+  background-color: ${({ $order }) =>
+    backgroundColors[$order]
+  };
   border-radius: 30px;
   display: flex;
 `;
