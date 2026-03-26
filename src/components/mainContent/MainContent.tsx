@@ -5,6 +5,7 @@ import { CoursesContext } from "../../context/CoursesContext";
 
 
 export const MainContent = () => {
+  const page = "main";
   const { courses, getCourses } = useContext(CoursesContext) || { courses: [] };
 
 
@@ -17,6 +18,9 @@ export const MainContent = () => {
 
   console.log("courses в MainContent: ", courses);
 
+  const sortedCourses = [...courses].sort((a, b) => a.order - b.order);
+
+
   return (
     <SWrapper>
       <SContainer>
@@ -26,16 +30,15 @@ export const MainContent = () => {
         </STitle>
 
         <SCards>
-          {/* <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card /> */}
-
-          {courses.map((course) => (
+          {sortedCourses.map((course) => (
             <Card
             key={course._id}
             title={course.nameRU}
+            durationInDays={course.durationInDays}
+            dailyDurationInMinutes={course.dailyDurationInMinutes}
+            difficulty={course.difficulty}
+            order={course.order}
+            page={page}
             />
           ))}
         </SCards>
