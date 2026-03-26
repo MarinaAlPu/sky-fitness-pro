@@ -10,8 +10,11 @@ type FooterProps = {
 
 export const Footer: React.FC<FooterProps> = ({ buttonDisplay }) => {
 
-  const handleUp = () => {
-    console.log('Нажали кнопку "Наверх"');
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
 
@@ -21,9 +24,8 @@ export const Footer: React.FC<FooterProps> = ({ buttonDisplay }) => {
         <SFooterBlock>
           <Button
             display={buttonDisplay}
-            // width={{ desktop: "127px", mobile: "127px" }}
             width="127px"
-            onClick={handleUp}
+            onClick={handleScrollToTop}
           >
             Наверх ↑
           </Button>
