@@ -24,10 +24,7 @@ export const AuthModal = () => {
         <SHeaderLogo src='/logo.svg' alt="logo" />
 
         <SInputBlock>
-          <Input
-            onChange={onChange}
-            placeholder="Имя"
-          />
+
           <Input
             type="email"
             onChange={onChange}
