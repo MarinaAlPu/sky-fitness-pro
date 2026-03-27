@@ -1,15 +1,35 @@
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Button } from "../button/Button";
-import {
-  SWrapper, SContainer, SBanner, STitle, SImage, SBottomBlock, SBottomBlockText, SBottomBlockImage, SCentralBlock, SCentralBlockDescription, SCentralBlockTypes, SCentralBlockTitle, SDescriptionBlocksWrapper, SDescriptionBlock, SDescriptionNumber, SDescriptionText, STypesWrapper, STypesItem, STypesImage, STypesText, SBottomBlockImageWrapper, SBottomBlockTextTitle, SList,
-  SListItem,
-  SBottomBlockTextTitleWrapper,
-  SBottomBlockWrapper,
-  SBottomBlockImageContainer,
-  //  SBottomBlockItems
-} from "./CourseContent.style";
+import { SWrapper, SContainer, SBanner, STitle, SImage, SBottomBlock, SBottomBlockText, SBottomBlockImage, SCentralBlock, SCentralBlockDescription, SCentralBlockTypes, SCentralBlockTitle, SDescriptionBlocksWrapper, SDescriptionBlock, SDescriptionNumber, SDescriptionText, STypesWrapper, STypesItem, STypesImage, STypesText, SBottomBlockImageWrapper, SBottomBlockTextTitle, SList, SListItem, SBottomBlockTextTitleWrapper, SBottomBlockWrapper, SBottomBlockImageContainer } from "./CourseContent.style";
+import { CoursesContext } from "../../context/CoursesContext";
 
 
 export const CourseContent = () => {
+  const { courses, getCourses } = useContext(CoursesContext) || { courses: [] };
+
+  const { id } = useParams();
+
+  const course = courses.find((item) => item._id === id);
+
+
+  useEffect(() => {
+    if (courses.length === 0 && getCourses) {
+      getCourses();
+    }
+  }, [courses, getCourses]);
+
+
+  // типа лоадер
+  console.log("course: ", course);
+  if (!course) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <h1 style={{ color: 'red', fontSize: '32px' }}>Загрузка данных курса...</h1>;
+      </div>
+    )
+  };
+
 
   const handleAddCourse = () => {
     console.log("Нажали кнопку 'Войдите, чтобы добавить курс'");
@@ -19,68 +39,35 @@ export const CourseContent = () => {
   return (
     <SWrapper>
       <SContainer>
-        <SBanner>
-          <STitle>Йога</STitle>
-          <SImage src="/images/skill-cards/skill-card-1-full.svg" alt="Йога" />
+        <SBanner
+          $order={course.order}
+        >
+          <STitle>{course.nameRU}</STitle>
+          <SImage src={`/images/skill-cards/skill-card-${course.order}.svg`} alt={course.nameRU} />
         </SBanner>
 
         <SCentralBlock>
           <SCentralBlockDescription>
             <SCentralBlockTitle>Подойдет для вас, если:</SCentralBlockTitle>
             <SDescriptionBlocksWrapper>
-
-              <SDescriptionBlock>
-                <SDescriptionNumber>1</SDescriptionNumber>
-                <SDescriptionText>Давно хотели попробовать йогу, но не решались начать</SDescriptionText>
-              </SDescriptionBlock>
-
-              <SDescriptionBlock>
-                <SDescriptionNumber>2</SDescriptionNumber>
-                <SDescriptionText>Хотите укрепить позвоночник, избавиться от болей в спине и суставах</SDescriptionText>
-              </SDescriptionBlock>
-
-              <SDescriptionBlock>
-                <SDescriptionNumber>3</SDescriptionNumber>
-                <SDescriptionText>Ищете активность, полезную для тела и души</SDescriptionText>
-              </SDescriptionBlock>
-
+              {course.fitting.map((fit, index) => (
+                <SDescriptionBlock key={index}>
+                  <SDescriptionNumber>{index + 1}</SDescriptionNumber>
+                  <SDescriptionText>{fit}</SDescriptionText>
+                </SDescriptionBlock>
+              ))}
             </SDescriptionBlocksWrapper>
           </SCentralBlockDescription>
 
           <SCentralBlockTypes>
             <SCentralBlockTitle>Направления</SCentralBlockTitle>
             <STypesWrapper>
-
-              <STypesItem>
-                <STypesImage src="/icons/star.svg" alt="Звёздочка" />
-                <STypesText>Йога для новичков</STypesText>
-              </STypesItem>
-
-              <STypesItem>
-                <STypesImage src="/icons/star.svg" alt="Звёздочка" />
-                <STypesText>Кундалини-йога</STypesText>
-              </STypesItem>
-
-              <STypesItem>
-                <STypesImage src="/icons/star.svg" alt="Звёздочка" />
-                <STypesText>Хатха-йога</STypesText>
-              </STypesItem>
-
-              <STypesItem>
-                <STypesImage src="/icons/star.svg" alt="Звёздочка" />
-                <STypesText>Классическая йога</STypesText>
-              </STypesItem>
-
-              <STypesItem>
-                <STypesImage src="/icons/star.svg" alt="Звёздочка" />
-                <STypesText>Йогатерапия</STypesText>
-              </STypesItem>
-
-              <STypesItem>
-                <STypesImage src="/icons/star.svg" alt="Звёздочка" />
-                <STypesText>Аштанга-йога</STypesText>
-              </STypesItem>
-
+              {course.directions.map((direction) => (
+                <STypesItem key={direction}>
+                  <STypesImage src="/icons/star.svg" alt="Звёздочка" />
+                  <STypesText>{direction}</STypesText>
+                </STypesItem>
+              ))}
             </STypesWrapper>
           </SCentralBlockTypes>
         </SCentralBlock>
@@ -91,10 +78,6 @@ export const CourseContent = () => {
               <SBottomBlockTextTitleWrapper>
                 <SBottomBlockTextTitle>Начните путь к новому телу</SBottomBlockTextTitle>
               </SBottomBlockTextTitleWrapper>
-
-              {/* <SBottomBlockItems>
-
-            </SBottomBlockItems> */}
 
               <SList>
                 <SListItem>проработка всех групп мышц</SListItem>
@@ -114,16 +97,12 @@ export const CourseContent = () => {
           </SBottomBlock>
 
           <SBottomBlockImageWrapper>
-
-            {/* <SBottomBlockImage src="/images/skill-cards/runner.svg" alt="Мужик" /> */}
-
             <SBottomBlockImageContainer>
               {/* МП */}
               <source media="(max-width: 375px)" srcSet="/images/skill-cards/runner-mobile.svg" />
 
               {/* десктоп */}
               <SBottomBlockImage src="/images/skill-cards/runner.svg" alt="Мужик" />
-
             </SBottomBlockImageContainer>
           </SBottomBlockImageWrapper>
         </SBottomBlockWrapper>

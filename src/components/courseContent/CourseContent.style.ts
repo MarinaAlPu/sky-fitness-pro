@@ -1,6 +1,19 @@
 import styled from "styled-components";
 
 
+const backgroundColors: Record<number, string> = {
+  1: "#FFC700",
+  2: "#2491D2",
+  3: "#F7A012",
+  4: "#FF7E65",
+  5: "#7D458C",
+};
+
+type SBannerProps = {
+  $order: number
+};
+
+
 export const SWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -26,10 +39,13 @@ export const SContainer = styled.div`
   }
 `;
 
-export const SBanner = styled.div`
+export const SBanner = styled.div<SBannerProps>`
   width: 100%;
   height: 310px;
-  background-color: #FFC700;
+  /* background-color: #FFC700; */
+  background-color: ${({ $order }) =>
+    backgroundColors[$order]
+  };
   position: relative;
   border-radius: 30px;
   margin-bottom: 60px;
@@ -65,8 +81,8 @@ export const SImage = styled.img`
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
-  top: -58px;
-  right: 105px;
+  top: 0px;
+  right: 0px;
   z-index: 10;
 
   @media screen and (max-width: 375px) {
@@ -116,18 +132,20 @@ export const SCentralBlockTitle = styled.div`
   }
 `;
 
-export const SDescriptionBlocksWrapper = styled.div`
+// export const SDescriptionBlocksWrapper = styled.div`
+export const SDescriptionBlocksWrapper = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 17px;
+  list-style: none;
 
   @media screen and (max-width: 375px) {
     flex-wrap: wrap;
   }  
 `;
 
-export const SDescriptionBlock = styled.div`
+export const SDescriptionBlock = styled.li`
   /* width: 368px;
   height: 141px; */
   border-radius: 28px;
@@ -170,19 +188,7 @@ export const SCentralBlockTypes = styled.div`
   }
 `;
 
-// export const SDescriptionBlock = styled.div`
-//   /* width: 368px;
-//   height: 141px; */
-//   border-radius: 28px;
-//   padding: 20px;
-//   background-color: #151720;
-//   /* background-color: #1E212E; */
-//   display: flex;
-//   flex-direction: row;
-//   gap: 25px;
-// `;
-
-export const STypesWrapper = styled.div`
+export const STypesWrapper = styled.ul`
   background-color: #BCEC30;
   width: 100%;
   border-radius: 38px;
@@ -191,6 +197,7 @@ export const STypesWrapper = styled.div`
   flex-wrap: wrap;
   column-gap: 124px;
   row-gap: 34px;
+  list-style: none;
 
   @media screen and (max-width: 375px) {
     flex-direction: column;
@@ -198,7 +205,7 @@ export const STypesWrapper = styled.div`
   }
 `;
 
-export const STypesItem = styled.div`
+export const STypesItem = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -270,7 +277,6 @@ export const SBottomBlockTextTitleWrapper = styled.div`
   width: 400px;
   /* display: flex; */
 
-
   @media screen and (max-width: 375px) {
     width: 283px;
   }
@@ -288,11 +294,6 @@ export const SBottomBlockTextTitle = styled.div`
     width: 225px;
   }  
 `;
-
-// export const SBottomBlockItems = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
 
 export const SList = styled.ul`
   list-style: none;
