@@ -121,6 +121,7 @@ export const SButton = styled.button<SButtonProps>`
   line-height: 110%;
   letter-spacing: 0px;
   text-align: center;
+  flex-shrink: 0;
 
   /* display: flex; */
   display: ${({ $display }) => ($display ? $display.desktop : "flex")};
