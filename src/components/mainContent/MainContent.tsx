@@ -16,7 +16,7 @@ export const MainContent = () => {
     }
   }, []);
 
-  console.log("courses в MainContent: ", courses);
+  // console.log("courses в MainContent: ", courses);
 
   const sortedCourses = [...courses].sort((a, b) => a.order - b.order);
 
@@ -32,13 +32,14 @@ export const MainContent = () => {
         <SCards>
           {sortedCourses.map((course) => (
             <Card
-            key={course._id}
-            title={course.nameRU}
-            durationInDays={course.durationInDays}
-            dailyDurationInMinutes={course.dailyDurationInMinutes}
-            difficulty={course.difficulty}
-            order={course.order}
-            page={page}
+              key={course._id}
+              id={course._id}
+              title={course.nameRU}
+              durationInDays={course.durationInDays}
+              dailyDurationInMinutes={course.dailyDurationInMinutes}
+              difficulty={course.difficulty}
+              order={course.order}
+              page={page}
             />
           ))}
         </SCards>

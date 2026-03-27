@@ -4,7 +4,7 @@ import type { dailyDurationInMinutesType } from "../../types/types";
 
 
 type CardProps = {
-  // _id: string;
+  id: string;
   title: string;
   durationInDays: number;
   dailyDurationInMinutes: dailyDurationInMinutesType;
@@ -20,7 +20,7 @@ type CardProps = {
 }
 
 
-export const Card = ({ title, durationInDays, dailyDurationInMinutes, difficulty, order, page }: CardProps) => {
+export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page }: CardProps) => {
   const progress = 40;
 
   const handleWorkout = () => {
@@ -29,7 +29,7 @@ export const Card = ({ title, durationInDays, dailyDurationInMinutes, difficulty
 
 
   return (
-    <SWrapper >
+    <SWrapper to={`/course/${id}`}>
       <SImageContainer
       $order={order}>
         <SImage src={`/images/main-page/mask-${order}.svg`}

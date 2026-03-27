@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -15,8 +15,8 @@ type SImageContainerProps = {
 };
  
 
-// export const SWrapper = styled(Link)`
-export const SWrapper = styled.div`
+// export const SWrapper = styled.div`
+export const SWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   width: 360px;

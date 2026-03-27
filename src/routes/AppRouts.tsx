@@ -7,6 +7,7 @@ import { WorkoutPage } from "../pages/WorkoutPage.tsx";
 import { ProfilePage } from "../pages/ProfilePage.tsx";
 import { LoginPage } from "../pages/LoginPage.tsx";
 import { RegistrationPage } from "../pages/RegistrationPage.tsx";
+import { ModalPage } from "../pages/modalPage.tsx";
 
 
 export function AppRoutes() {
@@ -14,7 +15,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<MainPage />} />
       {/* <Route path="/course/:id" element={<CoursePage />} /> */}
-      <Route path="/course/1" element={<CoursePage />} />
+      <Route path="/course/:id" element={<CoursePage />} />
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/registration" element={<RegistrationPage />} />
@@ -25,6 +26,7 @@ export function AppRoutes() {
         <Route path="/profile" element={<ProfilePage />} />
       {/* </Route> */}
       
+      <Route path="/modal" element={<ModalPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
