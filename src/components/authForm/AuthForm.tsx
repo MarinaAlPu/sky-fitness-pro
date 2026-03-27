@@ -2,10 +2,11 @@ import { forwardRef } from "react";
 import { Button } from "../button/Button";
 import { SHeaderLogo } from "../header/Header.style";
 import { Input } from "../input/Input";
-import { SPageBackground, SButtonBlock, SInputBlock, SWrapper, SError } from "./AuthForm.style";
+import { SPageBackground, SButtonBlock, SInputBlock, SWrapper, SError, SForm, SLink } from "./AuthForm.style";
 
 
 export const AuthForm = forwardRef<HTMLDivElement, {}>((props, ref) => {
+  const isLogin = true;
 
   const onChange = () => {
     console.log("Ввели символ в инпут");
@@ -25,39 +26,67 @@ export const AuthForm = forwardRef<HTMLDivElement, {}>((props, ref) => {
       <SWrapper ref={ref}>
         <SHeaderLogo src='/logo.svg' alt="logo" />
 
-        <SInputBlock>
+        <SForm onSubmit={handleLogin}>
 
-          <Input
-            type="email"
-            onChange={onChange}
-            placeholder="Эл. почта"
-          />
-          <Input
-            type="password"
-            onChange={onChange}
-            placeholder="Пароль"
-          />
-          <Input
-            type="password"
-            onChange={onChange}
-            placeholder="Повторите пароль"
-          />
-        </SInputBlock>
+          <SInputBlock>
 
-        <SError>Данная почта уже используется. Попробуйте войти.</SError>
+            <Input
+              type="email"
+              onChange={onChange}
+              placeholder={isLogin ? "Логин" : "Эл. почта"}
+            />
+            <Input
+              type="password"
+              onChange={onChange}
+              placeholder="Пароль"
+            />
+            {!isLogin &&
+              <Input
+                type="password"
+                onChange={onChange}
+                placeholder="Повторите пароль"
+              />
+            }
 
-        <SButtonBlock>
-          <Button
-            // width="206px"
-            onClick={handleRegistration}
-          >
-            Зарегистритоваться</Button>
-          <Button
-            type="secondary"
-            onClick={handleLogin}
-          >
-            Войти</Button>
-        </SButtonBlock>
+          </SInputBlock>
+
+          {/* <SError>Данная почта уже используется. Попробуйте войти.</SError> */}
+
+          <SButtonBlock>
+            {isLogin ?
+              (
+                <>
+                  <Button
+                    onClick={handleLogin}
+                  >
+                    Войти</Button>
+                  <SLink to="/registration">
+                    <Button
+                      type="secondary"
+                    >
+                      Зарегистритоваться</Button>
+                  </SLink>
+                </>
+              )
+              :
+              (
+                <>
+                  <Button
+                    onClick={handleRegistration}
+                  >
+                    Зарегистритоваться</Button>
+                  <SLink to="/login">
+                    <Button
+                      type="secondary"
+                    >
+                      Войти</Button>
+                  </SLink>
+                </>
+              )
+            }
+          </SButtonBlock>
+
+        </SForm>
       </SWrapper>
     </SPageBackground>
   )

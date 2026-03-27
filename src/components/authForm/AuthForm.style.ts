@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
@@ -37,6 +38,9 @@ export const SLogo = styled.img`
   height: 35px;
 `;
 
+export const SForm = styled.form`
+`;
+
 export const SInputBlock = styled.div`
   width: 100%;
   display: flex;
@@ -57,6 +61,11 @@ export const SButtonBlock = styled.div`
   @media screen and (max-width: 375px) {
     /* display: none; */
   }
+`;
+
+export const SLink = styled(Link)`
+  display: block;
+  width: 100%;
 `;
 
 export const SError = styled.div`
