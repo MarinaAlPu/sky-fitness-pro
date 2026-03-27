@@ -6,7 +6,7 @@ type ButtonProps = {
   width?: WidthType | string,
   height?: HeightType | string,
   disabled?: boolean,
-  onClick: () => void,
+  onClick?: () => void,
   children: React.ReactNode,
   // text?: string
   display?: DisplayType
