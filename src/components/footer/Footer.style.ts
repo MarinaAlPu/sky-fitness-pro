@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import type { DisplayType } from '../button/Button.style';
 
 
-export const SWrapper = styled.div`
+export const SWrapper = styled.footer`
   width: 100%;
   background-color: #FAFAFA;
 `;

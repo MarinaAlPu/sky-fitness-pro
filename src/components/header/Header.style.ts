@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-export const SWrapper = styled.div`
+export const SWrapper = styled.header`
   width: 100%;
   background-color: #FAFAFA;
   position: fixed;
