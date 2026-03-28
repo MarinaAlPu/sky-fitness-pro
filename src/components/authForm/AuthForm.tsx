@@ -1,9 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../button/Button";
 import { SHeaderLogo } from "../header/Header.style";
 import { Input } from "../input/Input";
 import { SPageBackground, SButtonBlock, SInputBlock, SWrapper, SError, SForm } from "./AuthForm.style";
 import { useLocation, useNavigate } from "react-router-dom";
+import { login, registration } from "../../services/auth";
+import axios from "axios";
 
 
 type AuthFormProps = {
@@ -17,6 +19,8 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
 
   // const authFormRef = useRef<string | null>(null);
   const authFormRef = useRef<HTMLDivElement>(null);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   useEffect(() => {
@@ -41,7 +45,8 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
     console.log("Ввели символ в инпут");
   };
 
-  const handleRegistration = () => {
+  const handleOpenRegistrationForm = () => {
+    setErrorMessage("");
     console.log("Нажали кнопку Зарегистрироваться в форме входа");
     // e.preventDefault();
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
@@ -50,8 +55,9 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
     navigate(`${parentPath}/registration`);
   };
 
-  const handleLogin = () => {
+  const handleOpenLoginForm = () => {
     console.log("Нажали кнопку Войти в форме регистрации");
+    setErrorMessage("");
     // e.preventDefault();
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
     // navigate("/login");
@@ -59,8 +65,76 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
     navigate(`${parentPath}/login`);
   };
 
-  const handleSubmit = () => {
+  const handleLogin = async (e?: React.MouseEvent) => {
     console.log("Нажали кнопку Войти в форме входа");
+
+    e?.preventDefault();
+
+    const userData = {
+      email: "diplom-user2026-10@user.user",
+      password: "Parol+-"
+    };
+
+    const userName = userData.email.split("@")[0];
+    console.log("userName: ", userName);
+
+    try {
+      const data = await login(userData)
+      console.log("Ответ сервера при входе: ", data);
+      console.log("Токен: ", data.token);
+
+      localStorage.setItem("userName", userName);
+      localStorage.setItem("email", userData.email);
+      localStorage.setItem("token", data.token);
+
+
+      const parentPath = window.location.pathname.replace(/\/(login|registration)$/, "");
+      navigate(parentPath || "/");
+    } catch (error) {
+      // console.log("Ошибка при входе: ", error);
+
+      if (axios.isAxiosError(error)) {
+        if (error && error.response) {
+          console.log("Ошибка при регистрации: ", error.response.data.message);
+          setErrorMessage(error.response.data.message || "Ошибка регистрации");
+        } else if (error.request) {
+          setErrorMessage("Отсутствует интернет. Попробуйте позже");
+        } else {
+          setErrorMessage("Неизвестная ошибка");
+        }
+      }
+    }
+  };
+
+  const handleRegister = async (e?: React.MouseEvent) => {
+    console.log("Нажали кнопку Зарегистироваться в форме регистрации");
+
+    e?.preventDefault();
+
+    try {
+      const data = await registration({
+        email: "diplom-user2026-10@user.user",
+        password: "Parol+-"
+      })
+      console.log("Ответ сервера при регистрации: ", data);
+
+      const parentPath = window.location.pathname.replace(/\/(login|registration)$/, "");
+      navigate(parentPath || "/");
+    } catch (error) {
+      // console.log("Ошибка при регистрации: ", error.message);
+      // setErrorMessage(error.message)
+
+      if (axios.isAxiosError(error)) {
+        if (error && error.response) {
+          console.log("Ошибка при регистрации: ", error.response.data.message);
+          setErrorMessage(error.response.data.message || "Ошибка регистрации");
+        } else if (error.request) {
+          setErrorMessage("Отсутствует интернет. Попробуйте позже");
+        } else {
+          setErrorMessage("Неизвестная ошибка");
+        }
+      }
+    }
   };
 
 
@@ -73,7 +147,9 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
       >
         <SHeaderLogo src='/logo.svg' alt="logo" />
 
-        <SForm onSubmit={handleSubmit}>
+        <SForm
+          // onSubmit={handleSubmit}
+        >
 
           <SInputBlock>
 
@@ -98,20 +174,23 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
           </SInputBlock>
 
           {/* <SError>Данная почта уже используется. Попробуйте войти.</SError> */}
+          {/* {errorMessage && <SError>{errorMessage}</SError>} */}
+          {errorMessage && <SError>{errorMessage}</SError>}
 
           <SButtonBlock>
             {isLogin ?
               (
                 <>
                   <Button
-                    // onClick={handleSubmit}
-                    onClick={() => console.log("Нажали кнопку Войти в форме входа")}
+                    htmlType="submit"
+                    onClick={handleLogin}
+                  // onClick={() => console.log("Нажали кнопку Войти в форме входа")}
                   >
                     Войти</Button>
                   <Button
                     htmlType="button"
                     type="secondary"
-                    onClick={handleRegistration}
+                    onClick={handleOpenRegistrationForm}
                   >
                     Зарегистритоваться</Button>
                 </>
@@ -120,13 +199,15 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
               (
                 <>
                   <Button
-                    onClick={() => console.log("Нажали кнопку зарегистрироваться в форме регистрации")}
+                    htmlType="submit"
+                    onClick={handleRegister}
+                  // onClick={() => console.log("Нажали кнопку зарегистрироваться в форме регистрации")}
                   >
                     Зарегистритоваться</Button>
                   <Button
                     htmlType="button"
                     type="secondary"
-                    onClick={handleLogin}
+                    onClick={handleOpenLoginForm}
                   >
                     Войти</Button>
                 </>
