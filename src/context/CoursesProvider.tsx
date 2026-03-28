@@ -138,12 +138,12 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getCourses = async () => {
     try {
       const data = await fetchCourses();
-      console.log(data);
+      // console.log(data);
       setCourses(data);
     } catch (err) {
       console.log("Ошибка при получении курсов: ", err);
     } finally {
-      console.log("зашли finally");
+      // console.log("зашли finally");
     }
   };
 
