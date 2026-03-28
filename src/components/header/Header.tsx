@@ -37,7 +37,7 @@ export const Header = () => {
       <SHeaderContainer>
         <SHeaderBlock>
           <SHeaderBlockLeft>
-            <SHeaderLogoLink>
+            <SHeaderLogoLink href="/" target="_self">
               <SHeaderLogo src='/logo.svg' alt="logo" />
             </SHeaderLogoLink>
             <SHeaderDescription>Онлайн-тренировки для занятий дома</SHeaderDescription>
