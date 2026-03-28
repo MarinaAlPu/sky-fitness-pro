@@ -41,18 +41,18 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
     console.log("Ввели символ в инпут");
   };
 
-  const handleRegistration = (e: MouseEvent) => {
+  const handleRegistration = () => {
     console.log("Нажали кнопку Зарегистрироваться в форме входа");
-    e.preventDefault();
+    // e.preventDefault();
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
     // console.log("parentPath: ", parentPath);
     // navigate("/registration");
     navigate(`${parentPath}/registration`);
   };
 
-  const handleLogin = (e: MouseEvent) => {
+  const handleLogin = () => {
     console.log("Нажали кнопку Войти в форме регистрации");
-    e.preventDefault();
+    // e.preventDefault();
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
     // navigate("/login");
     // console.log("parentPath: ", parentPath);
@@ -109,6 +109,7 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
                   >
                     Войти</Button>
                   <Button
+                    htmlType="button"
                     type="secondary"
                     onClick={handleRegistration}
                   >
@@ -123,6 +124,7 @@ export const AuthForm = (({ isLogin }: AuthFormProps) => {
                   >
                     Зарегистритоваться</Button>
                   <Button
+                    htmlType="button"
                     type="secondary"
                     onClick={handleLogin}
                   >

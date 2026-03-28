@@ -2,19 +2,21 @@ import { SButton, type ButtonType, type DisplayType, type HeightType, type Width
 
 
 type ButtonProps = {
+  htmlType?: "button" | "submit";
   type?: ButtonType,
   width?: WidthType | string,
   height?: HeightType | string,
   disabled?: boolean,
-  onClick?: () => void,
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void,
   children: React.ReactNode,
   // text?: string
   display?: DisplayType
 }
 
-export const Button: React.FC<ButtonProps> = ({ type = 'primary', width, height, disabled = false, onClick, children, display }) => {
+export const Button: React.FC<ButtonProps> = ({ htmlType = "button", type = 'primary', width, height, disabled = false, onClick, children, display }) => {
   return (
     <SButton
+      type={htmlType}
       $type={type}
       $width={width}
       $height={height}
