@@ -8,25 +8,33 @@ import { ProfilePage } from "../pages/ProfilePage.tsx";
 import { LoginPage } from "../pages/LoginPage.tsx";
 import { RegistrationPage } from "../pages/RegistrationPage.tsx";
 import { ModalPage } from "../pages/modalPage.tsx";
+import { Layout } from "../components/layout/Layout.tsx";
 
 
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} />
-      {/* <Route path="/course/:id" element={<CoursePage />} /> */}
-      <Route path="/course/:id" element={<CoursePage />} />
+      <Route element={<Layout />}> {/* Чтобы форма авторизации отображалась над MainPage и CoursePage */}
+        <Route path="/" element={<MainPage />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="registration" element={<RegistrationPage />} />
+        </Route>
 
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/registration" element={<RegistrationPage />} />
+        <Route path="/course/:id" element={<CoursePage />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="registration" element={<RegistrationPage />} />
+        </Route>
+      </Route>
+
 
       {/* <Route element={<PrivateRoute />}> */}
-        {/* <Route path="/workout/:id" element={<WorkoutPage />} /> */}
-        <Route path="/workout/1" element={<WorkoutPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+      {/* <Route path="/workout/:id" element={<WorkoutPage />} /> */}
+      <Route path="/workout/1" element={<WorkoutPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       {/* </Route> */}
-      
+
       <Route path="/modal" element={<ModalPage />} />
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
