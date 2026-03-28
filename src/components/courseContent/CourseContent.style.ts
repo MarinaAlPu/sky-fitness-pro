@@ -14,7 +14,7 @@ type SBannerProps = {
 };
 
 
-export const SWrapper = styled.div`
+export const SWrapper = styled.main`
   width: 100%;
   min-height: 100vh;
   background-color: #FAFAFA;
