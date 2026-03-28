@@ -1,32 +1,79 @@
-import { forwardRef } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "../button/Button";
 import { SHeaderLogo } from "../header/Header.style";
 import { Input } from "../input/Input";
-import { SPageBackground, SButtonBlock, SInputBlock, SWrapper, SError, SForm, SLink } from "./AuthForm.style";
+import { SPageBackground, SButtonBlock, SInputBlock, SWrapper, SError, SForm } from "./AuthForm.style";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
-export const AuthForm = forwardRef<HTMLDivElement, {}>((props, ref) => {
-  const isLogin = true;
+type AuthFormProps = {
+  isLogin: boolean;
+};
+
+
+export const AuthForm = (({ isLogin }: AuthFormProps) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // const authFormRef = useRef<string | null>(null);
+  const authFormRef = useRef<HTMLDivElement>(null);
+
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (authFormRef.current && !authFormRef.current.contains(e.target as Node)) {
+        const parentPath = window.location.pathname.replace(/\/(login|registration)$/, "");
+        // navigate("/");
+        navigate(parentPath || "/");
+      }
+    };
+
+    // добавить обработчик клика вне окна
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      // удалить обработчик клика вне окна при размонтировании компонента
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [navigate]);
+
 
   const onChange = () => {
     console.log("Ввели символ в инпут");
   };
 
-  const handleRegistration = () => {
-    console.log("Нажали кнопку Зарегистрироваться");
+  const handleRegistration = (e: MouseEvent) => {
+    console.log("Нажали кнопку Зарегистрироваться в форме входа");
+    e.preventDefault();
+    const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
+    // console.log("parentPath: ", parentPath);
+    // navigate("/registration");
+    navigate(`${parentPath}/registration`);
   };
 
-  const handleLogin = () => {
-    console.log("Нажали кнопку Войти");
+  const handleLogin = (e: MouseEvent) => {
+    console.log("Нажали кнопку Войти в форме регистрации");
+    e.preventDefault();
+    const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
+    // navigate("/login");
+    // console.log("parentPath: ", parentPath);
+    navigate(`${parentPath}/login`);
+  };
+
+  const handleSubmit = () => {
+    console.log("Нажали кнопку Войти в форме входа");
   };
 
 
   return (
     <SPageBackground>
-      <SWrapper ref={ref}>
+      <SWrapper
+        ref={authFormRef}
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => e.stopPropagation()}
+      >
         <SHeaderLogo src='/logo.svg' alt="logo" />
 
-        <SForm onSubmit={handleLogin}>
+        <SForm onSubmit={handleSubmit}>
 
           <SInputBlock>
 
@@ -57,30 +104,29 @@ export const AuthForm = forwardRef<HTMLDivElement, {}>((props, ref) => {
               (
                 <>
                   <Button
-                    onClick={handleLogin}
+                    // onClick={handleSubmit}
+                    onClick={() => console.log("Нажали кнопку Войти в форме входа")}
                   >
                     Войти</Button>
-                  <SLink to="/registration">
-                    <Button
-                      type="secondary"
-                    >
-                      Зарегистритоваться</Button>
-                  </SLink>
+                  <Button
+                    type="secondary"
+                    onClick={handleRegistration}
+                  >
+                    Зарегистритоваться</Button>
                 </>
               )
               :
               (
                 <>
                   <Button
-                    onClick={handleRegistration}
+                    onClick={() => console.log("Нажали кнопку зарегистрироваться в форме регистрации")}
                   >
                     Зарегистритоваться</Button>
-                  <SLink to="/login">
-                    <Button
-                      type="secondary"
-                    >
-                      Войти</Button>
-                  </SLink>
+                  <Button
+                    type="secondary"
+                    onClick={handleLogin}
+                  >
+                    Войти</Button>
                 </>
               )
             }
