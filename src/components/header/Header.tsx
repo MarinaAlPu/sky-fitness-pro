@@ -1,34 +1,41 @@
-import { useEffect, useRef, useState } from 'react';
+// import { useEffect, useRef, useState } from 'react';
 import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight, SHeaderUserInfoBlock, SHeaderUserName, SHeaderUserIcon, SArrow } from './Header.style';
 import { Button } from '../button/Button';
-import { AuthForm } from '../authForm/AuthForm';
+// import { AuthForm } from '../authForm/AuthForm';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export const Header = () => {
-  const [isAuthFormOpen, setIsAuthFormOpen] = useState(false);
+  const navigate = useNavigate();
+  // const location = useLocation();
+  // const [isAuthFormOpen, setIsAuthFormOpen] = useState(false);
 
-  const authFormRef = useRef<HTMLDivElement>(null);
+  // const authFormRef = useRef<HTMLDivElement>(null);
 
 
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (authFormRef.current && !authFormRef.current.contains(e.target as Node)) {
-        setIsAuthFormOpen(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleOutsideClick = (e: MouseEvent) => {
+  //     if (authFormRef.current && !authFormRef.current.contains(e.target as Node)) {
+  //       setIsAuthFormOpen(false);
+  //     }
+  //   };
 
-    // добавить обработчик клика вне окна
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      // удалить обработчик клика вне окна при размонтировании компонента
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
+  //   // добавить обработчик клика вне окна
+  //   document.addEventListener('mousedown', handleOutsideClick);
+  //   return () => {
+  //     // удалить обработчик клика вне окна при размонтировании компонента
+  //     document.removeEventListener('mousedown', handleOutsideClick);
+  //   };
+  // }, []);
 
 
   const handleLogin = () => {
     // console.log('Нажали кнопку "Войти"');
-    setIsAuthFormOpen(true);
+    // setIsAuthFormOpen(true);
+    // navigate("/login");
+    const currentPath = location.pathname === "/" ? "/" : location.pathname;
+    // console.log("currentPath: ", currentPath);
+    navigate(`${currentPath}/login`);
   };
 
 
@@ -62,9 +69,9 @@ export const Header = () => {
         </SHeaderBlock>
       </SHeaderContainer>
 
-      {isAuthFormOpen && (
+      {/* {isAuthFormOpen && (
         <AuthForm  ref={authFormRef}/>
-      )}
+      )} */}
 
     </SWrapper>
   )
