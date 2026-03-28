@@ -1,6 +1,6 @@
 import { GlobalStyle } from './assets/GlobalStyles';
+import { AuthProvider } from './context/AuthProvider';
 import { CoursesProvider } from './context/CoursesProvider';
-// import { Main } from './components/main/Main';
 import { AppRoutes } from './routes/AppRouts';
 
 
@@ -8,10 +8,11 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      {/* <Main /> */}
-      <CoursesProvider>
-        <AppRoutes />
-      </CoursesProvider>
+      <AuthProvider>
+        <CoursesProvider>
+          <AppRoutes />
+        </CoursesProvider>
+      </AuthProvider>
     </>
   )
 }
