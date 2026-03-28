@@ -12,7 +12,7 @@ export const SPageBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 1000000;
 `;
 
 export const SWrapper = styled.div`
