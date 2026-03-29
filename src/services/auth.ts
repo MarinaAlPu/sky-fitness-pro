@@ -7,6 +7,7 @@ const API_URL = "https://wedev-api.sky.pro/api/fitness";
 export type UserDataType = {
   email: string;
   password: string;
+  confirmPassword?: string;
 };
 
 
