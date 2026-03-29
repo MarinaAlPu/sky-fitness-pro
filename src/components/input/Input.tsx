@@ -6,13 +6,15 @@ type InputProps = {
   height?: HeightType | string,
   border?: string,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  placeholder?: string
+  placeholder?: string;
+  name: string;
 }
 
 
-export const Input: React.FC<InputProps> = ({ type = "text", height = "52px", border = "success", placeholder }) => {
+export const Input: React.FC<InputProps> = ({ type = "text", height = "52px", border = "success", onChange, placeholder, name }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Ввели символ в инпут: ", e.target.value);
+    console.log("Инпут. Ввели символ в инпут: ", e.target.value);
+    onChange(e);
   };
 
 
@@ -23,6 +25,7 @@ export const Input: React.FC<InputProps> = ({ type = "text", height = "52px", bo
       $border={border}
       onChange={handleChange}
       placeholder={placeholder}
+      name={name}
     />
   )
 }
