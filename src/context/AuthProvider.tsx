@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [userData, setUserData] = useState<UserDataType>({ email: "", password: "" , confirmPassword: ""});
+  const [userData, setUserData] = useState<UserDataType>({ email: "", password: "", confirmPassword: "" });
   const [errors, setErrors] = useState({ email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(true);
@@ -71,8 +71,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 
   const handleOpenRegistrationForm = () => {
+    // console.log("Нажали кнопку Зарегистрироваться в форме входа");
+    setUserData({ email: "", password: "", confirmPassword: "" });
+    setErrors({ email: "", password: "", confirmPassword: "" });
     setErrorMessage("");
-    console.log("Нажали кнопку Зарегистрироваться в форме входа");
     // e.preventDefault();
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
     // console.log("parentPath: ", parentPath);
@@ -82,7 +84,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 
   const handleOpenLoginForm = () => {
-    console.log("Нажали кнопку Войти в форме регистрации");
+    // console.log("Нажали кнопку Войти в форме регистрации");
+    setUserData({ email: "", password: "", confirmPassword: "" });
+    setErrors({ email: "", password: "", confirmPassword: "" });
     setErrorMessage("");
     // e.preventDefault();
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
@@ -94,10 +98,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const handleLogin = async (e?: React.MouseEvent) => {
     console.log("Нажали кнопку Войти в форме входа");
-    
+
     e?.preventDefault();
     setErrorMessage("");
-    
+
     if (!validateForm(userData, isLogin, setErrors, setError, setIsValid, setErrorMessage)) {
       // return false;
       return;
