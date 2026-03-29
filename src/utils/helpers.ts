@@ -6,7 +6,8 @@ export type ValidateFormType = (
   isLogin: boolean,
   setErrors: (errors: any) => void,
   setError: (message: string) => void,
-  setIsValid: (valid: boolean) => void
+  setIsValid: (valid: boolean) => void,
+  setErrorMessage: (message: string) => void,
 ) => boolean;
 
 type FieldsErrors = {
@@ -16,7 +17,7 @@ type FieldsErrors = {
 };
 
 
-export const validateForm: ValidateFormType = (userData, isLogin, setErrors, setError, setIsValid) => {
+export const validateForm: ValidateFormType = (userData, isLogin, setErrors, setError, setIsValid, setErrorMessage) => {
   const fieldsErrors: FieldsErrors = { email: "", password: "", confirmPassword: "" };
 
   let isValid = true;
@@ -34,6 +35,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
 
     if (!fieldValue) {
       fieldsErrors[fieldKey as keyof FieldsErrors] = "Заполните все поля";
+      setErrorMessage("Заполните все поля");
       isValid = false;
     }
   });
@@ -42,6 +44,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
   // ошибки email при регистрации
   if (!isLogin && userData.email.length > 0 && (userData.email).includes("@") === false) {
     fieldsErrors.email = "Введите корректный Email";
+    setErrorMessage("Введите корректный Email");
     isValid = false;
   }
 
@@ -51,6 +54,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
 
   if (!isLogin && userData.password.length > 0 && !isPasswordValid) {
     fieldsErrors.password = "Пароль должен содержать не менее 6 симоволов";
+    setErrorMessage("Пароль должен содержать не менее 6 симоволов");
     isValid = false;
   }
 
@@ -65,6 +69,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
 
   if (!isLogin && userData.password.length > 0 && specialCharsCount < 2) {
     fieldsErrors.password = "Пароль должен содержать не менее 2 спецсимволов";
+    setErrorMessage("Пароль должен содержать не менее 2 спецсимволов");
     isValid = false;
   };
 
@@ -74,6 +79,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
 
   if (!isLogin && userData.password.length > 0 && !hasUpperCase) {
     fieldsErrors.password = "Пароль должен содержать как минимум одну заглавную букву";
+    setErrorMessage("Пароль должен содержать как минимум одну заглавную букву");
     isValid = false;
   };
 
@@ -81,6 +87,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
   // совпадение паролей
   if (!isLogin && userData.password !== userData.confirmPassword) {
     fieldsErrors.confirmPassword = "Пароли не совпадают";
+    setErrorMessage("Пароли не совпадают");
     isValid = false;
   };
 

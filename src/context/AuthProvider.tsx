@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [userData, setUserData] = useState<UserDataType>({ email: "", password: "" , confirmPassword: ""});
-  const [errors, setErrors] = useState({ email: false, password: false, confirmPassword: false });
+  const [errors, setErrors] = useState({ email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(true);
 
@@ -94,11 +94,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const handleLogin = async (e?: React.MouseEvent) => {
     console.log("Нажали кнопку Войти в форме входа");
-
+    
     e?.preventDefault();
     setErrorMessage("");
-
-    if (!validateForm(userData, isLogin, setErrors, setError, setIsValid)) {
+    
+    if (!validateForm(userData, isLogin, setErrors, setError, setIsValid, setErrorMessage)) {
       // return false;
       return;
     }
