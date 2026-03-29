@@ -1,7 +1,10 @@
 import { createContext, useContext } from "react";
+import type { UserDataType } from "../services/auth";
 
 
 export type AuthContextType = {
+  userData: UserDataType;
+  handleChange:  (e: React.ChangeEvent<HTMLInputElement>) => void;
   errorMessage: string | null;
   handleOpenRegistrationForm: () => void;
   handleOpenLoginForm: () => void;
