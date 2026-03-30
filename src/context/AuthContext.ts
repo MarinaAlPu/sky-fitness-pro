@@ -3,6 +3,8 @@ import type { UserDataType } from "../services/auth";
 
 
 export type AuthContextType = {
+  user: { email: string; userName: string } | null;
+  token: string | null;
   userData: UserDataType;
   handleChange:  (e: React.ChangeEvent<HTMLInputElement>) => void;
   errorMessage: string | null;
