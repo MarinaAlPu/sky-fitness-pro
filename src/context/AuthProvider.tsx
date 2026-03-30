@@ -82,7 +82,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     navigate(`${parentPath}/registration`);
   };
 
-
   const handleOpenLoginForm = () => {
     // console.log("Нажали кнопку Войти в форме регистрации");
     setUserData({ email: "", password: "", confirmPassword: "" });
@@ -94,7 +93,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // console.log("parentPath: ", parentPath);
     navigate(`${parentPath}/login`);
   };
-
 
   const handleLogin = async (e?: React.MouseEvent) => {
     console.log("Нажали кнопку Войти в форме входа");
@@ -171,6 +169,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const handleLogout = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+    updateUserInfo(null, null);
+    navigate("/");
+  };
+
 
   return (
     <AuthContext.Provider value={{
@@ -180,7 +185,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       handleOpenRegistrationForm,
       handleOpenLoginForm,
       handleLogin,
-      handleRegister
+      handleRegister,
+      handleLogout
     }}>
       {children}
     </AuthContext.Provider>

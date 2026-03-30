@@ -10,6 +10,7 @@ export type AuthContextType = {
   handleOpenLoginForm: () => void;
   handleLogin: (e?: React.MouseEvent) => Promise<void>;
   handleRegister: (e?: React.MouseEvent) => Promise<void>;
+  handleLogout: (e?: React.MouseEvent) => void;
 };
 
 

@@ -1,14 +1,21 @@
+import { useAuth } from "../../../context/AuthContext";
 import { Button } from "../../button/Button";
 import { SWrapper, SContainer, SEmail, SUserName } from "./UserModal.style";
 
 
 export const UserModal = () => {
+  const {handleLogout} = useAuth();
+
+
   const onOpenProfile = () => {
     console.log("Нажали кнопку Мой профиль");
   };
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
     console.log("Нажали кнопку Выйти");
+    // e?.preventDefault();
+    // e.stopPropagation();
+    handleLogout();
   };
 
 
@@ -27,7 +34,8 @@ export const UserModal = () => {
           Мой профиль</Button>
         <Button
           type="secondary"
-          onClick={handleLogout}
+          htmlType="button"
+          onClick={handleLogoutClick}
         >
           Выйти</Button>
       </SContainer>
