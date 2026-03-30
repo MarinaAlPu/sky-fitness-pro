@@ -181,13 +181,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     e?.preventDefault();
     e?.stopPropagation();
 
-    const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
-    navigate(`${parentPath}`);
-
     updateUserInfo(null, null);
 
     // navigate("/");
-    navigate(`${parentPath}`);
+
+    const currentPath = location.pathname.replace(/\/(login|registration)$/, "");
+
+    const isMainPage = currentPath === "/";
+    const isCoursePage = currentPath.startsWith("/course");
+
+    if (isMainPage || isCoursePage) {
+      navigate(currentPath || "/");
+    } else {
+      navigate("/");
+    }
   };
 
 
