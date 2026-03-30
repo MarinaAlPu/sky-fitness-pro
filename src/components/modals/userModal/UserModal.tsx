@@ -1,14 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { Button } from "../../button/Button";
 import { SWrapper, SContainer, SEmail, SUserName } from "./UserModal.style";
 
 
 export const UserModal = () => {
-  const {handleLogout} = useAuth();
+  const navigate = useNavigate();
+
+  const { handleLogout, user, token } = useAuth();
+
+  // const token = localStorage.getItem("token");
+  // const userInfo = localStorage.getItem("userInfo")
+  // const userName = (JSON.parse(userInfo)).userName;
+  // const email = (JSON.parse(userInfo)).email;
+  const userName = user?.userName || null;
+  const email = user?.email || null;
 
 
   const onOpenProfile = () => {
     console.log("Нажали кнопку Мой профиль");
+    if (token) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
   };
 
   const handleLogoutClick = () => {
@@ -22,8 +37,8 @@ export const UserModal = () => {
   return (
     <SWrapper>
       <SContainer>
-        <SUserName>Сергей</SUserName>
-        <SEmail>sergey.petrov96@mail.ru</SEmail>
+        <SUserName>{userName}</SUserName>
+        <SEmail>{email}</SEmail>
       </SContainer>
 
       <SContainer>

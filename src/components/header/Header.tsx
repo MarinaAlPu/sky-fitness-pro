@@ -5,6 +5,7 @@ import { Button } from '../button/Button';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { UserModal } from '../modals/userModal/UserModal';
+import { useAuth } from '../../context/AuthContext';
 
 
 export const Header = () => {
@@ -12,6 +13,12 @@ export const Header = () => {
 
   const isAuth = localStorage.getItem("token");
   // console.log("isAuth: ", isAuth);
+
+  // const userInfo = localStorage.getItem("userInfo")
+  // const userName = (JSON.parse(userInfo))?.userName;
+  const { user } = useAuth();
+  const userName = user?.userName || null;
+
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,7 +51,7 @@ export const Header = () => {
             {isAuth ?
               <SHeaderUserInfoBlock onClick={handleOpenLogout}>
                 <SHeaderUserIcon src="/icons/profile.svg" alt="Иконка пользователя" />
-                <SHeaderUserName>Сергей</SHeaderUserName>
+                <SHeaderUserName>{userName}</SHeaderUserName>
                 <SArrow $isOpen={isOpen} />
                 {isOpen && <UserModal />}
               </SHeaderUserInfoBlock>
