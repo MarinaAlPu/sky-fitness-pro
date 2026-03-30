@@ -13,7 +13,7 @@ const backgroundColors: Record<number, string> = {
 type SImageContainerProps = {
   $order: number
 };
- 
+
 
 // export const SWrapper = styled.div`
 export const SWrapper = styled(Link)`
@@ -85,6 +85,15 @@ export const SRoundButton = styled.img`
   position: absolute;
   top: 20px;
   right: 20px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 export const SDescriptionContainer = styled.div`
