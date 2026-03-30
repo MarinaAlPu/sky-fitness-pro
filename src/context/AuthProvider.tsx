@@ -31,12 +31,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [user, setUser] = useState(checkUserInfoInLS());
 
+  const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
   const [errorMessage, setErrorMessage] = useState("");
   const [userData, setUserData] = useState<UserDataType>({ email: "", password: "", confirmPassword: "" });
   const [errors, setErrors] = useState({ email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(true);
+  const initialFormState = { email: "", password: "", confirmPassword: "" };
+  const initialErrorsState = { email: "", password: "", confirmPassword: "" };
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,19 +54,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
 
-  const updateUserInfo = (userEmail: string | null, token: string | null) => {
-    if (userEmail && token) {
+  const updateUserInfo = (userEmail: string | null, newToken: string | null) => {
+    if (userEmail && newToken) {
       const userInfo = {
         userName: userEmail.split("@")[0],
         email: userEmail,
       };
 
       setUser(userInfo);
-
+      setToken(newToken);
+      
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", newToken);
     } else {
       setUser(null);
+      setToken(null);
       localStorage.removeItem("userInfo");
       localStorage.removeItem("token");
     };
@@ -72,8 +77,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const handleOpenRegistrationForm = () => {
     // console.log("Нажали кнопку Зарегистрироваться в форме входа");
-    setUserData({ email: "", password: "", confirmPassword: "" });
-    setErrors({ email: "", password: "", confirmPassword: "" });
+    setUserData(initialFormState);
+    setErrors(initialErrorsState);
     setErrorMessage("");
     // e.preventDefault();
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
@@ -84,13 +89,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const handleOpenLoginForm = () => {
     // console.log("Нажали кнопку Войти в форме регистрации");
-    setUserData({ email: "", password: "", confirmPassword: "" });
-    setErrors({ email: "", password: "", confirmPassword: "" });
+    setUserData(initialFormState);
+    setErrors(initialErrorsState);
     setErrorMessage("");
     // e.preventDefault();
+
     const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
-    // navigate("/login");
-    // console.log("parentPath: ", parentPath);
     navigate(`${parentPath}/login`);
   };
 
@@ -115,6 +119,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       if (userData.email && data.token) {
         updateUserInfo(userData.email, data.token);
+
+        setUserData(initialFormState);
+        setErrors(initialFormState);
+
         const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
         navigate(parentPath || "/");
         // return true;
@@ -179,6 +187,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={{
+      token,
+      user,
       userData,
       handleChange,
       errorMessage,
