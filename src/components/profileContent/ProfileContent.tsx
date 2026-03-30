@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { Button } from "../button/Button";
 import { Card } from "../card/Card";
 import { Footer } from "../footer/Footer";
@@ -5,9 +7,15 @@ import { SContainer, STitle, SUserPanel, SWrapper, SCourses, SUserIcon, SUserDat
 
 
 export const ProfileContent = () => {
-  const handleLogout = () => {
-    console.log("Нажали кнопку Выйти");
-  };
+  const navigate = useNavigate();
+
+  const { handleLogout, user } = useAuth();
+
+  const userName = user?.userName || null;
+
+  // const handleLogout = () => {
+  //   console.log("Нажали кнопку Выйти");
+  // };
 
 
   return (
@@ -21,8 +29,8 @@ export const ProfileContent = () => {
 
             <SUserPanelContent>
               <SUserData>
-                <SUserName>Сергей</SUserName>
-                <SUserLogin>Логин: sergey.petrov96</SUserLogin>
+                <SUserName>{userName}</SUserName>
+                <SUserLogin>Логин: {userName}</SUserLogin>
               </SUserData>
               <Button
                 type='secondary'
@@ -36,9 +44,9 @@ export const ProfileContent = () => {
 
           <STitle>Мои курсы</STitle>
           <SCourses>
+            {/* <Card />
             <Card />
-            <Card />
-            <Card />
+            <Card /> */}
           </SCourses>
 
         </SContainer>
