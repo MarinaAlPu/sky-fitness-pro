@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 
+type SArrowProps = {
+  $isOpen: boolean;
+};
+
+
 export const SWrapper = styled.header`
   width: 100%;
   background-color: #FAFAFA;
@@ -73,6 +78,8 @@ export const SHeaderUserInfoBlock = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  cursor: pointer;
+  position: relative;
 `;
 
 export const SHeaderUserIcon = styled.img`
@@ -84,31 +91,23 @@ export const SHeaderUserIcon = styled.img`
   order: 1;
 `;
 
-export const SHeaderUserName = styled.div`
+export const SHeaderUserNameWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  /* cursor: pointer; */
+`;
+
+export const SHeaderUserName = styled.div`
   gap: 12px;
   order: 2;
-
-    /* &::after {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 1px;
-    border-left: 2px solid #000000;
-    border-bottom: 2px solid #000000;
-    margin: 5px 0px;
-    padding: 0;
-    transform: rotate(-45deg);
-  } */
+  /* cursor: pointer; */
 
   @media screen and (max-width: 375px) {
     display: none;
   }
 `;
 
-export const SArrow = styled.div`
+export const SArrow = styled.div<SArrowProps>`
   width: 8px;
   height: 8px;
   border-radius: 1px;
@@ -116,9 +115,15 @@ export const SArrow = styled.div`
   border-bottom: 2px solid #000000;
   /* margin: 5px 0px; */
   /* padding: 0; */
-  transform: rotate(-45deg);
+  /* transform: rotate(-45deg); */
   /* transform: rotate(135deg); */
   order: 3;
+  /* cursor: pointer; */
+
+  transform:
+    ${({ $isOpen }) => ($isOpen ? "translateY(3px)" : "translateY(0)")}
+    rotateZ(${({ $isOpen }) => ($isOpen ? "135deg" : "-45deg")});
+  transition: transform 0.2s ease-in-out;
 
   @media screen and (max-width: 375px) {
     order: 2;

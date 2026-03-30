@@ -4,7 +4,10 @@ import styled from "styled-components";
 export const SWrapper = styled.div`
   width: 266px;
   height: 258px;
-  position: relative;
+  /* position: relative; */
+  position: absolute;
+  top: 74px;
+  right: 0px;
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
@@ -13,6 +16,7 @@ export const SWrapper = styled.div`
   border-radius: 30px;
   padding: 30px;
   gap: 34px;
+  z-index: 10;
 
   @media screen and (max-width: 375px) {
     display: none;
@@ -26,6 +30,8 @@ export const SContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  box-shadow: 0px 4px 67px -12px #00000021;
+
 
   @media screen and (max-width: 375px) {
     /* display: none; */
