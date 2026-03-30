@@ -26,16 +26,16 @@ export const UserModal = () => {
     }
   };
 
-  const handleLogoutClick = () => {
+  const handleLogoutClick = (e?: React.MouseEvent) => {
     console.log("Нажали кнопку Выйти");
     // e?.preventDefault();
     // e.stopPropagation();
-    handleLogout();
+    handleLogout(e);
   };
 
 
   return (
-    <SWrapper>
+    <SWrapper onClick={(e) => e.stopPropagation()}>
       <SContainer>
         <SUserName>{userName}</SUserName>
         <SEmail>{email}</SEmail>
