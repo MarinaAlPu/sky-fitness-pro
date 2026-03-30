@@ -31,11 +31,6 @@ export const SContainer = styled.div`
   justify-content: center;
   gap: 10px;
   box-shadow: 0px 4px 67px -12px #00000021;
-
-
-  @media screen and (max-width: 375px) {
-    /* display: none; */
-  }
 `;
 
 export const SUserName = styled.div`
@@ -43,10 +38,8 @@ export const SUserName = styled.div`
   font-size: 18px;
   line-height: 110%;
   letter-spacing: 0%;
-
-  @media screen and (max-width: 375px) {
-    /* display: none; */
-  }
+  text-align: center;
+  word-wrap: break-word;
 `;
 
 export const SEmail = styled.div`
@@ -55,8 +48,6 @@ export const SEmail = styled.div`
   line-height: 110%;
   letter-spacing: 0%;
   color: #999999;
-
-  @media screen and (max-width: 375px) {
-    /* display: none; */
-  }
+  text-align: center;
+  word-wrap: break-word;
 `;
