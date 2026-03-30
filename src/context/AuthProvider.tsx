@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       setUser(userInfo);
       setToken(newToken);
-      
+
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
       localStorage.setItem("token", newToken);
     } else {
@@ -180,8 +180,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const handleLogout = (e?: React.MouseEvent) => {
     e?.preventDefault();
     e?.stopPropagation();
+
+    const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
+    navigate(`${parentPath}`);
+
     updateUserInfo(null, null);
-    navigate("/");
+
+    // navigate("/");
+    navigate(`${parentPath}`);
   };
 
 
