@@ -2,7 +2,7 @@
 import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight, SHeaderUserInfoBlock, SHeaderUserName, SHeaderUserIcon, SArrow } from './Header.style';
 import { Button } from '../button/Button';
 // import { AuthForm } from '../authForm/AuthForm';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { UserModal } from '../modals/userModal/UserModal';
 import { useAuth } from '../../context/AuthContext';
@@ -10,14 +10,18 @@ import { useAuth } from '../../context/AuthContext';
 
 export const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const isAuth = localStorage.getItem("token");
-  // console.log("isAuth: ", isAuth);
+  const { user, token } = useAuth();
 
+  // const token = localStorage.getItem("token");
   // const userInfo = localStorage.getItem("userInfo")
-  // const userName = (JSON.parse(userInfo))?.userName;
-  const { user } = useAuth();
-  const userName = user?.userName || null;
+  // const userName = (JSON.parse(userInfo)).userName;
+  // const email = (JSON.parse(userInfo)).email;
+  const userName = user?.userName || "";
+
+  const isAuth = !!token;
+  // console.log("isAuth: ", isAuth);
 
 
   const [isOpen, setIsOpen] = useState(false);
