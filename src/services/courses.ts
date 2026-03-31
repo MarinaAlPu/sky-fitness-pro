@@ -5,6 +5,11 @@ import type { CourseType } from "../types/types";
 const API_URL = "https://wedev-api.sky.pro/api/fitness";
 
 
+export type getUserCoursesReturnType = {
+  email: string;
+  selectedCourses: string[];
+}
+
 export const fetchCourses = (): Promise<CourseType[]> => {
   return axios.get<CourseType[]>(`${API_URL}/courses`)
     .then((resp) => {
@@ -41,6 +46,20 @@ export const deleteCourse = (id: string, token: string): Promise<any> => {
     })
     .then((resp) => {
       console.log("resp в функции deleteCourse: ", resp);
+      return resp.data;
+    });
+};
+
+export const fetchUserCourses = (token: string): Promise<getUserCoursesReturnType> => {
+  return axios.get<getUserCoursesReturnType>(`${API_URL}//users/me`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": ""
+      },
+    })
+    .then((resp) => {
+      console.log("resp в функции getUserCourses: ", resp);
       return resp.data;
     });
 };
