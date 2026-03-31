@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { CoursesContext } from "./CoursesContext";
-import { addCourse, deleteCourse, fetchCourses } from "../services/courses";
+import { addCourse, deleteCourse, fetchCourses, fetchUserCourses } from "../services/courses";
 import type { CourseType } from "../types/types";
 
 
@@ -20,7 +20,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
       }
       console.log("Курсы юзера из LS: ", JSON.parse(userCoursesInLS));
 
-      return userCoursesInLS ? JSON.parse(userCoursesInLS) : [];
+      // return userCoursesInLS ? JSON.parse(userCoursesInLS) : [];
+      return JSON.parse(userCoursesInLS);
     } catch (err) {
       console.error("Ошибка при получении курсов из LS:", err);
       return [];
@@ -78,6 +79,20 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     localStorage.removeItem("userCourses");
   };
 
+  const getUserCourses = async (token: string) => {
+    try {
+      const response = await fetchUserCourses(token);
+      console.log("response: ", response);
+
+      const userCoursesIds = response.selectedCourses || [];
+
+      setUserCourses(userCoursesIds);
+      localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
+    } catch (err) {
+      console.error("Ошибка при загрузке курсов пользователя: ", err);
+    }
+  };
+
 
   return (
     <CoursesContext.Provider
@@ -87,7 +102,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         userCourses,
         addUserCourse,
         deleteUserCourse,
-        removeUserCoursesFromLS
+        removeUserCoursesFromLS,
+        getUserCourses
       }}
     >
       {children}

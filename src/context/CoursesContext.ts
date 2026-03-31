@@ -9,6 +9,7 @@ export type CoursesContextType = {
   addUserCourse: (courseId: string, token: string) => void;
   deleteUserCourse: (courseId: string, token: string) => void;
   removeUserCoursesFromLS: () => void;
+  getUserCourses: (token: string) => void;
 }
 
 export const CoursesContext = createContext<CoursesContextType | undefined>(

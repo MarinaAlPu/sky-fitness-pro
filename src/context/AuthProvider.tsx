@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isValid, setIsValid] = useState(true);
   const initialFormState = { email: "", password: "", confirmPassword: "" };
   const initialErrorsState = { email: "", password: "", confirmPassword: "" };
-  const { removeUserCoursesFromLS } = useCourses();
+  const { removeUserCoursesFromLS, getUserCourses } = useCourses();
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,6 +122,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (userData.email && data.token) {
         updateUserInfo(userData.email, data.token);
 
+        getUserCourses(data.token);
         setUserData(initialFormState);
         setErrors(initialFormState);
 
