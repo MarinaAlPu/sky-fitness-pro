@@ -4,6 +4,7 @@ import { login, registration, type UserDataType } from "../services/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { validateForm } from "../utils/helpers";
+import { useCourses } from "./CoursesContext";
 
 
 type AuthProviderProps = {
@@ -40,6 +41,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isValid, setIsValid] = useState(true);
   const initialFormState = { email: "", password: "", confirmPassword: "" };
   const initialErrorsState = { email: "", password: "", confirmPassword: "" };
+  const { removeUserCoursesFromLS } = useCourses();
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,6 +184,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     e?.stopPropagation();
 
     updateUserInfo(null, null);
+    removeUserCoursesFromLS();
 
     // navigate("/");
 
