@@ -4,18 +4,36 @@ import { Button } from "../button/Button";
 import { Card } from "../card/Card";
 import { Footer } from "../footer/Footer";
 import { SContainer, STitle, SUserPanel, SWrapper, SCourses, SUserIcon, SUserData, SUserName, SUserLogin, SUserPanelContent } from "./ProfileContent.style";
+import { useCourses } from "../../context/CoursesContext";
+import { useEffect } from "react";
 
 
 export const ProfileContent = () => {
-  const navigate = useNavigate();
+  const page = "profile";
+
+  // const navigate = useNavigate();
 
   const { handleLogout, user } = useAuth();
+
+  const { courses, userCourses, getCourses } = useCourses();
+  console.log("userCourses: ", userCourses);
+
+  useEffect(() => {
+    if (courses.length === 0) {
+      getCourses();
+    }
+  }, []);
+
 
   const userName = user?.userName || null;
 
   // const handleLogout = () => {
   //   console.log("Нажали кнопку Выйти");
   // };
+
+
+  const userCoursesSelected = courses.filter((course) => userCourses.includes(course._id));
+  console.log("userCoursesSelected: ", userCoursesSelected);
 
 
   return (
@@ -44,15 +62,31 @@ export const ProfileContent = () => {
 
           <STitle>Мои курсы</STitle>
           <SCourses>
-            {/* <Card />
-            <Card />
-            <Card /> */}
+
+            {userCoursesSelected.length > 0 ?
+              (
+                userCoursesSelected.map((course) => (
+                  <Card
+                    key={course._id}
+                    id={course._id}
+                    title={course.nameRU}
+                    durationInDays={course.durationInDays}
+                    dailyDurationInMinutes={course.dailyDurationInMinutes}
+                    difficulty={course.difficulty}
+                    order={course.order}
+                    page={page}
+                  />
+                ))
+              ) : (
+                <div>Вы не добавили ни одного курса</div>
+              )}
+
           </SCourses>
 
         </SContainer>
-      </SWrapper>
+      </SWrapper >
 
-      <Footer buttonDisplay={{ desktop: 'none', mobile: 'flex' }}/>
+      <Footer buttonDisplay={{ desktop: 'none', mobile: 'flex' }} />
     </>
   )
 }
