@@ -10,6 +10,14 @@ export type getUserCoursesReturnType = {
   selectedCourses: string[];
 }
 
+export type getCourseWorkoutsReturnType = {
+  _id: string;
+  name: string;
+  video: string;
+  exercises: [];
+}
+
+
 export const fetchCourses = (): Promise<CourseType[]> => {
   return axios.get<CourseType[]>(`${API_URL}/courses`)
     .then((resp) => {
@@ -60,6 +68,21 @@ export const fetchUserCourses = (token: string): Promise<getUserCoursesReturnTyp
     })
     .then((resp) => {
       console.log("resp в функции getUserCourses: ", resp);
+      return resp.data;
+    });
+};
+
+export const getCourseWorkouts = (courseId: string, token: string): Promise<getCourseWorkoutsReturnType> => {
+  return axios.get<getCourseWorkoutsReturnType>(`${API_URL}/courses/${courseId}/workouts`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": ""
+      },
+    }
+  )
+    .then((resp) => {
+      console.log("resp в функции getCourseWorkouts: ", resp);
       return resp.data;
     });
 };
