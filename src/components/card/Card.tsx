@@ -1,6 +1,11 @@
 import { Button } from "../button/Button";
 import { SWrapper, SContainer, SImage, STitle, SRoundButton, SPropertyContainer, SDaysIcon, STimeIcon, SDifficultyIcon, SDescriptionContainer, SPropertiesContainer, SFirstRowProperties, SPropertyText, SImageContainer, SProgress, SProgressTitle, ProgressBar, SProgressFill } from "./Card.style";
 import type { dailyDurationInMinutesType } from "../../types/types";
+import { addCourse, deleteCourse } from "../../services/courses";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CoursesContext, useCourses } from "../../context/CoursesContext";
 
 
 type CardProps = {
@@ -21,32 +26,84 @@ type CardProps = {
 
 
 export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page }: CardProps) => {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+
+  // const {addUserCourse} = useContext(CoursesContext);
+  const { addUserCourse, userCourses, deleteUserCourse } = useCourses();
+
+  const isCourseAdded = userCourses.includes(id);
+  console.log("Курс добавлен: ", isCourseAdded);
+
+
+  const handleAddCourse = (e: React.MouseEvent) => {
+    console.log("Нажали кнопку Добавить курс");
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!token) {
+      console.log("Токена нет, отправляем на логин");
+      navigate("/login");
+      return;
+    }
+
+    // // const courseId = "q02a6i";
+    // addUserCourse(id, token)
+    //   .then((data) => console.log("Курс добавлен:", data))
+    //   .catch((err) => console.error("Ошибка при добавлении:", err));
+    addUserCourse(id, token);
+  };
+
+  const handleDeleteCourse = (e: React.MouseEvent) => {
+    console.log("Нажали кнопку Удалить курс");
+    e.preventDefault();
+    e.stopPropagation();
+
+
+    if (!token) {
+      console.log("Токена нет, иди залогинься");
+      navigate("/login");
+      return;
+    }
+
+    // const courseId = "q02a6i";
+    deleteUserCourse(id, token)
+      // .then((data) => console.log("Курс добавлен:", data))
+      // .catch((err) => console.error("Ошибка при удалении курса:", err));
+  };
+
+
   const progress = 40;
+
 
   const handleWorkout = () => {
     console.log("Нажали кнопку Продолжить");
   };
 
 
+
   return (
     <SWrapper to={`/course/${id}`}>
       <SImageContainer
-      $order={order}>
+        $order={order}>
         <SImage src={`/images/main-page/mask-${order}.svg`}
-        // {
-        //   order === 1 ? "./images/main-page/mask-1.svg"
-        //     :
-        //     order === 2 ? "./images/main-page/mask-2.svg"
-        //       :
-        //       order === 3 ? "./images/main-page/mask-3.svg"
-        //         :
-        //         order === 4 ? "./images/main-page/mask-4.svg"
-        //           :
-        //           "./images/main-page/mask-5.svg"
-        // }
           alt={title} />
-        <SRoundButton src="./icons/add-button.svg" alt="Добавить" title="Добавить курс" />
-        {/* <SRoundButton src="./icons/delete-button.svg" alt="Удалить" title="Удалить курс" /> */}
+        {isCourseAdded ?
+          (<SRoundButton
+            src="./icons/delete-button.svg"
+            alt="Удалить"
+            title="Удалить курс"
+            onClick={handleDeleteCourse}
+          />)
+          :
+          (<SRoundButton
+            src="./icons/add-button.svg"
+            alt="Добавить"
+            title="Добавить курс"
+            onClick={handleAddCourse}
+          />)
+        }
+
       </SImageContainer>
 
       <SContainer>
