@@ -1,128 +1,6 @@
-// import { CoursesContext } from "./CoursesContext";
-// import { fetchCourses } from "../services/courses.ts"
-
-// export const CoursesProvider = ({ children }) => {
-//   // const { user } = useContext(AuthContext);
-//   // const token = user?.token;
-
-//   // const [isLoading, setIsLoading] = useState(false);
-//   // const [tasks, setTasks] = useState([]);
-//   // const [error, setError] = useState("");
-//   // const [selectedDate, setSelectedDate] = useState(null);
-//   // const [isDraggable, setIsDraggable] = useState(false);
-//   // const [draggableCardId, setDraggableCardId] = useState(null);
-//   // const [dragStartColumn, setDragStartColumn] = useState(null);
-
-//   // const getCourses = useCallback(async () => {
-//   const getCourses = async () => {
-//     try {
-//       // setIsLoading(true);
-//       const data = await fetchCourses();
-//       // console.log(data);
-//       // if (data) setTasks(data);
-//     } catch (err) {
-//       // setError(err.message);
-//     } finally {
-//       // setIsLoading(false);
-//     }
-//   // }, [token]);
-
-
-//   // useEffect(() => {
-//   //   if (token) {
-//   //     getTasks();
-//   //   }
-//   // }, [getTasks, token]);
-
-
-//   // const addTask = async ({ newTask }) => {
-//   //   setIsLoading(true);
-//   //   try {
-//   //     await postTask({ token, newTask })
-//   //       .then((data) => {
-//   //         setTasks(data);
-//   //       })
-//   //   } catch (err) {
-//   //     setError(err.message);
-//   //   } finally {
-//   //     setIsLoading(false);
-//   //   }
-//   // };
-
-//   // const updateTasks = (newTasks) => {
-//   //   setTasks(newTasks);
-//   // };
-
-//   // const editTasks = async (token, id, task) => {
-//   //   setIsLoading(true);
-//   //   try {
-//   //     await editTask(token, id, task)
-//   //       .then((data) => {
-//   //         setTasks(data);
-//   //       })
-//   //   } catch (err) {
-//   //     setError(err.message);
-//   //   } finally {
-//   //     setIsLoading(false);
-//   //   }
-//   // };
-
-//   // const deleteTasks = async (token, id) => {
-//   //   setIsLoading(true);
-//   //   try {
-//   //     await deleteTask(token, id)
-//   //       .then((data) => {
-//   //         setTasks(data);
-//   //       })
-//   //   } catch (err) {
-//   //     setError(err.message);
-//   //   } finally {
-//   //     setIsLoading(false);
-//   //   }
-//   // };
-
-//   // const updateSelectedDate = (date) => {
-//   //   setSelectedDate(date);
-//   // };
-
-//   // const updateTaskStatus = (taskId, newStatus) => {
-//   //   setTasks(prevTasks => prevTasks.map(task => task._id === taskId ? { ...task, status: newStatus } : task))
-//   // };
-
-
-//   return (
-//     <CoursesContext.Provider
-//       value={{
-//         // courses,
-//         // setTasks,
-//         // error, setError,
-//         // isLoading, setIsLoading,
-//         getCourses,
-//         // addTask,
-//         // token,
-//         // updateTasks,
-//         // editTasks,
-//         // deleteTasks,
-//         // selectedDate,
-//         // updateSelectedDate,
-//         // updateTaskStatus,
-//         // isDraggable,
-//         // setIsDraggable,
-//         // draggableCardId,
-//         // setDraggableCardId,
-//         // dragStartColumn,
-//         // setDragStartColumn
-//       }}
-//     >
-//       {children}
-//     </CoursesContext.Provider>
-//   )
-// }
-
-
 import { useState, type ReactNode } from "react";
 import { CoursesContext } from "./CoursesContext";
-import { fetchCourses } from "../services/courses";
+import { addCourse, deleteCourse, fetchCourses } from "../services/courses";
 import type { CourseType } from "../types/types";
 
 
@@ -133,6 +11,21 @@ type CoursesProviderProps = {
 
 export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const [courses, setCourses] = useState<CourseType[]>([]);
+  const [userCourses, setUserCourses] = useState<string[]>(() => {
+    try {
+      const userCoursesInLS = localStorage.getItem("userCourses");
+      if (!userCoursesInLS) {
+        console.log("У пользователя нет курсов");
+        return [];
+      }
+      console.log("Курсы юзера из LS: ", JSON.parse(userCoursesInLS));
+
+      return userCoursesInLS ? JSON.parse(userCoursesInLS) : [];
+    } catch (err) {
+      console.error("Ошибка при получении курсов из LS:", err);
+      return [];
+    }
+  });
 
 
   const getCourses = async () => {
@@ -141,10 +34,48 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
       // console.log(data);
       setCourses(data);
     } catch (err) {
-      console.log("Ошибка при получении курсов: ", err);
+      console.error("Ошибка при получении курсов: ", err);
     } finally {
       // console.log("зашли finally");
     }
+  };
+
+
+  const addUserCourse = async (courseId: string, token: string) => {
+    try {
+      await addCourse(courseId, token);
+
+      setUserCourses((prev) => {
+        if (prev.includes(courseId)) return prev;
+
+        const updated = [...prev, courseId];
+        localStorage.setItem("userCourses", JSON.stringify(updated));
+        return updated;
+      })
+      console.log("Добавили курс");
+    } catch (err) {
+      console.error("Ошибка при добавлении круса: ", err);
+    }
+  };
+
+  const deleteUserCourse = async (courseId: string, token: string) => {
+    try {
+      await deleteCourse(courseId, token);
+
+      setUserCourses((prev) => {
+        const updated = prev.filter((id) => id !== courseId);
+        localStorage.setItem("userCourses", JSON.stringify(updated));
+        return updated;
+      })
+      console.log("Удалили курс");
+    } catch (err) {
+      console.error("Ошибка при удалении круса: ", err);
+    }
+  };
+
+  const removeUserCoursesFromLS = () => {
+    setUserCourses([]);
+    localStorage.removeItem("userCourses");
   };
 
 
@@ -152,7 +83,11 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     <CoursesContext.Provider
       value={{
         courses,
-        getCourses
+        getCourses,
+        userCourses,
+        addUserCourse,
+        deleteUserCourse,
+        removeUserCoursesFromLS
       }}
     >
       {children}
