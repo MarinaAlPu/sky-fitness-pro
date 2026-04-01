@@ -42,7 +42,8 @@ export const STitle = styled.div`
   letter-spacing: 0%;
 `;
 
-export const SContent = styled.div`
+export const SContent = styled.ul`
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -70,7 +71,8 @@ export const SContent = styled.div`
   } */
 `;
 
-export const SItem = styled.div`
+export const SItem = styled.li`
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -79,12 +81,34 @@ export const SItem = styled.div`
   align-items: center;
 `;
 
-export const SCheckbox = styled.img`
+export const SCheckbox = styled.input`
+  appearance: none;
+  -webkit-appearance: none;
   display: flex;
   flex-direction: row;
   gap: 10px;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  background-image: url("/icons/check-off-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &:checked {
+    background-image: url("/icons/check-on-icon.svg");
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SItemContentWrapper = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
 `;
 
