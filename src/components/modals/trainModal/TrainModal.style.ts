@@ -11,7 +11,7 @@ export const SPageBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 1000;
 `;
 
 export const SWrapper = styled.div`
@@ -115,3 +115,15 @@ export const SItemDescription = styled.div`
     font-size: 14px;
   } 
 `;
+
+export const SCloseButton = styled.button`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #999999;
+    background: none;
+    border: none;
+    cursor: pointer;
+`
