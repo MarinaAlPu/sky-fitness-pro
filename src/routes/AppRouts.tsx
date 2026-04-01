@@ -7,7 +7,6 @@ import { WorkoutPage } from "../pages/WorkoutPage.tsx";
 import { ProfilePage } from "../pages/ProfilePage.tsx";
 import { LoginPage } from "../pages/LoginPage.tsx";
 import { RegistrationPage } from "../pages/RegistrationPage.tsx";
-import { ModalPage } from "../pages/modalPage.tsx";
 import { Layout } from "../components/layout/Layout.tsx";
 
 
@@ -32,8 +31,6 @@ export function AppRoutes() {
       <Route path="/workout/1" element={<WorkoutPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       {/* </Route> */}
-
-      <Route path="/modal" element={<ModalPage />} />
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
