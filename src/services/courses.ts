@@ -39,7 +39,7 @@ export const addCourse = (id: string, token: string): Promise<any> => {
       },
     })
     .then((resp) => {
-      console.log("resp в функции addCourse: ", resp);
+      // console.log("resp в функции addCourse: ", resp);
       return resp.data;
     });
 };
@@ -53,7 +53,7 @@ export const deleteCourse = (id: string, token: string): Promise<any> => {
       },
     })
     .then((resp) => {
-      console.log("resp в функции deleteCourse: ", resp);
+      // console.log("resp в функции deleteCourse: ", resp);
       return resp.data;
     });
 };
@@ -67,7 +67,7 @@ export const fetchUserCourses = (token: string): Promise<getUserCoursesReturnTyp
       },
     })
     .then((resp) => {
-      console.log("resp в функции getUserCourses: ", resp);
+      // console.log("resp в функции getUserCourses: ", resp);
       return resp.data;
     });
 };
@@ -82,7 +82,7 @@ export const getCourseWorkouts = (courseId: string, token: string): Promise<getC
     }
   )
     .then((resp) => {
-      console.log("resp в функции getCourseWorkouts: ", resp);
+      // console.log("resp в функции getCourseWorkouts: ", resp);
       return resp.data;
     });
 };
