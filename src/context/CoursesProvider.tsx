@@ -18,7 +18,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         console.log("У пользователя нет курсов");
         return [];
       }
-      console.log("Курсы юзера из LS: ", JSON.parse(userCoursesInLS));
+      // console.log("Курсы юзера из LS: ", JSON.parse(userCoursesInLS));
 
       // return userCoursesInLS ? JSON.parse(userCoursesInLS) : [];
       return JSON.parse(userCoursesInLS);
