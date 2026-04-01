@@ -5,7 +5,8 @@ import { Card } from "../card/Card";
 import { Footer } from "../footer/Footer";
 import { SContainer, STitle, SUserPanel, SWrapper, SCourses, SUserIcon, SUserData, SUserName, SUserLogin, SUserPanelContent } from "./ProfileContent.style";
 import { useCourses } from "../../context/CoursesContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { TrainModal } from "../modals/trainModal/TrainModal";
 
 
 export const ProfileContent = () => {
@@ -16,13 +17,24 @@ export const ProfileContent = () => {
   const { handleLogout, user } = useAuth();
 
   const { courses, userCourses, getCourses } = useCourses();
-  console.log("userCourses: ", userCourses);
+  // console.log("userCourses: ", userCourses);
+  const [activeCourseId, setActiveCourseId] = useState<string | null>(null);
+
 
   useEffect(() => {
     if (courses.length === 0) {
       getCourses();
     }
   }, []);
+
+
+  const onOpenTrainModal = (courseId: string) => {
+    setActiveCourseId(courseId);
+  };
+
+  const onCloseModal = () => {
+    setActiveCourseId(null);
+  };
 
 
   const userName = user?.userName || null;
@@ -33,7 +45,7 @@ export const ProfileContent = () => {
 
 
   const userCoursesSelected = courses.filter((course) => userCourses.includes(course._id));
-  console.log("userCoursesSelected: ", userCoursesSelected);
+  // console.log("userCoursesSelected: ", userCoursesSelected);
 
 
   return (
@@ -75,6 +87,8 @@ export const ProfileContent = () => {
                     difficulty={course.difficulty}
                     order={course.order}
                     page={page}
+                    onOpenTrainModal={onOpenTrainModal}
+                    onCloseModal={onCloseModal}
                   />
                 ))
               ) : (
@@ -85,7 +99,7 @@ export const ProfileContent = () => {
 
         </SContainer>
       </SWrapper >
-
+      {activeCourseId && (<TrainModal onCloseModal={onCloseModal}/>)}
       <Footer buttonDisplay={{ desktop: 'none', mobile: 'flex' }} />
     </>
   )

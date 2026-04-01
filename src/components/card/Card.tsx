@@ -4,8 +4,9 @@ import type { dailyDurationInMinutesType } from "../../types/types";
 import { addCourse, deleteCourse } from "../../services/courses";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CoursesContext, useCourses } from "../../context/CoursesContext";
+import { TrainModal } from "../modals/trainModal/TrainModal";
 
 
 type CardProps = {
@@ -22,18 +23,22 @@ type CardProps = {
   order: number;
   // workouts: string[];
   page: string;
+  onOpenTrainModal: (courseId: string) => void;
+  onCloseModal: () => void;
 }
 
 
-export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page }: CardProps) => {
+export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page, onOpenTrainModal }: CardProps) => {
   const navigate = useNavigate();
   const { token } = useAuth();
+
+  // const [isOpen, setIsOpen] = useState(false);
 
   // const {addUserCourse} = useContext(CoursesContext);
   const { addUserCourse, userCourses, deleteUserCourse } = useCourses();
 
   const isCourseAdded = userCourses.includes(id);
-  console.log("Курс добавлен: ", isCourseAdded);
+  // console.log("Курс добавлен: ", isCourseAdded);
 
 
   const handleAddCourse = (e: React.MouseEvent) => {
@@ -68,18 +73,24 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
 
     // const courseId = "q02a6i";
     deleteUserCourse(id, token)
-      // .then((data) => console.log("Курс добавлен:", data))
-      // .catch((err) => console.error("Ошибка при удалении курса:", err));
+    // .then((data) => console.log("Курс добавлен:", data))
+    // .catch((err) => console.error("Ошибка при удалении курса:", err));
   };
 
 
   const progress = 40;
 
 
-  const handleWorkout = () => {
-    console.log("Нажали кнопку Продолжить");
-  };
+  // const handleWorkout = () => {
+  //   console.log("Нажали кнопку Продолжить");
+  // };
+  const handleOpenWorkoutsModal = (e?: React.MouseEvent) => {
+    console.log(`Открыть модалку с тренировками курса с id "${id}"`);
+    e?.preventDefault();
+    e?.stopPropagation();
 
+    onOpenTrainModal(id);
+  };
 
 
   return (
@@ -156,7 +167,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
           <Button
             type='primary'
             width='300px'
-            onClick={handleWorkout}
+            onClick={handleOpenWorkoutsModal}
           >
             Продолжить
           </Button>
@@ -164,7 +175,6 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
         }
 
       </SContainer>
-
     </SWrapper >
   )
 }
