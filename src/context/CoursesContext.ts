@@ -15,6 +15,7 @@ export type CoursesContextType = {
   workouts: any[];
   getWorkoutData: (workoutId: string, token: string) => void;
   workout: getWorkoutReturnType;
+  currentCourseName: string;
 };
 
 export type WorkoutsType = {

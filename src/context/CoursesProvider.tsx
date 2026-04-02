@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { CoursesContext, type WorkoutsType } from "./CoursesContext";
 import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseWorkouts, getWorkout } from "../services/courses";
 import type { CourseType } from "../types/types";
@@ -29,6 +29,20 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   });
   const [workouts, setWorkouts] = useState<any>([]);
   const [workout, setWorkout] = useState<any>(null);
+  const [currentCourseName, setCurrentCourseName] = useState<string>("");
+
+
+  useEffect(() => {
+    if (workout && courses.length > 0) {
+      const currentCourse = courses.find((course) =>
+        course.workouts.includes(workout._id)
+      );
+
+      if (currentCourse) {
+        setCurrentCourseName(currentCourse.nameRU);
+      }
+    }
+  }, [workout, courses]);
 
 
   const getCourses = async () => {
@@ -114,6 +128,12 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
 
       setWorkout(response);
       // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
+
+      // const workoutCourse = courses.find((course) => course.workouts.includes(workoutId));
+
+      // if (workoutCourse) {
+      //   setCurrentCourseName(workoutCourse.nameRU);
+      // }
     } catch (err) {
       console.error("Ошибка при загрузке тренировки: ", err);
     }
@@ -134,6 +154,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         workouts,
         getWorkoutData,
         workout,
+        currentCourseName
       }}
     >
       {children}
