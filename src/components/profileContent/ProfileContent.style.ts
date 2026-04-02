@@ -137,9 +137,9 @@ export const SCourses = styled.div`
   /* margin: 0 auto; */
   /* padding: 60px 140px; */
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   gap: 40px;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
 
   @media screen and (max-width: 375px) {
     /* padding: 40px 16px; */
