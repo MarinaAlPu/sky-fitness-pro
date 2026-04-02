@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { CoursesContext, type WorkoutsType } from "./CoursesContext";
-import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseWorkouts } from "../services/courses";
+import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseWorkouts, getWorkout } from "../services/courses";
 import type { CourseType } from "../types/types";
 
 
@@ -28,6 +28,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     }
   });
   const [workouts, setWorkouts] = useState<any>([]);
+  const [workout, setWorkout] = useState<any>([]);
 
 
   const getCourses = async () => {
@@ -83,7 +84,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserCourses = async (token: string) => {
     try {
       const response = await fetchUserCourses(token);
-      console.log("response: ", response);
+      // console.log("response: ", response);
 
       const userCoursesIds = response.selectedCourses || [];
 
@@ -97,13 +98,24 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getWorkouts = async (courseId: string, token: string) => {
     try {
       const response = await getCourseWorkouts(courseId, token);
-      console.log("response в провайдере: ", response);
-
+      // console.log("response в провайдере: ", response);
 
       setWorkouts(response);
       // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
     } catch (err) {
       console.error("Ошибка при загрузке тренировок курса: ", err);
+    }
+  };
+
+  const getWorkoutData = async (workoutId: string, token: string) => {
+    try {
+      const response = await getWorkout(workoutId, token);
+      console.log("response в провайдере: ", response);
+
+      setWorkout(response);
+      // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
+    } catch (err) {
+      console.error("Ошибка при загрузке тренировки: ", err);
     }
   };
 
@@ -120,6 +132,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         getUserCourses,
         getWorkouts,
         workouts,
+        getWorkoutData,
+        workout,
       }}
     >
       {children}

@@ -3,19 +3,25 @@ import { useCourses } from "../../../context/CoursesContext";
 import { Button } from "../../button/Button";
 import { SPageBackground, SWrapper, STitle, SContent, SItem, SItemTitle, SCheckbox, SItemContent, SItemDescription, SCloseButton, SItemContentWrapper } from "./TrainModal.style";
 import { useAuth } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 export type TrainModalPropsType = {
   onCloseModal: () => void;
   courseId: string;
+  onOpenTrain: () => void;
 };
 
 
 export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
+  const navigate = useNavigate();
+
   // const [workouts, setWorkouts] = useState([]);
 
   const { token } = useAuth();
   const { workouts, getWorkouts } = useCourses();
+
+  const [selectedWorkoutId, setSelectedWorkoutId] = useState<string | null>(null);
 
 
   useEffect(() => {
@@ -27,11 +33,16 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
 
   const handleStart = () => {
     console.log("Нажали кнопку Начать");
+    if (selectedWorkoutId) {
+      navigate(`/workout/${selectedWorkoutId}`);
+    } else {
+      console.error("Ошибка при открытии страницы тренировки");
+    }
   };
 
-  const handleCheck = () => {
-    console.log("Кликнули чек-бокс");
-  };
+  // const handleCheck = () => {
+  //   console.log("Кликнули чек-бокс");
+  // };
 
 
   return (
@@ -44,7 +55,13 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
           {workouts.map((workout) => (
             <SItem key={workout._id}>
               <SItemContentWrapper>
-                <SCheckbox type="checkbox" onClick={handleCheck} />
+                <SCheckbox
+                // type="checkbox"
+                type="radio"
+                // onClick={handleCheck}
+                onChange={() => setSelectedWorkoutId(workout._id)}
+                checked={selectedWorkoutId === workout._id}
+                />
                 <SItemContent>
                   <SItemTitle>{workout.name.split("/")[0]}</SItemTitle>
                   {courseId === "ab1c3f" ? (
@@ -60,6 +77,7 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
         </SContent>
         <Button
           onClick={handleStart}
+          disabled={!selectedWorkoutId}
         >
           Начать
         </Button>

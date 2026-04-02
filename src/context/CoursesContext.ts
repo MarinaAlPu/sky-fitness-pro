@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import type { CourseType } from "../types/types";
+import type { getWorkoutReturnType } from "../services/courses";
 
 
 export type CoursesContextType = {
@@ -12,6 +13,8 @@ export type CoursesContextType = {
   getUserCourses: (token: string) => void;
   getWorkouts: (courseId: string, token: string) => void;
   workouts: any[];
+  getWorkoutData:  (workoutId: string, token: string) => void;
+  workout: getWorkoutReturnType;
 };
 
 export type WorkoutsType = {

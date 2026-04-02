@@ -47,6 +47,11 @@ export const ProfileContent = () => {
   const userCoursesSelected = courses.filter((course) => userCourses.includes(course._id));
   // console.log("userCoursesSelected: ", userCoursesSelected);
 
+  const onOpenTrain = () => {
+    console.log("Нажали кнопку Начать");
+
+  };
+
 
   return (
     <>
@@ -99,7 +104,7 @@ export const ProfileContent = () => {
 
         </SContainer>
       </SWrapper >
-      {activeCourseId && (<TrainModal onCloseModal={onCloseModal} courseId={activeCourseId}/>)}
+      {activeCourseId && (<TrainModal onCloseModal={onCloseModal} courseId={activeCourseId} onOpenTrain={onOpenTrain}/>)}
       <Footer buttonDisplay={{ desktop: 'none', mobile: 'flex' }} />
     </>
   )

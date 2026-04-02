@@ -8,14 +8,27 @@ const API_URL = "https://wedev-api.sky.pro/api/fitness";
 export type getUserCoursesReturnType = {
   email: string;
   selectedCourses: string[];
-}
+};
 
 export type getCourseWorkoutsReturnType = {
   _id: string;
   name: string;
   video: string;
   exercises: [];
-}
+};
+
+export type ExerciseType = {
+  name: string;
+  quantity: number;
+  _id: string;
+};
+
+export type getWorkoutReturnType = {
+  _id: string;
+  name: string;
+  video: string;
+  exercises: ExerciseType[];
+};
 
 
 export const fetchCourses = (): Promise<CourseType[]> => {
@@ -87,3 +100,17 @@ export const getCourseWorkouts = (courseId: string, token: string): Promise<getC
     });
 };
 
+export const getWorkout = (workoutId: string, token: string): Promise<getWorkoutReturnType> => {
+  return axios.get<getWorkoutReturnType>(`${API_URL}/workouts/${workoutId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": ""
+      },
+    }
+  )
+    .then((resp) => {
+      console.log("resp в функции getWorkout: ", resp);
+      return resp.data;
+    });
+};

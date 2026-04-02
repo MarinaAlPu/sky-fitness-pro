@@ -28,7 +28,7 @@ export function AppRoutes() {
 
       {/* <Route element={<PrivateRoute />}> */}
       {/* <Route path="/workout/:id" element={<WorkoutPage />} /> */}
-      <Route path="/workout/1" element={<WorkoutPage />} />
+      <Route path="/workout/:id" element={<WorkoutPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       {/* </Route> */}
 

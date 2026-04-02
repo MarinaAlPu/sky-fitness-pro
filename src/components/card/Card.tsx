@@ -85,7 +85,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
   //   console.log("Нажали кнопку Продолжить");
   // };
   const handleOpenWorkoutsModal = (e?: React.MouseEvent) => {
-    console.log(`Открыть модалку с тренировками курса с id "${id}"`);
+    // console.log(`Открыть модалку с тренировками курса с id "${id}"`);
     e?.preventDefault();
     e?.stopPropagation();
 
