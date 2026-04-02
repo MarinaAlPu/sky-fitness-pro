@@ -13,7 +13,7 @@ export type CoursesContextType = {
   getUserCourses: (token: string) => void;
   getWorkouts: (courseId: string, token: string) => void;
   workouts: any[];
-  getWorkoutData:  (workoutId: string, token: string) => void;
+  getWorkoutData: (workoutId: string, token: string) => void;
   workout: getWorkoutReturnType;
 };
 
