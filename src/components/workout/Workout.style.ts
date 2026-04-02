@@ -42,11 +42,13 @@ export const STitle = styled.div`
   }
 `;
 
-export const SVideo = styled.img`
-  width: 1160;
-  height: 639;
+export const SVideo = styled.iframe`
+  width: 100%;
+  max-width: 1160px;
+  height: 639px;
   border-radius: 30px;
   margin-bottom: 40px;
+  border: none;
   
   @media screen and (max-width: 375px) {
     width: 343;

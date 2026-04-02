@@ -52,7 +52,14 @@ export const Workout = () => {
       <SWrapper>
         <SContainer>
           <STitle>{currentCourseName}</STitle>
-          <SVideo src="/images/video.png" alt="Видео" />
+          <SVideo
+            // src="/images/video.png"
+            // alt="Видео"
+            src={workout.video}
+            title={workout.name}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
 
           <SWorkoutPanel>
             <SWorkoutTitle>{
