@@ -8,19 +8,18 @@ import { useAuth } from "../../context/AuthContext";
 
 
 export const Workout = () => {
-  const { workoutId } = useParams();
+  const { id } = useParams();
 
   const { getWorkoutData, workout } = useCourses();
 
-  // const [workout, setWorkout] = useState([]);
-
   const { token } = useAuth();
 
+
   useEffect(() => {
-    if (workoutId && token) {
-      getWorkoutData(workoutId, token);
+    if (id && token) {
+      getWorkoutData(id, token);
     }
-  }, [workoutId, token]);
+  }, [id, token]);
 
 
   const progress = 40;
