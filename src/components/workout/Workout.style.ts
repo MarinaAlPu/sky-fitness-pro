@@ -84,7 +84,8 @@ export const SWorkoutTitle = styled.div`
   }
 `;
 
-export const SWorkoutExercises = styled.div`
+export const SWorkoutExercises = styled.ul`
+  list-style: none;
   margin-bottom: 40px;
   /* display: flex; */
   /* flex-direction: row; */
@@ -101,7 +102,8 @@ export const SWorkoutExercises = styled.div`
   }
 `;
 
-export const SWorkoutExercise = styled.div`
+export const SWorkoutExercise = styled.li`
+  width: 100%;
   /* width: 320px; */
   /* height: 189; */
   display: flex;
