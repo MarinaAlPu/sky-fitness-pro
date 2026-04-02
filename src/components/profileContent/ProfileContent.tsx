@@ -99,7 +99,7 @@ export const ProfileContent = () => {
 
         </SContainer>
       </SWrapper >
-      {activeCourseId && (<TrainModal onCloseModal={onCloseModal}/>)}
+      {activeCourseId && (<TrainModal onCloseModal={onCloseModal} courseId={activeCourseId}/>)}
       <Footer buttonDisplay={{ desktop: 'none', mobile: 'flex' }} />
     </>
   )

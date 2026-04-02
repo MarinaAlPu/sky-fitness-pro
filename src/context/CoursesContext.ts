@@ -10,7 +10,17 @@ export type CoursesContextType = {
   deleteUserCourse: (courseId: string, token: string) => void;
   removeUserCoursesFromLS: () => void;
   getUserCourses: (token: string) => void;
+  getWorkouts: (courseId: string, token: string) => void;
+  workouts: any[];
+};
+
+export type WorkoutsType = {
+  _id: string;
+  name: string;
+  video: string;
+  exercises: string[];
 }
+
 
 export const CoursesContext = createContext<CoursesContextType | undefined>(
   undefined

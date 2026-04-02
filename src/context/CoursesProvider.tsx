@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
-import { CoursesContext } from "./CoursesContext";
-import { addCourse, deleteCourse, fetchCourses, fetchUserCourses } from "../services/courses";
+import { CoursesContext, type WorkoutsType } from "./CoursesContext";
+import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseWorkouts } from "../services/courses";
 import type { CourseType } from "../types/types";
 
 
@@ -27,6 +27,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
       return [];
     }
   });
+  const [workouts, setWorkouts] = useState<any>([]);
 
 
   const getCourses = async () => {
@@ -93,6 +94,19 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     }
   };
 
+  const getWorkouts = async (courseId: string, token: string) => {
+    try {
+      const response = await getCourseWorkouts(courseId, token);
+      console.log("response в провайдере: ", response);
+
+
+      setWorkouts(response);
+      // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
+    } catch (err) {
+      console.error("Ошибка при загрузке тренировок курса: ", err);
+    }
+  };
+
 
   return (
     <CoursesContext.Provider
@@ -103,7 +117,9 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         addUserCourse,
         deleteUserCourse,
         removeUserCoursesFromLS,
-        getUserCourses
+        getUserCourses,
+        getWorkouts,
+        workouts,
       }}
     >
       {children}
