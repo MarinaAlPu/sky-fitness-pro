@@ -124,7 +124,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getWorkoutData = async (workoutId: string, token: string) => {
     try {
       const response = await getWorkout(workoutId, token);
-      console.log("response в провайдере: ", response);
+      // console.log("response в провайдере: ", response);
 
       setWorkout(response);
       // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));

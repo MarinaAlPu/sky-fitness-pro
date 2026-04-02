@@ -110,7 +110,7 @@ export const getWorkout = (workoutId: string, token: string): Promise<getWorkout
     }
   )
     .then((resp) => {
-      console.log("resp в функции getWorkout: ", resp);
+      // console.log("resp в функции getWorkout: ", resp);
       return resp.data;
     });
 };
