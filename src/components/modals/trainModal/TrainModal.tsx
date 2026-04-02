@@ -56,11 +56,11 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
             <SItem key={workout._id}>
               <SItemContentWrapper>
                 <SCheckbox
-                // type="checkbox"
-                type="radio"
-                // onClick={handleCheck}
-                onChange={() => setSelectedWorkoutId(workout._id)}
-                checked={selectedWorkoutId === workout._id}
+                  // type="checkbox"
+                  type="radio"
+                  // onClick={handleCheck}
+                  onChange={() => setSelectedWorkoutId(workout._id)}
+                  checked={selectedWorkoutId === workout._id}
                 />
                 <SItemContent>
                   <SItemTitle>{workout.name.split("/")[0]}</SItemTitle>
