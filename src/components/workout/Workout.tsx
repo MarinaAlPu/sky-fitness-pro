@@ -75,45 +75,6 @@ export const Workout = () => {
                   </SExerciseProgress>
                 </SWorkoutExercise>
               ))}
-
-
-
-
-              {/* <SWorkoutExercise>
-                <SExerciseTitle>Наклоны вперёд {progress}%</SExerciseTitle>
-                <SExerciseProgress>
-                  <SProgressFill $percent={progress} />
-                </SExerciseProgress>
-              </SWorkoutExercise>
-
-              <SWorkoutExercise>
-                <SExerciseTitle>Наклоны вперёд {progress}%</SExerciseTitle>
-                <SExerciseProgress>
-                  <SProgressFill $percent={progress} />
-                </SExerciseProgress>
-              </SWorkoutExercise>
-
-              <SWorkoutExercise>
-                <SExerciseTitle>Поднятие ног, согнутых в коленях {progress}%</SExerciseTitle>
-                <SExerciseProgress>
-                  <SProgressFill $percent={progress} />
-                </SExerciseProgress>
-              </SWorkoutExercise>
-
-              <SWorkoutExercise>
-                <SExerciseTitle>Поднятие ног, согнутых в коленях {progress}%</SExerciseTitle>
-                <SExerciseProgress>
-                  <SProgressFill $percent={progress} />
-                </SExerciseProgress>
-              </SWorkoutExercise>
-
-              <SWorkoutExercise>
-                <SExerciseTitle>Поднятие ног, согнутых в коленях {progress}%</SExerciseTitle>
-                <SExerciseProgress>
-                  <SProgressFill $percent={progress} />
-                </SExerciseProgress>
-              </SWorkoutExercise> */}
-
             </SWorkoutExercises>
 
             <Button
