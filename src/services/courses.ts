@@ -30,6 +30,26 @@ export type getWorkoutReturnType = {
   exercises: ExerciseType[];
 };
 
+export type CourseProgressReturnType = {
+  courseId: string,
+  courseCompleted: boolean,
+  workoutsProgress: WorkoutProgressReturnType[],
+};
+
+export type WorkoutProgressReturnType = {
+  workoutId: string;
+  workoutCompleted: boolean;
+  progressData: number[];
+};
+
+export type SaveWorkoutProgressReturnType = {
+  // пока непонятно
+};
+
+export type ResetWorkoutProgressReturnType = {
+  message: string;
+};
+
 
 export const fetchCourses = (): Promise<CourseType[]> => {
   return axios.get<CourseType[]>(`${API_URL}/courses`)
@@ -111,6 +131,66 @@ export const getWorkout = (workoutId: string, token: string): Promise<getWorkout
   )
     .then((resp) => {
       // console.log("resp в функции getWorkout: ", resp);
+      return resp.data;
+    });
+};
+
+export const getCourseProgress = (courseId: string, token: string): Promise<CourseProgressReturnType> => {
+  return axios.get<CourseProgressReturnType>(`${API_URL}/users/me/progress?courseId=${courseId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": ""
+      },
+    }
+  )
+    .then((resp) => {
+      console.log("прогресс по курсу в функции getCourseProgress: ", resp);
+      return resp.data;
+    });
+};
+
+export const getWorkoutProgress = (courseId: string, workoutId: string, token: string): Promise<WorkoutProgressReturnType> => {
+  return axios.get<WorkoutProgressReturnType>(`${API_URL}/users/me/progress?courseId=${courseId}&workoutId=${workoutId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": ""
+      },
+    }
+  )
+    .then((resp) => {
+      console.log("прогресс по тренировке в функции getWorkoutProgress: ", resp);
+      return resp.data;
+    });
+};
+
+export const saveWorkoutProgress = (courseId: string, workoutId: string, token: string): Promise<SaveWorkoutProgressReturnType> => {
+  return axios.get<SaveWorkoutProgressReturnType>(`${API_URL}/courses/:${courseId}/workouts/:${workoutId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": ""
+      },
+    }
+  )
+    .then((resp) => {
+      console.log("ответ на сохранение прогресса по тренировке в функции setWorkoutProgress: ", resp);
+      return resp.data;
+    });
+};
+
+export const resetWorkoutProgress = (courseId: string, workoutId: string, token: string): Promise<ResetWorkoutProgressReturnType> => {
+  return axios.get<ResetWorkoutProgressReturnType>(`${API_URL}/courses/:${courseId}/workouts/:${workoutId}/reset`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": ""
+      },
+    }
+  )
+    .then((resp) => {
+      console.log("ответ на сброс прогресса по тренировке в функции resetWorkoutProgress: ", resp);
       return resp.data;
     });
 };
