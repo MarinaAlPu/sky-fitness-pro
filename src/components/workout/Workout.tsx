@@ -9,13 +9,16 @@ import { useAuth } from "../../context/AuthContext";
 
 export const Workout = () => {
   const { id } = useParams();
-
-  const { getWorkoutData, workout } = useCourses();
-
   const { token } = useAuth();
+
+  const { getWorkoutData, workout, getCourses, courses, currentCourseName } = useCourses();
 
 
   useEffect(() => {
+    if (courses.length === 0) {
+      getCourses();
+    }
+
     if (id && token) {
       getWorkoutData(id, token);
     }
@@ -46,7 +49,7 @@ export const Workout = () => {
       <Header />
       <SWrapper>
         <SContainer>
-          <STitle>Йога</STitle>
+          <STitle>{currentCourseName}</STitle>
           <SVideo src="/images/video.png" alt="Видео" />
 
           <SWorkoutPanel>
