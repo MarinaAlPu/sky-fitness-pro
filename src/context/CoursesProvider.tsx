@@ -28,7 +28,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     }
   });
   const [workouts, setWorkouts] = useState<any>([]);
-  const [workout, setWorkout] = useState<any>([]);
+  const [workout, setWorkout] = useState<any>(null);
 
 
   const getCourses = async () => {
