@@ -13,6 +13,8 @@ export const Workout = () => {
 
   const { getWorkoutData, workout, getCourses, courses, currentCourseName } = useCourses();
 
+  // console.log("workout: ", workout);
+
 
   useEffect(() => {
     if (courses.length === 0) {
@@ -53,17 +55,31 @@ export const Workout = () => {
           <SVideo src="/images/video.png" alt="Видео" />
 
           <SWorkoutPanel>
-            <SWorkoutTitle>Упражнения тренировки 2</SWorkoutTitle>
+            <SWorkoutTitle>{
+              currentCourseName === "Йога" ?
+                workout.name.split("/")[0]
+                :
+                workout.name
+            }</SWorkoutTitle>
 
             <SWorkoutExercises>
-              <SWorkoutExercise>
-                <SExerciseTitle>Наклоны вперёд {progress}%</SExerciseTitle>
-                <SExerciseProgress>
-                  <SProgressFill $percent={progress} />
-                </SExerciseProgress>
-              </SWorkoutExercise>
+              {workout.exercises.map((exercise) => (
+                <SWorkoutExercise key={exercise._id}>
+                  <SExerciseTitle>
+                    {
+                      exercise.name.split(" (")[0]
+                    } {progress}%
+                  </SExerciseTitle>
+                  <SExerciseProgress>
+                    <SProgressFill $percent={progress} />
+                  </SExerciseProgress>
+                </SWorkoutExercise>
+              ))}
 
-              <SWorkoutExercise>
+
+
+
+              {/* <SWorkoutExercise>
                 <SExerciseTitle>Наклоны вперёд {progress}%</SExerciseTitle>
                 <SExerciseProgress>
                   <SProgressFill $percent={progress} />
@@ -96,7 +112,8 @@ export const Workout = () => {
                 <SExerciseProgress>
                   <SProgressFill $percent={progress} />
                 </SExerciseProgress>
-              </SWorkoutExercise>
+              </SWorkoutExercise> */}
+
             </SWorkoutExercises>
 
             <Button
