@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { CoursesContext, type WorkoutsType } from "./CoursesContext";
-import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseWorkouts, getWorkout } from "../services/courses";
+import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseProgress, getCourseWorkouts, getWorkout, getWorkoutProgress } from "../services/courses";
 import type { CourseType } from "../types/types";
 
 
@@ -30,6 +30,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const [workouts, setWorkouts] = useState<any>([]);
   const [workout, setWorkout] = useState<any>(null);
   const [currentCourseName, setCurrentCourseName] = useState<string>("");
+  const [courseProgress, setCourseProgress] = useState<any>(null);
+  const [workoutProgress, setWorkoutProgress] = useState<any>(null);
 
 
   useEffect(() => {
@@ -139,6 +141,24 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     }
   };
 
+  const getUserCourseProgress = async (courseId: string, token: string) => {
+    try {
+      const data = await getCourseProgress(courseId, token);
+      setCourseProgress(data);
+    } catch (err) {
+      console.error("Ошибка при получении прогресса курса:", err);
+    }
+  };
+
+  const getUserWorkoutProgress = async (courseId: string, workoutId: string, token: string) => {
+    try {
+      const data = await getWorkoutProgress(courseId, workoutId, token);
+      setWorkoutProgress(data);
+    } catch (err) {
+      console.error("Ошибка при получении прогресса тренировки:", err);
+    }
+  };
+
 
   return (
     <CoursesContext.Provider
@@ -154,7 +174,9 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         workouts,
         getWorkoutData,
         workout,
-        currentCourseName
+        currentCourseName,
+        getUserCourseProgress,
+        getUserWorkoutProgress,
       }}
     >
       {children}
