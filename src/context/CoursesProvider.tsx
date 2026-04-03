@@ -32,7 +32,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const [currentCourseName, setCurrentCourseName] = useState<string>("");
   const [courseProgress, setCourseProgress] = useState<any>(null);
   const [workoutProgress, setWorkoutProgress] = useState<any>(null);
-
+  const [currentCourseId, setCurrentCourseId] = useState<string>("");
+  
 
   useEffect(() => {
     if (workout && courses.length > 0) {
@@ -42,6 +43,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
 
       if (currentCourse) {
         setCurrentCourseName(currentCourse.nameRU);
+        setCurrentCourseId(currentCourse._id);
       }
     }
   }, [workout, courses]);
@@ -176,7 +178,10 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         workout,
         currentCourseName,
         getUserCourseProgress,
+        courseProgress, 
         getUserWorkoutProgress,
+        workoutProgress, 
+        currentCourseId,
       }}
     >
       {children}

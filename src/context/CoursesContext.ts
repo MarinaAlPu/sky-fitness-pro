@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import type { CourseType } from "../types/types";
-import type { getWorkoutReturnType } from "../services/courses";
+import type { CourseProgressReturnType, getWorkoutReturnType, WorkoutProgressReturnType } from "../services/courses";
 
 
 export type CoursesContextType = {
@@ -17,7 +17,10 @@ export type CoursesContextType = {
   workout: getWorkoutReturnType;
   currentCourseName: string;
   getUserCourseProgress: (courseId: string, token: string) => void;
+  courseProgress: WorkoutProgressReturnType[];
   getUserWorkoutProgress: (courseId: string, workoutId: string, token: string) => void;
+  workoutProgress: number[];
+  currentCourseId: string;
 };
 
 export type WorkoutsType = {
