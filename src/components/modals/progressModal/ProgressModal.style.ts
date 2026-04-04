@@ -81,3 +81,15 @@ export const SItemTitle = styled.div`
     font-size: 16px;
   } 
 `;
+
+export const SCloseButton = styled.button`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #999999;
+    background: none;
+    border: none;
+    cursor: pointer;
+`;
