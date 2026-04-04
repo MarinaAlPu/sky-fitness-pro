@@ -133,11 +133,12 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
       setWorkout(response);
       // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
 
-      // const workoutCourse = courses.find((course) => course.workouts.includes(workoutId));
+      const workoutCourse = courses.find((course) => course.workouts.includes(workoutId));
 
-      // if (workoutCourse) {
-      //   setCurrentCourseName(workoutCourse.nameRU);
-      // }
+      if (workoutCourse) {
+        setCurrentCourseName(workoutCourse.nameRU);
+        setCurrentCourseId(workoutCourse._id);
+      }
     } catch (err) {
       console.error("Ошибка при загрузке тренировки: ", err);
     }
