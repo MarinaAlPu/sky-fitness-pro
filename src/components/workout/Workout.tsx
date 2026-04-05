@@ -5,7 +5,7 @@ import { Header } from "../header/Header";
 import { SContainer, SWrapper, STitle, SVideo, SWorkoutPanel, SWorkoutTitle, SWorkoutExercises, SWorkoutExercise, SExerciseTitle, SExerciseProgress, SProgressFill } from "./Workout.style";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { getCourseProgress } from "../../services/courses";
+// import { getCourseProgress } from "../../services/courses";
 import { ProgressModal } from "../modals/progressModal/ProgressModal";
 import { MessageModal } from "../modals/messageModal/MessageModal";
 

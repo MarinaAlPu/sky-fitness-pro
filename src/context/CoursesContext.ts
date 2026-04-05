@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import type { CourseType } from "../types/types";
-import type { CourseProgressReturnType, getWorkoutReturnType, WorkoutProgressReturnType } from "../services/courses";
+import type { getWorkoutReturnType, WorkoutProgressReturnType } from "../services/courses";
 
 
 export type CoursesContextType = {

@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { Button } from "../button/Button";
 import { Card } from "../card/Card";
@@ -11,8 +10,6 @@ import { TrainModal } from "../modals/trainModal/TrainModal";
 
 export const ProfileContent = () => {
   const page = "profile";
-
-  // const navigate = useNavigate();
 
   const { handleLogout, user } = useAuth();
 

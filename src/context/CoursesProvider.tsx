@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { CoursesContext, type WorkoutsType } from "./CoursesContext";
+import { CoursesContext } from "./CoursesContext";
 import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseProgress, getCourseWorkouts, getWorkout, getWorkoutProgress, saveWorkoutProgress, type WorkoutProgressReturnType } from "../services/courses";
 import type { CourseType } from "../types/types";
 
