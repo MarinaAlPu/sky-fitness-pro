@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { CoursesContext, type WorkoutsType } from "./CoursesContext";
-import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseProgress, getCourseWorkouts, getWorkout, getWorkoutProgress } from "../services/courses";
+import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseProgress, getCourseWorkouts, getWorkout, getWorkoutProgress, saveWorkoutProgress, type WorkoutProgressReturnType } from "../services/courses";
 import type { CourseType } from "../types/types";
 
 
@@ -31,9 +31,9 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const [workout, setWorkout] = useState<any>(null);
   const [currentCourseName, setCurrentCourseName] = useState<string>("");
   const [courseProgress, setCourseProgress] = useState<any>(null);
-  const [workoutProgress, setWorkoutProgress] = useState<any>(null);
+  const [workoutProgress, setWorkoutProgress] = useState<WorkoutProgressReturnType | null>(null);
   const [currentCourseId, setCurrentCourseId] = useState<string>("");
-  
+
 
   useEffect(() => {
     if (workout && courses.length > 0) {
@@ -147,6 +147,9 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserCourseProgress = async (courseId: string, token: string) => {
     try {
       const data = await getCourseProgress(courseId, token);
+      console.log("data в getUserCourseProgress: ", data);
+      // const exerciseData = data.data || data
+
       setCourseProgress(data);
     } catch (err) {
       console.error("Ошибка при получении прогресса курса:", err);
@@ -156,9 +159,23 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserWorkoutProgress = async (courseId: string, workoutId: string, token: string) => {
     try {
       const data = await getWorkoutProgress(courseId, workoutId, token);
+      console.log("Прогресс по тренировке в провайдере: ", data);
       setWorkoutProgress(data);
     } catch (err) {
       console.error("Ошибка при получении прогресса тренировки:", err);
+    }
+  };
+
+  const saveProgress = async (courseId: string, workoutId: string, token: string, progressData: number[]) => {
+    try {
+      const respone = await saveWorkoutProgress(courseId, workoutId, token, progressData);
+      console.log(respone);
+
+      setCourseProgress(respone);
+
+      console.log("Сохранили прогресс");
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -179,10 +196,11 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         workout,
         currentCourseName,
         getUserCourseProgress,
-        courseProgress, 
+        courseProgress,
         getUserWorkoutProgress,
-        workoutProgress, 
+        workoutProgress,
         currentCourseId,
+        saveProgress,
       }}
     >
       {children}
