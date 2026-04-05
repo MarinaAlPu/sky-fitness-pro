@@ -8,6 +8,9 @@ const API_URL = "https://wedev-api.sky.pro/api/fitness";
 export type getUserCoursesReturnType = {
   email: string;
   selectedCourses: string[];
+  user: {
+    selectedCourses: string[];
+  }
 };
 
 export type getCourseWorkoutsReturnType = {
