@@ -4,7 +4,7 @@ import { login, registration, type UserDataType } from "../services/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { validateForm } from "../utils/helpers";
-import { useCourses } from "./CoursesContext";
+// import { useCourses } from "./CoursesContext";
 
 
 type AuthProviderProps = {
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isValid, setIsValid] = useState(true);
   const initialFormState = { email: "", password: "", confirmPassword: "" };
   const initialErrorsState = { email: "", password: "", confirmPassword: "" };
-  const { removeUserCoursesFromLS, getUserCourses } = useCourses();
+  // const { removeUserCoursesFromLS, getUserCourses } = useCourses();
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,11 +118,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const data = isLogin ? await login(userData) : await registration(userData);
       // console.log("Ответ сервера при входе: ", data);
       // console.log("Токен: ", data.token);
+      setToken(data.token);
 
       if (userData.email && data.token) {
         updateUserInfo(userData.email, data.token);
 
-        getUserCourses(data.token);
+        // getUserCourses(data.token);
         setUserData(initialFormState);
         setErrors(initialFormState);
 
@@ -185,7 +186,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     e?.stopPropagation();
 
     updateUserInfo(null, null);
-    removeUserCoursesFromLS();
+    // removeUserCoursesFromLS();
 
     // navigate("/");
 
