@@ -145,7 +145,7 @@ export const getCourseProgress = (courseId: string, token: string): Promise<Cour
     }
   )
     .then((resp) => {
-      console.log("прогресс по курсу в функции getCourseProgress: ", resp.data);
+      // console.log("прогресс по курсу в функции getCourseProgress: ", resp.data);
       return resp.data;
     });
 };
@@ -160,7 +160,7 @@ export const getWorkoutProgress = (courseId: string, workoutId: string, token: s
     }
   )
     .then((resp) => {
-      console.log("прогресс по тренировке в функции getWorkoutProgress: ", resp.data);
+      // console.log("прогресс по тренировке в функции getWorkoutProgress: ", resp.data);
       return resp.data;
     });
 };
@@ -178,7 +178,7 @@ export const saveWorkoutProgress = (courseId: string, workoutId: string, token: 
     }
   )
     .then((resp) => {
-      console.log("ответ на сохранение прогресса по тренировке в функции setWorkoutProgress: ", resp.data);
+      // console.log("ответ на сохранение прогресса по тренировке в функции setWorkoutProgress: ", resp.data);
       return resp.data;
     });
 };
@@ -193,7 +193,7 @@ export const resetWorkoutProgress = (courseId: string, workoutId: string, token:
     }
   )
     .then((resp) => {
-      console.log("ответ на сброс прогресса по тренировке в функции resetWorkoutProgress: ", resp.data);
+      // console.log("ответ на сброс прогресса по тренировке в функции resetWorkoutProgress: ", resp.data);
       return resp.data;
     });
 };
