@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCourses } from "../../../context/CoursesContext";
 import { Button } from "../../button/Button";
 import { Input } from "../../input/Input";
@@ -12,17 +12,29 @@ type ProgressModalProps = {
   onSuccess: () => void;
 };
 
+type currentProgressType = Record<number, number>;
+
 
 export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) => {
   const { id: workoutId } = useParams();
   const { token } = useAuth();
-  const { workout, currentCourseId, saveProgress, getUserWorkoutProgress } = useCourses();
+  const { workout, currentCourseId, saveProgress, getUserWorkoutProgress, workoutProgress } = useCourses();
 
   const [exerciseCount, setExerciseCount] = useState<{ [key: number]: number }>({});
 
-  // const onChange = () => {
-  //   console.log("Ввели символ в инпут");
-  // };
+
+  useEffect(() => {
+    if(workoutProgress?.progressData) {
+      const currentProgress: currentProgressType = {};
+
+      workoutProgress.progressData.forEach((value, index) => {
+        currentProgress[index] = value;
+      });
+
+      setExerciseCount(currentProgress);
+    }
+  }, [workoutProgress]);
+
 
   const handleInputChange = (index: number, exerciseCount: string) => {
     const numValue = exerciseCount === "" ? 0 : Number(exerciseCount);
