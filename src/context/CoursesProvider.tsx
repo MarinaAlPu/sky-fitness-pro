@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { CoursesContext } from "./CoursesContext";
 import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseProgress, getCourseWorkouts, getWorkout, getWorkoutProgress, saveWorkoutProgress, type WorkoutProgressReturnType } from "../services/courses";
 import type { CourseType } from "../types/types";
+import { useAuth } from "./AuthContext";
 
 
 type CoursesProviderProps = {
@@ -34,6 +35,23 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const [courseProgress, setCourseProgress] = useState<Record<string, any>>({});
   const [workoutProgress, setWorkoutProgress] = useState<WorkoutProgressReturnType | null>(null);
   const [currentCourseId, setCurrentCourseId] = useState<string>("");
+  const { token } = useAuth();
+
+
+  useEffect(() => {
+    getCourses();
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      getUserCourses(token);
+    } else {
+      setUserCourses([]);
+      setCourseProgress({});
+      setWorkoutProgress(null);
+      localStorage.removeItem("userCourses");
+    }
+  }, [token]);
 
 
   useEffect(() => {
@@ -103,9 +121,9 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserCourses = async (token: string) => {
     try {
       const response = await fetchUserCourses(token);
-      // console.log("response: ", response);
+      // console.log("response в getUserCourses в провайдере: ", response);
 
-      const userCoursesIds = response.selectedCourses || [];
+      const userCoursesIds = response.user?.selectedCourses || [];
 
       setUserCourses(userCoursesIds);
       localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
@@ -173,11 +191,13 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
 
   const saveProgress = async (courseId: string, workoutId: string, token: string, progressData: number[]) => {
     try {
-      const respone = await saveWorkoutProgress(courseId, workoutId, token, progressData);
+      // const respone = 
+      await saveWorkoutProgress(courseId, workoutId, token, progressData);
       // console.log(respone);
 
-      setCourseProgress(respone);
+      // setCourseProgress(respone);
 
+      await getUserCourseProgress(courseId, token);
       // console.log("Сохранили прогресс");
     } catch (err) {
       console.error(err);
