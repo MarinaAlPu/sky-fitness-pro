@@ -1,16 +1,24 @@
 import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../button/Button";
 import { SWrapper, SContainer, SBanner, STitle, SImage, SBottomBlock, SBottomBlockText, SBottomBlockImage, SCentralBlock, SCentralBlockDescription, SCentralBlockTypes, SCentralBlockTitle, SDescriptionBlocksWrapper, SDescriptionBlock, SDescriptionNumber, SDescriptionText, STypesWrapper, STypesItem, STypesImage, STypesText, SBottomBlockImageWrapper, SBottomBlockTextTitle, SList, SListItem, SBottomBlockTextTitleWrapper, SBottomBlockWrapper, SBottomBlockImageContainer } from "./CourseContent.style";
-import { CoursesContext } from "../../context/CoursesContext";
+import { CoursesContext, useCourses } from "../../context/CoursesContext";
+import { useAuth } from "../../context/AuthContext";
 
 
 export const CourseContent = () => {
-  const { courses, getCourses } = useContext(CoursesContext) || { courses: [] };
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
 
+  const { token } = useAuth();
+  const isAuth: boolean = !!token;
+
+  const { courses, getCourses, addUserCourse, userCourses, deleteUserCourse } = useCourses();
+
   const course = courses.find((item) => item._id === id);
+
+  const isCourseAdded: boolean = id ? userCourses.includes(id) : false;
 
 
   useEffect(() => {
@@ -20,19 +28,47 @@ export const CourseContent = () => {
   }, [courses, getCourses]);
 
 
+  const handleLogin = () => {
+    const currentPath = location.pathname === "/" ? "/" : location.pathname;
+    navigate(`${currentPath}/login`);
+  };
+
+  const handleAddCourse = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    if (id && token) {
+      addUserCourse(id, token);
+    }
+  };
+
+  const handleDeleteCourse = (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
+
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    if (id && token) {
+      deleteUserCourse(id, token);
+    }
+  };
+
+
   // типа лоадер
-  // console.log("course: ", course);
   if (!course) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <h1 style={{ color: 'red', fontSize: '32px' }}>Загрузка данных курса...</h1>;
       </div>
     )
-  };
-
-
-  const handleAddCourse = () => {
-    console.log("Нажали кнопку 'Войдите, чтобы добавить курс'");
   };
 
 
@@ -87,12 +123,32 @@ export const CourseContent = () => {
                 <SListItem>помогают противостоять стрессам</SListItem>
               </SList>
 
-              <Button
-                width={{ desktop: "437px", mobile: "100%" }}
-                onClick={handleAddCourse}
-              >
-                Войдите, чтобы добавить курс
-              </Button>
+              {!isAuth ?
+                <Button
+                  width={{ desktop: "437px", mobile: "100%" }}
+                  // onClick={handleAddCourse}
+                  onClick={handleLogin}
+                >
+                  Войдите, чтобы добавить курс
+                </Button>
+                :
+                isCourseAdded ?
+                  <Button
+                    type="secondary"
+                    width={{ desktop: "437px", mobile: "100%" }}
+                    onClick={handleDeleteCourse}
+                  >
+                    Удалить курс
+                  </Button>
+                  :
+                  <Button
+                    width={{ desktop: "437px", mobile: "100%" }}
+                    onClick={handleAddCourse}
+                  >
+                    Добавить курс
+                  </Button>
+              }
+
             </SBottomBlockText>
           </SBottomBlock>
 
