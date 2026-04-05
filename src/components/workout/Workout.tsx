@@ -16,8 +16,8 @@ export const Workout = () => {
 
   const { getWorkoutData, workout, getCourses, courses, currentCourseName, currentCourseId, courseProgress, workoutProgress, getUserCourseProgress, getUserWorkoutProgress } = useCourses();
 
-  console.log("workout в Workout до useEffect: ", workout);
-  console.log("currentCourseId в Workout до useEffect: ", currentCourseId);
+  // console.log("workout в Workout до useEffect: ", workout);
+  // console.log("currentCourseId в Workout до useEffect: ", currentCourseId);
 
   const [isProgressModalOpen, setIsProgressModalOpen] = useState<boolean>(false);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState<boolean>(false);
@@ -48,8 +48,8 @@ export const Workout = () => {
   }, [currentCourseId, id, token]);
 
 
-  console.log("courseProgress в Workout после useEffect: ", courseProgress);
-  console.log("workoutProgress в Workout после useEffect: ", workoutProgress);
+  // console.log("courseProgress в Workout после useEffect: ", courseProgress);
+  // console.log("workoutProgress в Workout после useEffect: ", workoutProgress);
 
   // const handleSetProgress = () => {
   //   console.log("Нажали кнопку Заполнить свой прогресс");

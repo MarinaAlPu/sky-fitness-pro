@@ -43,10 +43,10 @@ export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) =
   };
 
   const onSave = async () => {
-    console.log("Нажали кнопку Сохранить");
+    // console.log("Нажали кнопку Сохранить");
 
-    console.log("currentCourseId в onSave:", currentCourseId);
-    console.log("workoutId в onSave:", workoutId);
+    // console.log("currentCourseId в onSave:", currentCourseId);
+    // console.log("workoutId в onSave:", workoutId);
 
     if (!workoutId || !token || !currentCourseId) {
       return;
@@ -56,15 +56,17 @@ export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) =
       return exerciseCount[index] || 0;
     });
 
-    console.log("Массив для отправки на сервер:", progressData);
+    // console.log("Массив для отправки на сервер:", progressData);
 
-    const resp = await saveProgress(currentCourseId, workoutId, token, progressData);
+    // const resp = 
+    await saveProgress(currentCourseId, workoutId, token, progressData);
 
-    console.log(`Сохранили прогресс по тренировке "${workoutId}":`, resp);
+    // console.log(`Сохранили прогресс по тренировке "${workoutId}":`, resp);
     
-    const respProgress = await getUserWorkoutProgress(currentCourseId, workoutId, token);
+    // const respProgress = 
+    await getUserWorkoutProgress(currentCourseId, workoutId, token);
 
-    console.log(`Обновили прогресс по тренировке "${workoutId}":`, respProgress);
+    // console.log(`Обновили прогресс по тренировке "${workoutId}":`, respProgress);
 
     onCloseModal();
     onSuccess();

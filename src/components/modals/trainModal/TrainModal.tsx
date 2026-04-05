@@ -32,7 +32,7 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
 
 
   const handleStart = () => {
-    console.log("Нажали кнопку Начать");
+    // console.log("Нажали кнопку Начать");
     if (selectedWorkoutId) {
       navigate(`/workout/${selectedWorkoutId}`);
     } else {
