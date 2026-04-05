@@ -15,7 +15,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     try {
       const userCoursesInLS = localStorage.getItem("userCourses");
       if (!userCoursesInLS) {
-        console.log("У пользователя нет курсов");
+        // console.log("У пользователя нет курсов");
         return [];
       }
       // console.log("Курсы юзера из LS: ", JSON.parse(userCoursesInLS));
@@ -74,7 +74,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         localStorage.setItem("userCourses", JSON.stringify(updated));
         return updated;
       })
-      console.log("Добавили курс");
+      // console.log("Добавили курс");
     } catch (err) {
       console.error("Ошибка при добавлении круса: ", err);
     }
@@ -89,7 +89,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         localStorage.setItem("userCourses", JSON.stringify(updated));
         return updated;
       })
-      console.log("Удалили курс");
+      // console.log("Удалили курс");
     } catch (err) {
       console.error("Ошибка при удалении круса: ", err);
     }

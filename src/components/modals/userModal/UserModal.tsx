@@ -18,7 +18,7 @@ export const UserModal = () => {
 
 
   const onOpenProfile = () => {
-    console.log("Нажали кнопку Мой профиль");
+    // console.log("Нажали кнопку Мой профиль");
     if (token) {
       navigate("/profile");
     } else {
@@ -27,7 +27,7 @@ export const UserModal = () => {
   };
 
   const handleLogoutClick = (e?: React.MouseEvent) => {
-    console.log("Нажали кнопку Выйти");
+    // console.log("Нажали кнопку Выйти");
     // e?.preventDefault();
     // e.stopPropagation();
     handleLogout(e);

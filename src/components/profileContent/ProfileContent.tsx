@@ -96,7 +96,7 @@ export const ProfileContent = () => {
 
             {userCoursesSelected.length > 0 ? (
               userCoursesSelected.map((course) => {
-                console.log("course после маппинга курсов в профиле", course);
+                // console.log("course после маппинга курсов в профиле", course);
                 const progressData = (courseProgress as any)[course._id];
 
                 // const workouts = progressData?.workoutsProgress || [];
@@ -107,10 +107,10 @@ export const ProfileContent = () => {
                 
 
                 const workoutsInCourse = course.workouts?.length || 0;
-                console.log(`количество тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, workoutsInCourse);
+                // console.log(`количество тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, workoutsInCourse);
                 
                 const completedWorkouts = (progressData?.workoutsProgress || []).filter((workout: any) => workout.workoutCompleted).length;
-                console.log(`количество завершённых тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, completedWorkouts);
+                // console.log(`количество завершённых тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, completedWorkouts);
 
                 const courseProgressInCard = workoutsInCourse > 0 ? ((completedWorkouts / workoutsInCourse) * 100) : 0;
 

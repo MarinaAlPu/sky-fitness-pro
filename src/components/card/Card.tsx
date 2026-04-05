@@ -48,7 +48,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
     e.stopPropagation();
 
     if (!token) {
-      console.log("Токена нет, отправляем на логин");
+      // console.log("Токена нет, отправляем на логин");
       navigate("/login");
       return;
     }
@@ -67,7 +67,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
 
 
     if (!token) {
-      console.log("Токена нет, иди залогинься");
+      // console.log("Токена нет, иди залогинься");
       navigate("/login");
       return;
     }

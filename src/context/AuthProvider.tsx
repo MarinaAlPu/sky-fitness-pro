@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Провайдер. Ввели символ в инпут");
+    // console.log("Провайдер. Ввели символ в инпут");
     setIsValid(true);
     const { name, value } = e.target;
     setUserData((prev) => ({ ...prev, [name]: value }));
@@ -101,7 +101,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const handleLogin = async (e?: React.MouseEvent) => {
-    console.log("Нажали кнопку Войти в форме входа");
+    // console.log("Нажали кнопку Войти в форме входа");
 
     e?.preventDefault();
     setErrorMessage("");
@@ -116,8 +116,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       // const data = isLogin ? await login({ login: userData.login, password: userData.password }) : await registration(userData);
       const data = isLogin ? await login(userData) : await registration(userData);
-      console.log("Ответ сервера при входе: ", data);
-      console.log("Токен: ", data.token);
+      // console.log("Ответ сервера при входе: ", data);
+      // console.log("Токен: ", data.token);
 
       if (userData.email && data.token) {
         updateUserInfo(userData.email, data.token);
@@ -137,7 +137,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       if (axios.isAxiosError(err)) {
         if (err && err.response) {
-          console.log("Ошибка при регистрации: ", err.response.data.message);
+          // console.log("Ошибка при регистрации: ", err.response.data.message);
           setErrorMessage(err.response.data.message || "Ошибка регистрации");
         } else if (err.request) {
           setErrorMessage("Отсутствует интернет. Попробуйте позже");
@@ -149,14 +149,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const handleRegister = async (e?: React.MouseEvent) => {
-    console.log("Нажали кнопку Зарегистироваться в форме регистрации");
+    // console.log("Нажали кнопку Зарегистироваться в форме регистрации");
 
     e?.preventDefault();
     setErrorMessage("");
 
     try {
       const data = await registration(userData)
-      console.log("Ответ сервера при регистрации: ", data);
+      // console.log("Ответ сервера при регистрации: ", data);
 
       // const parentPath = location.pathname.replace(/\/(login|registration)$/, "");
       // navigate(parentPath || "/");
@@ -169,7 +169,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error && error.response) {
-          console.log("Ошибка при регистрации: ", error.response.data.message);
+          // console.log("Ошибка при регистрации: ", error.response.data.message);
           setErrorMessage(error.response.data.message || "Ошибка регистрации");
         } else if (error.request) {
           setErrorMessage("Отсутствует интернет. Попробуйте позже");
