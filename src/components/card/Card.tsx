@@ -43,7 +43,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
 
 
   const handleAddCourse = (e: React.MouseEvent) => {
-    console.log("Нажали кнопку Добавить курс");
+    // console.log("Нажали кнопку Добавить курс");
     e.preventDefault();
     e.stopPropagation();
 
@@ -61,7 +61,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
   };
 
   const handleDeleteCourse = (e: React.MouseEvent) => {
-    console.log("Нажали кнопку Удалить курс");
+    // console.log("Нажали кнопку Удалить курс");
     e.preventDefault();
     e.stopPropagation();
 
