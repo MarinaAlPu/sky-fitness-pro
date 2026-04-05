@@ -64,8 +64,8 @@ export const ProfileContent = () => {
   };
 
 
-  console.log("Данные всех прогрессов в профиле:", courseProgress);
-  console.log("ID курсов пользователя:", userCourses);
+  // console.log("Данные всех прогрессов в профиле:", courseProgress);
+  // console.log("ID курсов пользователя:", userCourses);
 
   return (
     <>
