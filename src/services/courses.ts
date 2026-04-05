@@ -165,8 +165,11 @@ export const getWorkoutProgress = (courseId: string, workoutId: string, token: s
     });
 };
 
-export const saveWorkoutProgress = (courseId: string, workoutId: string, token: string): Promise<SaveWorkoutProgressReturnType> => {
-  return axios.patch<SaveWorkoutProgressReturnType>(`${API_URL}/courses/:${courseId}/workouts/:${workoutId}`,
+export const saveWorkoutProgress = (courseId: string, workoutId: string, token: string, progressData: number[]): Promise<SaveWorkoutProgressReturnType> => {
+  return axios.patch<SaveWorkoutProgressReturnType>(`${API_URL}/courses/${courseId}/workouts/${workoutId}`,
+    {
+      progressData: progressData,
+    },
     {
       headers: {
         Authorization: `Bearer ${token}`,
