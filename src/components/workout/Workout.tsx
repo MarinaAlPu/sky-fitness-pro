@@ -117,7 +117,7 @@ export const Workout = () => {
 
                 // const currentProgress = exercise.quantity > 0 ? (exerciseCount/exercise.quantity)*100 : 0;
 
-                const currentProgress = exercise.quantity > 0 ? (currentWorkoutProgress / exercise.quantity) * 100 : 0;
+                const currentProgress = exercise.quantity > 0 ? Math.min(100, Math.round((currentWorkoutProgress / exercise.quantity) * 100)) : 0;
 
                 return (
                   <SWorkoutExercise key={exercise._id}>
