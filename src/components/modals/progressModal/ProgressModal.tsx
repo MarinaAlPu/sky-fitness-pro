@@ -9,10 +9,11 @@ import { useAuth } from "../../../context/AuthContext";
 
 type ProgressModalProps = {
   onCloseModal: () => void;
+  onSuccess: () => void;
 };
 
 
-export const ProgressModal = ({ onCloseModal }: ProgressModalProps) => {
+export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) => {
   const { id: workoutId } = useParams();
   const { token } = useAuth();
   const { workout, currentCourseId, saveProgress, getUserWorkoutProgress } = useCourses();
@@ -54,6 +55,7 @@ export const ProgressModal = ({ onCloseModal }: ProgressModalProps) => {
     console.log(`Обновили прогресс по тренировке "${workoutId}":`, respProgress);
 
     onCloseModal();
+    onSuccess();
   };
 
 

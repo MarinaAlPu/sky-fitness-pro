@@ -20,6 +20,7 @@ export const Workout = () => {
   console.log("currentCourseId в Workout до useEffect: ", currentCourseId);
 
   const [isProgressModalOpen, setIsProgressModalOpen] = useState<boolean>(false);
+  const [isMessageModalOpen, setIsMessageModalOpen] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -62,6 +63,13 @@ export const Workout = () => {
     setIsProgressModalOpen(false);
   };
 
+  const onOpenMessageModal = () => {
+    setIsMessageModalOpen(true);
+  };
+
+  const onCloseMessageModal = () => {
+    setIsMessageModalOpen(false);
+  };
 
   // личинка лоадера
   if (!workout) {
@@ -109,8 +117,8 @@ export const Workout = () => {
 
                 // const currentProgress = exercise.quantity > 0 ? (exerciseCount/exercise.quantity)*100 : 0;
 
-                const currentProgress = exercise.quantity > 0 ? (currentWorkoutProgress/exercise.quantity)*100 : 0;
-                
+                const currentProgress = exercise.quantity > 0 ? (currentWorkoutProgress / exercise.quantity) * 100 : 0;
+
                 return (
                   <SWorkoutExercise key={exercise._id}>
                     <SExerciseTitle>
@@ -138,11 +146,14 @@ export const Workout = () => {
         </SContainer>
       </SWrapper>
       {isProgressModalOpen && (<ProgressModal
-      onCloseModal={onCloseModal}
-      // workoutId={activeWorkoutId}
-      // onOpenProgressModal={onOpenProgressModal}
+        onCloseModal={onCloseModal}
+        // workoutId={activeWorkoutId}
+        // onOpenProgressModal={onOpenProgressModal}
+        onSuccess={onOpenMessageModal}
       />)}
-      {/* {<MessageModal />} */}
+      {isMessageModalOpen && <MessageModal
+        onCloseModal={onCloseMessageModal}
+      />}
     </>
   )
 }
