@@ -29,7 +29,7 @@ type CardProps = {
 }
 
 
-export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page, onOpenTrainModal, progress=0 }: CardProps) => {
+export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page, onOpenTrainModal, progress = 0 }: CardProps) => {
   const navigate = useNavigate();
   const { token } = useAuth();
 
@@ -170,7 +170,11 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
             width='300px'
             onClick={handleOpenWorkoutsModal}
           >
-            Продолжить
+            {
+              progress === 0 ? "Начать тренировки" :
+                progress === 100 ? "Начать заново" :
+                  "Продолжить"
+            }
           </Button>
           : null
         }
