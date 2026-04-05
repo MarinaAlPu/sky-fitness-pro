@@ -92,7 +92,7 @@ export const deleteCourse = (id: string, token: string): Promise<any> => {
 };
 
 export const fetchUserCourses = (token: string): Promise<getUserCoursesReturnType> => {
-  return axios.get<getUserCoursesReturnType>(`${API_URL}//users/me`,
+  return axios.get<getUserCoursesReturnType>(`${API_URL}/users/me`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
