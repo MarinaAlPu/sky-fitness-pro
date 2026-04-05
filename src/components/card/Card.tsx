@@ -25,10 +25,11 @@ type CardProps = {
   page: string;
   onOpenTrainModal: (courseId: string) => void;
   onCloseModal: () => void;
+  progress?: number;
 }
 
 
-export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page, onOpenTrainModal }: CardProps) => {
+export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, difficulty, order, page, onOpenTrainModal, progress=0 }: CardProps) => {
   const navigate = useNavigate();
   const { token } = useAuth();
 
@@ -78,7 +79,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
   };
 
 
-  const progress = 40;
+  // const progress = 40;
 
 
   // const handleWorkout = () => {

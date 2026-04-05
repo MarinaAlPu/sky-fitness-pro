@@ -17,7 +17,8 @@ export type CoursesContextType = {
   workout: getWorkoutReturnType;
   currentCourseName: string;
   getUserCourseProgress: (courseId: string, token: string) => void;
-  courseProgress: WorkoutProgressReturnType[];
+  // courseProgress: WorkoutProgressReturnType[];
+  courseProgress: Record<string, any>;
   getUserWorkoutProgress: (courseId: string, workoutId: string, token: string) => void;
   // workoutProgress: number[];
   workoutProgress: WorkoutProgressReturnType | null;

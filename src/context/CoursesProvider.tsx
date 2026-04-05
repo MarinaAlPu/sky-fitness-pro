@@ -30,7 +30,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const [workouts, setWorkouts] = useState<any>([]);
   const [workout, setWorkout] = useState<any>(null);
   const [currentCourseName, setCurrentCourseName] = useState<string>("");
-  const [courseProgress, setCourseProgress] = useState<any>(null);
+  // const [courseProgress, setCourseProgress] = useState<any>(null);
+  const [courseProgress, setCourseProgress] = useState<Record<string, any>>({});
   const [workoutProgress, setWorkoutProgress] = useState<WorkoutProgressReturnType | null>(null);
   const [currentCourseId, setCurrentCourseId] = useState<string>("");
 
@@ -147,10 +148,14 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserCourseProgress = async (courseId: string, token: string) => {
     try {
       const data = await getCourseProgress(courseId, token);
-      console.log("data в getUserCourseProgress: ", data);
+      // console.log("data в getUserCourseProgress: ", data);
       // const exerciseData = data.data || data
 
-      setCourseProgress(data);
+      // setCourseProgress(data);
+      setCourseProgress((prev) => ({
+        ...prev,
+        [courseId]: data
+      }))
     } catch (err) {
       console.error("Ошибка при получении прогресса курса:", err);
     }
@@ -159,7 +164,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserWorkoutProgress = async (courseId: string, workoutId: string, token: string) => {
     try {
       const data = await getWorkoutProgress(courseId, workoutId, token);
-      console.log("Прогресс по тренировке в провайдере: ", data);
+      // console.log("Прогресс по тренировке в провайдере: ", data);
       setWorkoutProgress(data);
     } catch (err) {
       console.error("Ошибка при получении прогресса тренировки:", err);
@@ -169,11 +174,11 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const saveProgress = async (courseId: string, workoutId: string, token: string, progressData: number[]) => {
     try {
       const respone = await saveWorkoutProgress(courseId, workoutId, token, progressData);
-      console.log(respone);
+      // console.log(respone);
 
       setCourseProgress(respone);
 
-      console.log("Сохранили прогресс");
+      // console.log("Сохранили прогресс");
     } catch (err) {
       console.error(err);
     }
