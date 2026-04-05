@@ -23,7 +23,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
   let isValid = true;
 
   const userDataFields = Object.keys(userData);
-  console.log("userDataFields: ", userDataFields);
+  // console.log("userDataFields: ", userDataFields);
 
   userDataFields.forEach((key) => {
     // проверить, что ключ в userData - один из ключей в UserDataType
@@ -62,10 +62,10 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
   // ошибки пароля при регистрации (пароль содержит меньше 2 символов)
   const specialCharsRegex = /[!@#$%^&*()_+=\-[\]{};':"\\|,.<>/?]/g;
   const hasSpecialChars = userData.password.match(specialCharsRegex) || [];
-  console.log(hasSpecialChars);
+  // console.log(hasSpecialChars);
 
   const specialCharsCount = hasSpecialChars.length;
-  console.log("specialCharsCount: ", specialCharsCount);
+  // console.log("specialCharsCount: ", specialCharsCount);
 
   if (!isLogin && userData.password.length > 0 && specialCharsCount < 2) {
     fieldsErrors.password = "Пароль должен содержать не менее 2 спецсимволов";
