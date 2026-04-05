@@ -8,11 +8,11 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <CoursesProvider>
-        <AuthProvider>
+      <AuthProvider>
+        <CoursesProvider>
           <AppRoutes />
-        </AuthProvider>
-      </CoursesProvider>
+        </CoursesProvider>
+      </AuthProvider>
     </>
   )
 }
