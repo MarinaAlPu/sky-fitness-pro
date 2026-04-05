@@ -100,20 +100,19 @@ export const ProfileContent = () => {
                 const progressData = (courseProgress as any)[course._id];
 
                 // const workouts = progressData?.workoutsProgress || [];
-                
+
                 // const completedCount = workouts.filter((workout: any) => workout.workoutCompleted).length;
-                
+
                 // const percent = workouts.length > 0 ? (completedCount / workouts.length * 100) : 0;
-                
+
 
                 const workoutsInCourse = course.workouts?.length || 0;
                 // console.log(`количество тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, workoutsInCourse);
-                
+
                 const completedWorkouts = (progressData?.workoutsProgress || []).filter((workout: any) => workout.workoutCompleted).length;
                 // console.log(`количество завершённых тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, completedWorkouts);
 
-                const courseProgressInCard = workoutsInCourse > 0 ? ((completedWorkouts / workoutsInCourse) * 100) : 0;
-
+                const courseProgressInCard = workoutsInCourse > 0 ? Math.min(100, Math.round((completedWorkouts / workoutsInCourse) * 100)) : 0;
 
                 return (
                   <Card
