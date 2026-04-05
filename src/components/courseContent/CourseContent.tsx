@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../button/Button";
 import { SWrapper, SContainer, SBanner, STitle, SImage, SBottomBlock, SBottomBlockText, SBottomBlockImage, SCentralBlock, SCentralBlockDescription, SCentralBlockTypes, SCentralBlockTitle, SDescriptionBlocksWrapper, SDescriptionBlock, SDescriptionNumber, SDescriptionText, STypesWrapper, STypesItem, STypesImage, STypesText, SBottomBlockImageWrapper, SBottomBlockTextTitle, SList, SListItem, SBottomBlockTextTitleWrapper, SBottomBlockWrapper, SBottomBlockImageContainer } from "./CourseContent.style";
-import { CoursesContext, useCourses } from "../../context/CoursesContext";
+import { useCourses } from "../../context/CoursesContext";
 import { useAuth } from "../../context/AuthContext";
 
 

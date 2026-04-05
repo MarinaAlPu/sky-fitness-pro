@@ -1,12 +1,9 @@
 import { Button } from "../button/Button";
 import { SWrapper, SContainer, SImage, STitle, SRoundButton, SPropertyContainer, SDaysIcon, STimeIcon, SDifficultyIcon, SDescriptionContainer, SPropertiesContainer, SFirstRowProperties, SPropertyText, SImageContainer, SProgress, SProgressTitle, ProgressBar, SProgressFill } from "./Card.style";
 import type { dailyDurationInMinutesType } from "../../types/types";
-import { addCourse, deleteCourse } from "../../services/courses";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import { CoursesContext, useCourses } from "../../context/CoursesContext";
-import { TrainModal } from "../modals/trainModal/TrainModal";
+import { useCourses } from "../../context/CoursesContext";
 
 
 type CardProps = {

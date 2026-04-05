@@ -5,7 +5,6 @@ import { Header } from "../header/Header";
 import { SContainer, SWrapper, STitle, SVideo, SWorkoutPanel, SWorkoutTitle, SWorkoutExercises, SWorkoutExercise, SExerciseTitle, SExerciseProgress, SProgressFill } from "./Workout.style";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-// import { getCourseProgress } from "../../services/courses";
 import { ProgressModal } from "../modals/progressModal/ProgressModal";
 import { MessageModal } from "../modals/messageModal/MessageModal";
 
@@ -14,7 +13,7 @@ export const Workout = () => {
   const { id } = useParams();
   const { token } = useAuth();
 
-  const { getWorkoutData, workout, getCourses, courses, currentCourseName, currentCourseId, courseProgress, workoutProgress, getUserCourseProgress, getUserWorkoutProgress } = useCourses();
+  const { getWorkoutData, workout, getCourses, courses, currentCourseName, currentCourseId, workoutProgress, getUserCourseProgress, getUserWorkoutProgress } = useCourses();
 
   // console.log("workout в Workout до useEffect: ", workout);
   // console.log("currentCourseId в Workout до useEffect: ", currentCourseId);
