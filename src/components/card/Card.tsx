@@ -20,8 +20,8 @@ type CardProps = {
   order: number;
   // workouts: string[];
   page: string;
-  onOpenTrainModal: (courseId: string) => void;
-  onCloseModal: () => void;
+  onOpenTrainModal?: (courseId: string) => void;
+  onCloseModal?: () => void;
   progress?: number;
 }
 
@@ -87,7 +87,9 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
     e?.preventDefault();
     e?.stopPropagation();
 
-    onOpenTrainModal(id);
+    if (onOpenTrainModal) {
+      onOpenTrainModal(id);
+    }
   };
 
 
