@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
 import { login, registration, type UserDataType } from "../services/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { validateForm } from "../utils/helpers";
-// import { useCourses } from "./CoursesContext";
 
 
 type AuthProviderProps = {
@@ -41,7 +40,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isValid, setIsValid] = useState(true);
   const initialFormState = { email: "", password: "", confirmPassword: "" };
   const initialErrorsState = { email: "", password: "", confirmPassword: "" };
-  // const { removeUserCoursesFromLS, getUserCourses } = useCourses();
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
