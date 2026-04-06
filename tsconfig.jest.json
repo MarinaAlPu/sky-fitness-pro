@@ -1,12 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ESNext",
     "jsx": "react-jsx",
-    "module": "commonjs",
-    "types": [
-      "jest",
-      "node",
-      "@testing-library/jest-dom"
-    ]
+    "esModuleInterop": true,
+    "allowJs": true
   }
 }
