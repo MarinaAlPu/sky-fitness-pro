@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { ProgressModal } from "../modals/progressModal/ProgressModal";
 import { MessageModal } from "../modals/messageModal/MessageModal";
+import { formatProgress } from "../../utils/helpers";
 
 
 export const Workout = () => {
@@ -116,7 +117,9 @@ export const Workout = () => {
 
                 // const currentProgress = exercise.quantity > 0 ? (exerciseCount/exercise.quantity)*100 : 0;
 
-                const currentProgress = exercise.quantity > 0 ? Math.min(100, Math.round((currentWorkoutProgress / exercise.quantity) * 100)) : 0;
+                // const currentProgress = exercise.quantity > 0 ? Math.min(100, Math.round((currentWorkoutProgress / exercise.quantity) * 100)) : 0;
+
+                const currentProgress = formatProgress(currentWorkoutProgress, exercise.quantity);
 
                 return (
                   <SWorkoutExercise key={exercise._id}>

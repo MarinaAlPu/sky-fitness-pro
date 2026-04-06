@@ -6,6 +6,7 @@ import { SContainer, STitle, SUserPanel, SWrapper, SCourses, SUserIcon, SUserDat
 import { useCourses } from "../../context/CoursesContext";
 import { useEffect, useState } from "react";
 import { TrainModal } from "../modals/trainModal/TrainModal";
+import { formatProgress } from "../../utils/helpers";
 
 
 export const ProfileContent = () => {
@@ -112,7 +113,9 @@ export const ProfileContent = () => {
                 const completedWorkouts = (progressData?.workoutsProgress || []).filter((workout: any) => workout.workoutCompleted).length;
                 // console.log(`количество завершённых тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, completedWorkouts);
 
-                const courseProgressInCard = workoutsInCourse > 0 ? Math.min(100, Math.round((completedWorkouts / workoutsInCourse) * 100)) : 0;
+                // const courseProgressInCard = workoutsInCourse > 0 ? Math.min(100, Math.round((completedWorkouts / workoutsInCourse) * 100)) : 0;
+
+                const courseProgressInCard = formatProgress(completedWorkouts, workoutsInCourse);
 
                 return (
                   <Card

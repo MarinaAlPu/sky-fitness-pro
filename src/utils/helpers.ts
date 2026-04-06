@@ -96,3 +96,7 @@ export const validateForm: ValidateFormType = (userData, isLogin, setErrors, set
   setIsValid(isValid);
   return isValid;
 }
+
+export const formatProgress = (dividend: number, divider: number): number => {
+  return divider > 0 ? Math.min(100, Math.round((dividend / divider) * 100)) : 0;
+}
