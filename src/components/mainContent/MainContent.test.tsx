@@ -10,6 +10,7 @@ import { CoursesContext } from '../../context/CoursesContext';
 import { data } from '../../data';
 import type { CourseType } from '../../types/types';
 import { AuthContext } from '../../context/AuthContext';
+import userEvent from '@testing-library/user-event';
 
 
 const mockCourses: CourseType[] = data;
@@ -154,5 +155,80 @@ describe('Компонент MainContent', () => {
     // найти кнопку "Удалить курс" в контейнере карточки
     const deleteCourseButton = within(cardContainer).getByAltText("Удалить");
     expect(deleteCourseButton).toBeInTheDocument();
+  });
+  test('После добавления курса кнопка становится "Удалить курс"', async () => {
+    const user = userEvent.setup();
+    const courseId = mockCourses[0]._id;
+    const courseTitle = mockCourses[0].nameRU;
+
+    // мок функции добавления курса
+    const mockAddUserCourse = jest.fn();
+
+    const { rerender } = render(
+      <BrowserRouter>
+        <AuthContext.Provider value={{ token: 'test-token' } as any}>
+          <CoursesContext.Provider value={{
+            courses: mockCourses,
+            userCourses: [],
+            addUserCourse: mockAddUserCourse,
+            getCourses: jest.fn(),
+          } as any}>
+            <MainContent />
+          </CoursesContext.Provider>
+        </AuthContext.Provider>
+      </BrowserRouter>
+    );
+
+
+    // найти карточку по названию курса
+    const cardTitle = screen.getByText(courseTitle);
+    // получить контейнер карточки
+    const cardContainer = cardTitle.closest('a');
+
+    if (!cardContainer) {
+      throw new Error('Контейнер карточки не найден');
+    }
+
+    // найти кнопку "Добавить курс" в контейнере карточки
+    const addCourseButton = within(cardContainer).getByAltText("Добавить");
+
+    // нажать кнопку "Добавить курс"
+    await user.click(addCourseButton);
+
+    // проверить, что вызвалась функция добавления курса
+    expect(mockAddUserCourse).toHaveBeenCalledWith(courseId, 'test-token');
+
+    // перерендерить страницу после добавления курса
+    rerender(
+      <BrowserRouter>
+        <AuthContext.Provider value={{ token: 'test-token' } as any}>
+          <CoursesContext.Provider value={{
+            courses: mockCourses,
+            userCourses: [courseId],
+            addUserCourse: mockAddUserCourse,
+            getCourses: jest.fn(),
+          } as any}>
+            <MainContent />
+          </CoursesContext.Provider>
+        </AuthContext.Provider>
+      </BrowserRouter>
+    );
+
+    // найти карточку по названию курса после добавления курса
+    const addedCardTitle = screen.getByText(courseTitle);
+    // получить контейнер карточки
+    const addedCardContainer = addedCardTitle.closest('a');
+
+    if (!addedCardContainer) {
+      throw new Error('Контейнер карточки не найден после добавления курса');
+    }
+
+    // найти кнопку "Добавить курс" в контейнере карточки
+    const addedCourseAddButton = within(addedCardContainer).queryAllByAltText("Добавить");
+    expect(addedCourseAddButton).toHaveLength(0);
+
+    // найти кнопку "Удалить курс" в контейнере карточки
+    const addedCourseDeleteButton = within(addedCardContainer).queryAllByAltText("Удалить");
+    expect(addedCourseDeleteButton).toHaveLength(1);
   });
 });
