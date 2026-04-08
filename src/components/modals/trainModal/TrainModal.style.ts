@@ -86,12 +86,12 @@ export const SCheckbox = styled.input`
   cursor: pointer;
   flex-shrink: 0;
 
-  background-image: url("/icons/check-off-icon.svg");
+  background-image: url(${() => import.meta.env.BASE_URL}icons/check-off-icon.svg);
   background-size: contain;
   background-repeat: no-repeat;
 
   &:checked {
-    background-image: url("/icons/check-on-icon.svg");
+    background-image: url(${() => import.meta.env.BASE_URL}icons/check-on-icon.svg);
   }
 
   &:focus {

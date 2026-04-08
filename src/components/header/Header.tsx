@@ -34,15 +34,15 @@ export const Header = () => {
       <SHeaderContainer>
         <SHeaderBlock>
           <SHeaderBlockLeft>
-            <SHeaderLogoLink href="/" target="_self">
-              <SHeaderLogo src='/logo.svg' alt="logo" />
+            <SHeaderLogoLink to="/">
+              <SHeaderLogo src={`${import.meta.env.BASE_URL}logo.svg`} alt="logo" />
             </SHeaderLogoLink>
             <SHeaderDescription>Онлайн-тренировки для занятий дома</SHeaderDescription>
           </SHeaderBlockLeft>
           <SHeaderBlockRight>
             {isAuth ?
               <SHeaderUserInfoBlock onClick={handleOpenLogout}>
-                <SHeaderUserIcon src="/icons/profile.svg" alt="Иконка пользователя" />
+                <SHeaderUserIcon src={`${import.meta.env.BASE_URL}icons/profile.svg`} alt="Иконка пользователя" />
                 <SHeaderUserName>{userName}</SHeaderUserName>
                 <SArrow $isOpen={isOpen} />
                 {isOpen && <UserModal />}

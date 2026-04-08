@@ -64,7 +64,7 @@ export const ProfileContent = () => {
 
           <STitle>Профиль</STitle>
           <SUserPanel>
-            <SUserIcon src="./icons/mask-group.svg" alt="Фото пользователя" />
+            <SUserIcon src={`${import.meta.env.BASE_URL}icons/mask-group.svg`} alt="Фото пользователя" />
 
             <SUserPanelContent>
               <SUserData>

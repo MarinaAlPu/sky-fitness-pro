@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -42,9 +43,10 @@ export const SHeaderBlockLeft = styled.div`
   flex-wrap: wrap;
 `;
 
-export const SHeaderLogoLink = styled.a`
+export const SHeaderLogoLink = styled(Link)`
   display: flex;
   align-items: center;
+  text-decoration: none;
 `;
 
 export const SHeaderLogo = styled.img`

@@ -43,13 +43,13 @@ export const SButton = styled.button`
   padding: 0;
   cursor: pointer;
 
-  background: url("/icons/ok-button.svg") no-repeat center / contain;
+  background: url("icons/ok-button.svg") no-repeat center / contain;
 
   &:hover {
-    background-image: url("/icons/ok-button-hover.svg");
+    background-image: url("icons/ok-button-hover.svg");
   }
 
   &:active {
-    background-image: url("/icons/ok-button-active.svg");
+    background-image: url("icons/ok-button-active.svg");
   }
 `;

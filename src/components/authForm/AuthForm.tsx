@@ -52,7 +52,7 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
         onClick={(e) => e.stopPropagation()}
         onMouseDown={(e) => e.stopPropagation()}
       >
-        <SHeaderLogo src='/logo.svg' alt="logo" />
+        <SHeaderLogo src={`${import.meta.env.BASE_URL}logo.svg`} alt="logo" />
 
         <SForm>
 

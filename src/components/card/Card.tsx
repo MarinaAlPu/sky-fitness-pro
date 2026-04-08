@@ -67,18 +67,18 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
     <SWrapper to={`/course/${id}`}>
       <SImageContainer
         $order={order}>
-        <SImage src={`/images/main-page/mask-${order}.svg`}
+        <SImage src={`${import.meta.env.BASE_URL}images/main-page/mask-${order}.svg`}
           alt={title} />
         {isCourseAdded ?
           (<SRoundButton
-            src="./icons/delete-button.svg"
+            src={`${import.meta.env.BASE_URL}icons/delete-button.svg`}
             alt="Удалить"
             title="Удалить курс"
             onClick={handleDeleteCourse}
           />)
           :
           (<SRoundButton
-            src="./icons/add-button.svg"
+            src={`${import.meta.env.BASE_URL}icons/add-button.svg`}
             alt="Добавить"
             title="Добавить курс"
             onClick={handleAddCourse}
@@ -110,12 +110,11 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
             <SPropertyContainer>
               <SDifficultyIcon
                 src={
-                  difficulty === "начальный" ? "/icons/difficulty-beginner.svg"
+                  difficulty === "начальный" ? `${import.meta.env.BASE_URL}icons/difficulty-beginner.svg`
                     :
-                    difficulty === "средний" ? "/icons/difficulty-intermediate.svg"
+                    difficulty === "средний" ? `${import.meta.env.BASE_URL}icons/difficulty-intermediate.svg`
                       :
-                      "/icons/difficulty-advanced.svg"
-                }
+                      `${import.meta.env.BASE_URL}icons/difficulty-advanced.svg`}
                 alt="Сложность" />
               <SPropertyText>{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</SPropertyText>
             </SPropertyContainer>

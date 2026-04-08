@@ -79,7 +79,7 @@ export const CourseContent = () => {
           $order={course.order}
         >
           <STitle>{course.nameRU}</STitle>
-          <SImage src={`/images/skill-cards/skill-card-${course.order}.svg`} alt={course.nameRU} />
+          <SImage src={`${import.meta.env.BASE_URL}images/skill-cards/skill-card-${course.order}.svg`} alt={course.nameRU} />
         </SBanner>
 
         <SCentralBlock>
@@ -100,7 +100,7 @@ export const CourseContent = () => {
             <STypesWrapper>
               {course.directions.map((direction) => (
                 <STypesItem key={direction}>
-                  <STypesImage src="/icons/star.svg" alt="Звёздочка" />
+                  <STypesImage src={`${import.meta.env.BASE_URL}icons/star.svg`}alt="Звёздочка" />
                   <STypesText>{direction}</STypesText>
                 </STypesItem>
               ))}
@@ -154,10 +154,10 @@ export const CourseContent = () => {
           <SBottomBlockImageWrapper>
             <SBottomBlockImageContainer>
               {/* МП */}
-              <source media="(max-width: 375px)" srcSet="/images/skill-cards/runner-mobile.svg" />
+              <source media="(max-width: 375px)" srcSet={`${import.meta.env.BASE_URL}images/skill-cards/runner-mobile.svg`} />
 
               {/* десктоп */}
-              <SBottomBlockImage src="/images/skill-cards/runner.svg" alt="Мужик" />
+              <SBottomBlockImage src={`${import.meta.env.BASE_URL}images/skill-cards/runner.svg`} alt="Мужик" />
             </SBottomBlockImageContainer>
           </SBottomBlockImageWrapper>
         </SBottomBlockWrapper>
