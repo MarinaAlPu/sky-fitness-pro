@@ -1,18 +1,22 @@
 import { createContext, useContext } from "react";
 import type { UserDataType } from "../services/auth";
+import type { FieldsErrors } from "../utils/helpers";
 
 
 export type AuthContextType = {
   user: { email: string; userName: string } | null;
   token: string | null;
   userData: UserDataType;
-  handleChange:  (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   errorMessage: string | null;
   handleOpenRegistrationForm: () => void;
   handleOpenLoginForm: () => void;
   handleLogin: (e?: React.MouseEvent) => Promise<void>;
   handleRegister: (e?: React.MouseEvent) => Promise<void>;
   handleLogout: (e?: React.MouseEvent) => void;
+  errors: FieldsErrors;
+  error: string;
+  isValid: boolean;
 };
 
 

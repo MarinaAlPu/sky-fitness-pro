@@ -177,7 +177,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       handleOpenLoginForm,
       handleLogin,
       handleRegister,
-      handleLogout
+      handleLogout,
+      errors,
+      error,
+      isValid
     }}>
       {children}
     </AuthContext.Provider>
