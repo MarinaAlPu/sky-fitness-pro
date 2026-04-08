@@ -5,7 +5,6 @@ export type ValidateFormType = (
   userData: UserDataType,
   isLogin: boolean,
   setErrors: (errors: FieldsErrors) => void,
-  setError: (message: string) => void,
   setIsValid: (valid: boolean) => void,
   setErrorMessage: (message: string) => void,
 ) => boolean;
@@ -17,7 +16,7 @@ export type FieldsErrors = {
 };
 
 
-export const validateForm: ValidateFormType = (userData, isLogin, setErrors, setError, setIsValid, setErrorMessage) => {
+export const validateForm: ValidateFormType = (userData, isLogin, setErrors, setIsValid, setErrorMessage) => {
   const fieldsErrors: FieldsErrors = { email: "", password: "", confirmPassword: "" };
 
   let isValid = true;

@@ -149,7 +149,6 @@ describe('validateForm registration', () => {
 
   // заглушки функций
   const setErrors = jest.fn();
-  const setError = jest.fn();
   const setIsValid = jest.fn();
   const setErrorMessage = jest.fn();
 
@@ -161,7 +160,7 @@ describe('validateForm registration', () => {
 
 
   it('При регистрации принимает корректные значения', () => {
-    const result = validateForm(registrationValidUserData, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationValidUserData, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(true);
     expect(setIsValid).toHaveBeenCalledWith(true);
@@ -169,7 +168,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации удаляются пробелы', () => {
-    const result = validateForm(registrationSpacesUserData, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationSpacesUserData, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -177,7 +176,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации все пустые поля', () => {
-    const result = validateForm(registrationEmptyUserData, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationEmptyUserData, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -185,7 +184,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации одно пустое поле', () => {
-    const result = validateForm(registrationEmptyOneFieldUserData, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationEmptyOneFieldUserData, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -193,7 +192,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации некорректный email', () => {
-    const result = validateForm(registrationInvalidEmail, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationInvalidEmail, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -201,7 +200,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации пароль меньше 6 символов', () => {
-    const result = validateForm(registrationInvalidPasswordLessThan6Chars, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationInvalidPasswordLessThan6Chars, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -209,7 +208,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации пароль не содержит заглавную букву', () => {
-    const result = validateForm(registrationInvalidPasswordHasNoUpperCase, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationInvalidPasswordHasNoUpperCase, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -217,7 +216,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации пароль не содержит спецсимволы', () => {
-    const result = validateForm(registrationInvalidPasswordHasNoSpecialChars, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationInvalidPasswordHasNoSpecialChars, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -225,7 +224,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации пароль содержит 1 спецсимвол', () => {
-    const result = validateForm(registrationInvalidPasswordHas1SpecialChar, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationInvalidPasswordHas1SpecialChar, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -233,7 +232,7 @@ describe('validateForm registration', () => {
   });
 
   it('При регистрации пароли не совпали', () => {
-    const result = validateForm(registrationInvalidPasswordWasNotConfirm, false, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(registrationInvalidPasswordWasNotConfirm, false, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -284,7 +283,6 @@ describe('validateForm login', () => {
 
   // заглушки функций
   const setErrors = jest.fn();
-  const setError = jest.fn();
   const setIsValid = jest.fn();
   const setErrorMessage = jest.fn();
 
@@ -296,7 +294,7 @@ describe('validateForm login', () => {
 
 
   it('При логине принимает корректные значения', () => {
-    const result = validateForm(loginValidUserData, true, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(loginValidUserData, true, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(true);
     expect(setIsValid).toHaveBeenCalledWith(true);
@@ -304,7 +302,7 @@ describe('validateForm login', () => {
   });
 
   it('При логине все пустые поля', () => {
-    const result = validateForm(loginEmptyUserData, true, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(loginEmptyUserData, true, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);
@@ -312,7 +310,7 @@ describe('validateForm login', () => {
   });
 
   it('При логине одно пустое поле', () => {
-    const result = validateForm(loginEmptyOneFieldUserData, true, setErrors, setError, setIsValid, setErrorMessage);
+    const result = validateForm(loginEmptyOneFieldUserData, true, setErrors, setIsValid, setErrorMessage);
 
     expect(result).toBe(false);
     expect(setIsValid).toHaveBeenCalledWith(false);

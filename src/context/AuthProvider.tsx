@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     e?.preventDefault();
     setErrorMessage("");
 
-    if (!validateForm(userData, isLogin, setErrors, setError, setIsValid, setErrorMessage)) {
+    if (!validateForm(userData, isLogin, setErrors, setIsValid, setErrorMessage)) {
       return;
     }
 
