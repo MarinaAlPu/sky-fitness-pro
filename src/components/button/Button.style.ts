@@ -97,20 +97,15 @@ export type DisplayType = {
 
 
 type SButtonProps = {
-  $type: ButtonType, //"primary" | "secondary",
+  $type: ButtonType,
   $width?: string | WidthType,
   $height?: string | HeightType;
-  // $borderColor: string,
   disabled?: boolean,
-  // onClick: () => void
-  // text: string,
   $display?: DisplayType
 }
 
 
 export const SButton = styled.button<SButtonProps>`
-  /* cursor: pointer; */
-
   border-radius: 46px;
   
   align-items: center;
@@ -123,10 +118,8 @@ export const SButton = styled.button<SButtonProps>`
   text-align: center;
   flex-shrink: 0;
 
-  /* display: flex; */
   display: ${({ $display }) => ($display ? $display.desktop : "flex")};
   
-  /* width: 103px; */
   width: ${({ $width }) => {
     if (typeof $width === "object") {
       return $width.desktop;
@@ -135,7 +128,6 @@ export const SButton = styled.button<SButtonProps>`
     }
   }};
   
-  /* height: 52px; */
   height: ${({ $height }) => {
     if (typeof $height === "object") {
       return $height.desktop;
@@ -144,17 +136,14 @@ export const SButton = styled.button<SButtonProps>`
     }
   }};
 
-/* background-color: #BCEC30; */
 background-color: ${({ $type, disabled }) =>
     disabled ? backgroundColors[$type].inactive : backgroundColors[$type].regular
   };
 
-/* color: #000000; */
 color: ${({ $type, disabled }) =>
     disabled ? colors[$type].inactive : colors[$type].regular
   };
 
-/* border: none; */
 border: ${({ $type, disabled }) => {
     if ($type === 'primary') {
       return borders.primary;
@@ -165,7 +154,6 @@ border: ${({ $type, disabled }) => {
 
   
   &:hover:not(:disabled) {
-    /* background-color: #C6FF00; */
     background-color: ${({ $type }) => backgroundColors[$type].hover};
     color: ${({ $type }) => colors[$type].hover};
     border: ${({ $type }) => {
@@ -183,9 +171,7 @@ border: ${({ $type, disabled }) => {
   }
 
   &:active:not(:disabled) {
-    /* background-color: #000000; */
     background-color: ${({ $type }) => backgroundColors[$type].active};
-    /* color: #FFFFFF; */
     color: ${({ $type }) => colors[$type].active};
     border: ${({ $type }) => {
     if ($type === 'primary') {
@@ -202,7 +188,7 @@ border: ${({ $type, disabled }) => {
   }
 
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     display: ${({ $display }) => ($display ? $display.mobile : "flex")};
 
     width: ${({ $width }) => {

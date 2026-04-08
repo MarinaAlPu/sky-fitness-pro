@@ -18,8 +18,6 @@ export const SWrapper = styled.main`
   width: 100%;
   min-height: 100vh;
   background-color: #FAFAFA;
-  /* flex-grow: 1; */
-  /* overflow: hidden; */
   margin-top: 120px;
 `;
 
@@ -32,9 +30,8 @@ export const SContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* position: relative; */
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     padding: 40px 16px;
   }
 `;
@@ -42,7 +39,6 @@ export const SContainer = styled.div`
 export const SBanner = styled.div<SBannerProps>`
   width: 100%;
   height: 310px;
-  /* background-color: #FFC700; */
   background-color: ${({ $order }) =>
     backgroundColors[$order]
   };
@@ -51,9 +47,7 @@ export const SBanner = styled.div<SBannerProps>`
   margin-bottom: 60px;
   overflow: hidden;
 
-  @media screen and (max-width: 375px) {
-    /* justify-content: center;
-    align-items: center; */
+  @media screen and (max-width: 376px) {
     height: 389px;
     margin-bottom: 40px;
   }
@@ -70,13 +64,12 @@ color: #FFFFFF;
   top: 40px;
   left: 40px;
   
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     display: none;
   }
 `;
 
 export const SImage = styled.img`
-  /* background-image: url('./images/skill-cards/skill-card-1.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -85,7 +78,7 @@ export const SImage = styled.img`
   right: 0px;
   z-index: 10;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     top: 58px;
     right: -20px;
     width: 360px;
@@ -95,7 +88,6 @@ export const SImage = styled.img`
 
 export const SCentralBlock = styled.div`
   width: 100%;
-  /* height: 486px; */
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -103,7 +95,7 @@ export const SCentralBlock = styled.div`
   position: relative;
   z-index: 1;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     gap: 40px;
     margin-bottom: 156px;
   }
@@ -115,7 +107,7 @@ export const SCentralBlockDescription = styled.div`
   flex-direction: column;
   gap: 40px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     gap: 24px;
   }
 `;
@@ -126,13 +118,12 @@ export const SCentralBlockTitle = styled.div`
   line-height: 110%;
   letter-spacing: 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-weight: 500;
     font-size: 24px;
   }
 `;
 
-// export const SDescriptionBlocksWrapper = styled.div`
 export const SDescriptionBlocksWrapper = styled.ul`
   width: 100%;
   display: flex;
@@ -140,18 +131,15 @@ export const SDescriptionBlocksWrapper = styled.ul`
   gap: 17px;
   list-style: none;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     flex-wrap: wrap;
   }  
 `;
 
 export const SDescriptionBlock = styled.li`
-  /* width: 368px;
-  height: 141px; */
   border-radius: 28px;
   padding: 20px;
   background-color: #151720;
-  /* background-color: #1E212E; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -176,12 +164,11 @@ export const SDescriptionText = styled.div`
 
 export const SCentralBlockTypes = styled.div`
   width: 100%;
-  /* height: 486px; */
   display: flex;
   flex-direction: column;
   gap: 40px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     gap: 24px;
     position: relative;
     z-index: 10;
@@ -199,7 +186,7 @@ export const STypesWrapper = styled.ul`
   row-gap: 34px;
   list-style: none;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     flex-direction: column;
     gap: 24px;
   }
@@ -227,7 +214,7 @@ export const STypesText = styled.div`
   line-height: 110%;
   letter-spacing: 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-size: 18px;
   }
 `;
@@ -240,7 +227,6 @@ export const SBottomBlockWrapper = styled.div`
 
 export const SBottomBlock = styled.div`
   width: 100%;
-  /* height: 486px; */
   padding: 40px;
   display: flex;
   flex-direction: row;
@@ -251,11 +237,8 @@ export const SBottomBlock = styled.div`
   border-radius: 30px;
   background-color: #FAFAFA;
 
-  @media screen and (max-width: 375px) {
-    /* position: relative;
-    overflow: visible; */
+  @media screen and (max-width: 376px) {
     padding: 30px;
-    /* height: 412px; */
     z-index: 20;
   }
 `;
@@ -266,7 +249,7 @@ export const SBottomBlockText = styled.div`
   flex-direction: column;
   gap: 28px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     width: 343px;
     position: relative;
     z-index: 1000;
@@ -275,9 +258,8 @@ export const SBottomBlockText = styled.div`
 
 export const SBottomBlockTextTitleWrapper = styled.div`
   width: 400px;
-  /* display: flex; */
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     width: 283px;
   }
 `;
@@ -289,7 +271,7 @@ export const SBottomBlockTextTitle = styled.div`
   letter-spacing: 0px;
   vertical-align: middle;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-size: 32px;
     width: 225px;
   }  
@@ -299,7 +281,7 @@ export const SList = styled.ul`
   list-style: none;
   padding-left: 15px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     padding-left: 10px;
   }  
 `;
@@ -323,8 +305,6 @@ export const SListItem = styled.li`
     position: absolute;
     left: 0;
     top: 8px;
-    /* width: 8px;
-    height: 8px; */
     width: 4.37px;
     height: 4.06px;
     background-color: #000000;
@@ -332,7 +312,7 @@ export const SListItem = styled.li`
     border-radius: 50%;
   }
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-size: 18px;
     padding-left: 20px;
   }   
@@ -348,8 +328,7 @@ export const SBottomBlockImageWrapper = styled.div`
   pointer-events: none;
   z-index: 30;
 
-  @media screen and (max-width: 375px) {
-    /* position: relative; */
+  @media screen and (max-width: 376px) {
     z-index: 10;
     overflow: visible;
   }
@@ -360,25 +339,20 @@ export const SBottomBlockImageContainer = styled.picture`
 `;
 
 export const SBottomBlockImage = styled.img`
-  /* background-image: url('./images/skill-cards/man-lines.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
   top: 20px;
   right: -30px;
-  /* z-index: 10; */
   height: 690px;
 
   position: absolute;
   pointer-events: none;
 
-  @media screen and (max-width: 375px) {
-    /* display: none; */
+  @media screen and (max-width: 376px) {
     top: -165px;
     right: -23px;
     height: 450px;
-    /* width: auto;
-    z-index: 100; */
   }   
 `;

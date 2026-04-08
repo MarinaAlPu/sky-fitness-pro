@@ -5,8 +5,6 @@ export const SWrapper = styled.main`
   width: 100%;
   min-height: 100vh;
   background-color: #FAFAFA;
-  /* flex-grow: 1; */
-  /* overflow: hidden; */
   margin-top: 120px;
 `;
 
@@ -20,7 +18,7 @@ export const SContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     padding: 40px 16px;
   }
 `;
@@ -32,24 +30,18 @@ export const STitle = styled.div`
   flex-direction: row;
   margin-bottom: 50px;
   
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     margin-bottom: 34px;
   }
 `;
 
 export const SDescribe = styled.div`
-  /* width: 100%; */
-  /* max-width: calc(100% - 288px); */
-  /* margin: 0 auto; */
-  /* display: flex; */
-  /* max-height: 100%; */
-  /* flex-shrink: 1; */
   font-weight: 500;
   font-size: 60px;
   line-height: 100%;
   letter-spacing: 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-size: 32px;
     line-height: 110%;
   }
@@ -72,7 +64,7 @@ export const SText = styled.div`
   letter-spacing: 0px;
   border-radius: 5px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     display: none;
   }
 `;
@@ -84,7 +76,7 @@ export const SCards = styled.div`
   gap: 40px;
 
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     flex-direction: column;
     gap: 24px;
   }

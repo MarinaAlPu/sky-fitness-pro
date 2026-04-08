@@ -57,12 +57,6 @@ export const SContent = styled.div`
     border-radius: 10px;
     cursor: pointer;
   }
-
-  /* *::-webkit-scrollbar-button {
-    display: none;
-    height: 0;
-    width: 0;
-  } */
 `;
 
 export const SItem = styled.div`
@@ -77,7 +71,7 @@ export const SItemTitle = styled.div`
   line-height: 110%;
   letter-spacing: 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-size: 16px;
   } 
 `;

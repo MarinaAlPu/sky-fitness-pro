@@ -17,7 +17,6 @@ export const SPageBackground = styled.div`
 
 export const SWrapper = styled.div`
   width: 360px;
-  /* height: 595.5px; */
   position: relative;
   background: #FFFFFF;
   display: flex;
@@ -27,7 +26,7 @@ export const SWrapper = styled.div`
   border-radius: 30px;
   padding: 40px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     padding: 40px 31.5px;
   }
 `;
@@ -57,10 +56,6 @@ export const SButtonBlock = styled.div`
   justify-content: center;
   gap: 10px;
   margin-top: 34px;
-
-  @media screen and (max-width: 375px) {
-    /* display: none; */
-  }
 `;
 
 export const SLink = styled(Link)`
@@ -77,9 +72,4 @@ export const SError = styled.div`
   text-align: center;
   color: #DB0030;
   margin-top: 10px;
-
-  @media screen and (max-width: 375px) {
-    /* display: none; */
-  }
 `;
-

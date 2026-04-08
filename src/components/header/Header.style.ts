@@ -20,7 +20,7 @@ export const SHeaderContainer = styled.div`
   margin: 0 auto;
   padding: 50px 140px 0 140px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     padding: 40px 16px 0 16px;
   }
 `;
@@ -61,7 +61,7 @@ export const SHeaderDescription = styled.p`
   color: #000000;
   opacity: 0.5;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     display: none;
   }
 `;
@@ -94,15 +94,13 @@ export const SHeaderUserIcon = styled.img`
 export const SHeaderUserNameWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  /* cursor: pointer; */
 `;
 
 export const SHeaderUserName = styled.div`
   gap: 12px;
   order: 2;
-  /* cursor: pointer; */
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     display: none;
   }
 `;
@@ -113,19 +111,14 @@ export const SArrow = styled.div<SArrowProps>`
   border-radius: 1px;
   border-left: 2px solid #000000;
   border-bottom: 2px solid #000000;
-  /* margin: 5px 0px; */
-  /* padding: 0; */
-  /* transform: rotate(-45deg); */
-  /* transform: rotate(135deg); */
   order: 3;
-  /* cursor: pointer; */
 
   transform:
     ${({ $isOpen }) => ($isOpen ? "translateY(3px)" : "translateY(0)")}
     rotateZ(${({ $isOpen }) => ($isOpen ? "135deg" : "-45deg")});
   transition: transform 0.2s ease-in-out;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     order: 2;
   }
 `;

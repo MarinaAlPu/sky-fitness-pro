@@ -11,12 +11,10 @@ export const SFooterContainer = styled.div<{ $display?: DisplayType }>`
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  /* padding: 0 140px 81px 140px; */
   padding: ${({ $display }) => 
     $display?.desktop === 'none' ? '0 140px 0 140px' : '0 140px 81px 140px'};
 
-  @media screen and (max-width: 375px) {
-    /* padding: 0 16px 29px 16px; */
+  @media screen and (max-width: 376px) {
     padding: ${({ $display }) => 
     $display?.mobile === 'none' ? '0 16px 0 16px' : '0 16px 29px 16px'};
   }
@@ -28,7 +26,7 @@ export const SFooterBlock = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     justify-content: flex-end;
   }
 `;

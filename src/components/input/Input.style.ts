@@ -61,7 +61,7 @@ export const SInput = styled.input<SInputProps>`
     box-shadow: 0 0 5px #d9ed9d;
   }
 
-    @media screen and (max-width: 375px) {
+    @media screen and (max-width: 376px) {
     height: ${({ $height }) => {
       if (typeof $height === "object") {
         return $height.mobile;

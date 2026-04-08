@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const SWrapper = styled.div`
   width: 266px;
   height: 258px;
-  /* position: relative; */
   position: absolute;
   top: 74px;
   right: 0px;
@@ -19,7 +18,7 @@ export const SWrapper = styled.div`
   z-index: 10;
   box-shadow: 0px 4px 67px -12px #00000021;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     display: none;
   }
 `;

@@ -27,7 +27,7 @@ export const SWrapper = styled.div`
   border-radius: 30px;
   padding: 40px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     width: 343px;
     height: 585px;
     padding: 30px;
@@ -63,12 +63,6 @@ export const SContent = styled.ul`
     border-radius: 10px;
     cursor: pointer;
   }
-
-  /* *::-webkit-scrollbar-button {
-    display: none;
-    height: 0;
-    width: 0;
-  } */
 `;
 
 export const SItem = styled.li`
@@ -124,7 +118,7 @@ export const SItemTitle = styled.div`
   line-height: 110%;
   letter-spacing: 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-size: 18px;
   } 
 `;
@@ -135,7 +129,7 @@ export const SItemDescription = styled.div`
   line-height: 110%;
   letter-spacing: 0px;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 376px) {
     font-size: 14px;
   } 
 `;

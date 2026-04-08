@@ -16,9 +16,7 @@ export const SPageBackground = styled.div`
 
 export const SWrapper = styled.div`
   width: 426px;
-  /* height: 270px; */
   position: relative;
-  /* z-index: 10; */
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
@@ -27,11 +25,6 @@ export const SWrapper = styled.div`
   justify-content: center;
   border-radius: 30px;
   padding: 40px;
-
-  /* @media screen and (max-width: 375px) {
-    display: flex;
-    flex-direction: column;
-  } */
 `;
 
 export const STitle = styled.div`
@@ -40,12 +33,6 @@ export const STitle = styled.div`
   line-height: 110%;
   letter-spacing: 0px;
   text-align: center;
-  /* color: #000000; */
-
-  /* @media screen and (max-width: 375px) {
-    display: flex;
-    flex-direction: column;
-  } */
 `;
 
 export const SButton = styled.button`
