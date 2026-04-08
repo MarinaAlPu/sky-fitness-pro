@@ -31,7 +31,6 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const [workouts, setWorkouts] = useState<getCourseWorkoutsReturnType | []>([]);
   const [workout, setWorkout] = useState<getWorkoutReturnType | null>(null);
   const [currentCourseName, setCurrentCourseName] = useState<string>("");
-  // const [courseProgress, setCourseProgress] = useState<any>(null);
   const [courseProgress, setCourseProgress] = useState<Record<string, CourseProgressReturnType>>({});
   const [workoutProgress, setWorkoutProgress] = useState<WorkoutProgressReturnType | null>(null);
   const [currentCourseId, setCurrentCourseId] = useState<string>("");
@@ -71,12 +70,10 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getCourses = async () => {
     try {
       const data = await fetchCourses();
-      // console.log(data);
       setCourses(data);
     } catch (err) {
       console.error("Ошибка при получении курсов: ", err);
     } finally {
-      // console.log("зашли finally");
     }
   };
 
@@ -92,7 +89,6 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         localStorage.setItem("userCourses", JSON.stringify(updated));
         return updated;
       })
-      // console.log("Добавили курс");
     } catch (err) {
       console.error("Ошибка при добавлении круса: ", err);
     }
@@ -107,7 +103,6 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         localStorage.setItem("userCourses", JSON.stringify(updated));
         return updated;
       })
-      // console.log("Удалили курс");
     } catch (err) {
       console.error("Ошибка при удалении круса: ", err);
     }
@@ -121,7 +116,6 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserCourses = async (token: string) => {
     try {
       const response = await fetchUserCourses(token);
-      // console.log("response в getUserCourses в провайдере: ", response);
 
       const userCoursesIds = response.user?.selectedCourses || [];
 
@@ -135,10 +129,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getWorkouts = async (courseId: string, token: string) => {
     try {
       const response = await getCourseWorkouts(courseId, token);
-      // console.log("response в провайдере: ", response);
 
       setWorkouts(response);
-      // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
     } catch (err) {
       console.error("Ошибка при загрузке тренировок курса: ", err);
     }
@@ -147,10 +139,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getWorkoutData = async (workoutId: string, token: string) => {
     try {
       const response = await getWorkout(workoutId, token);
-      // console.log("response в провайдере: ", response);
 
       setWorkout(response);
-      // localStorage.setItem("userCourses", JSON.stringify(userCoursesIds));
 
       const workoutCourse = courses.find((course) => course.workouts.includes(workoutId));
 
@@ -166,10 +156,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserCourseProgress = async (courseId: string, token: string) => {
     try {
       const data = await getCourseProgress(courseId, token);
-      // console.log("data в getUserCourseProgress: ", data);
-      // const exerciseData = data.data || data
 
-      // setCourseProgress(data);
       setCourseProgress((prev) => ({
         ...prev,
         [courseId]: data
@@ -182,7 +169,6 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
   const getUserWorkoutProgress = async (courseId: string, workoutId: string, token: string) => {
     try {
       const data = await getWorkoutProgress(courseId, workoutId, token);
-      // console.log("Прогресс по тренировке в провайдере: ", data);
       setWorkoutProgress(data);
     } catch (err) {
       console.error("Ошибка при получении прогресса тренировки:", err);
@@ -191,14 +177,8 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
 
   const saveProgress = async (courseId: string, workoutId: string, token: string, progressData: number[]) => {
     try {
-      // const respone = 
       await saveWorkoutProgress(courseId, workoutId, token, progressData);
-      // console.log(respone);
-
-      // setCourseProgress(respone);
-
       await getUserCourseProgress(courseId, token);
-      // console.log("Сохранили прогресс");
     } catch (err) {
       console.error(err);
     }

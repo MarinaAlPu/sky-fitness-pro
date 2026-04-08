@@ -18,12 +18,8 @@ export async function registration(userData: UserDataType) {
         "Content-Type": "",
       },
     });
-    // console.log("data: ", data.data);
     return data.data;
   } catch (error) {
-    // console.log(error);
-    // throw new Error(error.response.data.message);
-    // throw new Error(error);
     throw error;
   }
 };
@@ -35,7 +31,6 @@ export async function login(userData: UserDataType) {
         "Content-Type": "",
       },
     });
-    // console.log("data: ", data.data);
     return data.data;
   } catch (error) {
     throw error;

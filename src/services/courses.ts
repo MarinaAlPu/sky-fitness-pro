@@ -57,7 +57,6 @@ export type ResetWorkoutProgressReturnType = {
 export const fetchCourses = (): Promise<CourseType[]> => {
   return axios.get<CourseType[]>(`${API_URL}/courses`)
     .then((resp) => {
-      // console.log("resp в функции fetchCourses: ", resp);
       return resp.data;
     });
 };
@@ -75,7 +74,6 @@ export const addCourse = (id: string, token: string): Promise<string> => {
       },
     })
     .then((resp) => {
-      // console.log("resp в функции addCourse: ", resp);
       return resp.data;
     });
 };
@@ -89,7 +87,6 @@ export const deleteCourse = (id: string, token: string): Promise<string> => {
       },
     })
     .then((resp) => {
-      // console.log("resp в функции deleteCourse: ", resp);
       return resp.data;
     });
 };
@@ -103,7 +100,6 @@ export const fetchUserCourses = (token: string): Promise<getUserCoursesReturnTyp
       },
     })
     .then((resp) => {
-      // console.log("resp в функции getUserCourses: ", resp);
       return resp.data;
     });
 };
@@ -118,7 +114,6 @@ export const getCourseWorkouts = (courseId: string, token: string): Promise<getC
     }
   )
     .then((resp) => {
-      // console.log("resp в функции getCourseWorkouts: ", resp.data);
       return resp.data;
     });
 };
@@ -133,7 +128,6 @@ export const getWorkout = (workoutId: string, token: string): Promise<getWorkout
     }
   )
     .then((resp) => {
-      // console.log("resp в функции getWorkout: ", resp);
       return resp.data;
     });
 };
@@ -148,7 +142,6 @@ export const getCourseProgress = (courseId: string, token: string): Promise<Cour
     }
   )
     .then((resp) => {
-      // console.log("прогресс по курсу в функции getCourseProgress: ", resp.data);
       return resp.data;
     });
 };
@@ -163,7 +156,6 @@ export const getWorkoutProgress = (courseId: string, workoutId: string, token: s
     }
   )
     .then((resp) => {
-      // console.log("прогресс по тренировке в функции getWorkoutProgress: ", resp.data);
       return resp.data;
     });
 };
@@ -181,7 +173,6 @@ export const saveWorkoutProgress = (courseId: string, workoutId: string, token: 
     }
   )
     .then((resp) => {
-      // console.log("ответ на сохранение прогресса по тренировке в функции setWorkoutProgress: ", resp.data);
       return resp.data;
     });
 };
@@ -196,7 +187,6 @@ export const resetWorkoutProgress = (courseId: string, workoutId: string, token:
     }
   )
     .then((resp) => {
-      // console.log("ответ на сброс прогресса по тренировке в функции resetWorkoutProgress: ", resp.data);
       return resp.data;
     });
 };
