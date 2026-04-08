@@ -17,10 +17,6 @@ export const SWrapper = styled.div`
   gap: 34px;
   z-index: 10;
   box-shadow: 0px 4px 67px -12px #00000021;
-
-  @media screen and (max-width: 376px) {
-    display: none;
-  }
 `;
 
 export const SContainer = styled.div`
