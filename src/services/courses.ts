@@ -62,7 +62,7 @@ export const fetchCourses = (): Promise<CourseType[]> => {
     });
 };
 
-export const addCourse = (id: string, token: string): Promise<any> => {
+export const addCourse = (id: string, token: string): Promise<string> => {
   return axios.post(`${API_URL}/users/me/courses`,
     {
       courseId: id,
@@ -80,7 +80,7 @@ export const addCourse = (id: string, token: string): Promise<any> => {
     });
 };
 
-export const deleteCourse = (id: string, token: string): Promise<any> => {
+export const deleteCourse = (id: string, token: string): Promise<string> => {
   return axios.delete(`${API_URL}/users/me/courses/${id}`,
     {
       headers: {
@@ -118,7 +118,7 @@ export const getCourseWorkouts = (courseId: string, token: string): Promise<getC
     }
   )
     .then((resp) => {
-      // console.log("resp в функции getCourseWorkouts: ", resp);
+      // console.log("resp в функции getCourseWorkouts: ", resp.data);
       return resp.data;
     });
 };

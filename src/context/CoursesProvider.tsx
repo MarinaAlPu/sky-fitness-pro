@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { CoursesContext } from "./CoursesContext";
-import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseProgress, getCourseWorkouts, getWorkout, getWorkoutProgress, saveWorkoutProgress, type WorkoutProgressReturnType } from "../services/courses";
+import { addCourse, deleteCourse, fetchCourses, fetchUserCourses, getCourseProgress, getCourseWorkouts, getWorkout, getWorkoutProgress, saveWorkoutProgress, type CourseProgressReturnType, type getCourseWorkoutsReturnType, type getWorkoutReturnType, type WorkoutProgressReturnType } from "../services/courses";
 import type { CourseType } from "../types/types";
 import { useAuth } from "./AuthContext";
 
@@ -28,11 +28,11 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
       return [];
     }
   });
-  const [workouts, setWorkouts] = useState<any>([]);
-  const [workout, setWorkout] = useState<any>(null);
+  const [workouts, setWorkouts] = useState<getCourseWorkoutsReturnType | []>([]);
+  const [workout, setWorkout] = useState<getWorkoutReturnType | null>(null);
   const [currentCourseName, setCurrentCourseName] = useState<string>("");
   // const [courseProgress, setCourseProgress] = useState<any>(null);
-  const [courseProgress, setCourseProgress] = useState<Record<string, any>>({});
+  const [courseProgress, setCourseProgress] = useState<Record<string, CourseProgressReturnType>>({});
   const [workoutProgress, setWorkoutProgress] = useState<WorkoutProgressReturnType | null>(null);
   const [currentCourseId, setCurrentCourseId] = useState<string>("");
   const { token } = useAuth();

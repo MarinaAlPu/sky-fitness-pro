@@ -5,6 +5,7 @@ import { Input } from "../../input/Input";
 import { SPageBackground, SWrapper, STitle, SContent, SItem, SItemTitle, SCloseButton } from "./ProgressModal.style";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
+import type { ExerciseType } from "../../../types/types";
 
 
 type ProgressModalProps = {
@@ -48,7 +49,7 @@ export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) =
     // console.log("currentCourseId в onSave:", currentCourseId);
     // console.log("workoutId в onSave:", workoutId);
 
-    if (!workoutId || !token || !currentCourseId) {
+    if (!workoutId || !token || !currentCourseId || !workout) {
       return;
     }
 
@@ -80,7 +81,7 @@ export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) =
         <SContent>
           <SCloseButton title="Закрыть" onClick={onCloseModal}>&times;</SCloseButton>
 
-          {workout?.exercises?.map((exercise: any, index: number) => (
+          {workout?.exercises?.map((exercise: ExerciseType, index: number) => (
             <SItem key={exercise._id}>
               {/* <SItemTitle>Сколько раз вы сделали наклоны вперед?</SItemTitle> */}
               <SItemTitle>Сколько раз вы сделали {exercise.name.split(" (")[0]}?</SItemTitle>

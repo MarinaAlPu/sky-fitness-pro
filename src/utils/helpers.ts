@@ -4,7 +4,7 @@ import type { UserDataType } from "../services/auth";
 export type ValidateFormType = (
   userData: UserDataType,
   isLogin: boolean,
-  setErrors: (errors: any) => void,
+  setErrors: (errors: FieldsErrors) => void,
   setError: (message: string) => void,
   setIsValid: (valid: boolean) => void,
   setErrorMessage: (message: string) => void,
