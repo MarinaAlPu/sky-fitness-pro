@@ -10,7 +10,7 @@ export type ValidateFormType = (
   setErrorMessage: (message: string) => void,
 ) => boolean;
 
-type FieldsErrors = {
+export type FieldsErrors = {
   email: string;
   password: string;
   confirmPassword?: string;

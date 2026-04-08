@@ -3,7 +3,7 @@ import { AuthContext } from "./AuthContext";
 import { login, registration, type UserDataType } from "../services/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { validateForm } from "../utils/helpers";
+import { validateForm, type FieldsErrors } from "../utils/helpers";
 
 
 type AuthProviderProps = {
@@ -26,18 +26,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const initialFormState = { email: "", password: "", confirmPassword: "" };
+  const initialErrorsState = { email: "", password: "", confirmPassword: "" };
+  const initialUserDataState = { email: "", password: "", confirmPassword: "" };
 
   const [user, setUser] = useState(checkUserInfoInLS());
 
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [userData, setUserData] = useState<UserDataType>({ email: "", password: "", confirmPassword: "" });
-  const [errors, setErrors] = useState({ email: "", password: "", confirmPassword: "" });
+  const [userData, setUserData] = useState<UserDataType>(initialUserDataState);
+  const [errors, setErrors] = useState<FieldsErrors>(initialErrorsState);
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(true);
-  const initialFormState = { email: "", password: "", confirmPassword: "" };
-  const initialErrorsState = { email: "", password: "", confirmPassword: "" };
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
