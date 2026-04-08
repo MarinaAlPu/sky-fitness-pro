@@ -14,7 +14,6 @@ type InputProps = {
 
 export const Input: React.FC<InputProps> = ({ type = "text", height = "52px", border = "success", onChange, placeholder, name, value="" }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log("Инпут. Ввели символ в инпут: ", e.target.value);
     onChange(e);
   };
 

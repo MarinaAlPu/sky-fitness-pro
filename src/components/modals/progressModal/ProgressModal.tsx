@@ -44,11 +44,6 @@ export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) =
   };
 
   const onSave = async () => {
-    // console.log("Нажали кнопку Сохранить");
-
-    // console.log("currentCourseId в onSave:", currentCourseId);
-    // console.log("workoutId в onSave:", workoutId);
-
     if (!workoutId || !token || !currentCourseId || !workout) {
       return;
     }
@@ -57,17 +52,8 @@ export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) =
       return exerciseCount[index] || 0;
     });
 
-    // console.log("Массив для отправки на сервер:", progressData);
-
-    // const resp = 
     await saveProgress(currentCourseId, workoutId, token, progressData);
-
-    // console.log(`Сохранили прогресс по тренировке "${workoutId}":`, resp);
-    
-    // const respProgress = 
     await getUserWorkoutProgress(currentCourseId, workoutId, token);
-
-    // console.log(`Обновили прогресс по тренировке "${workoutId}":`, respProgress);
 
     onCloseModal();
     onSuccess();
@@ -83,7 +69,6 @@ export const ProgressModal = ({ onCloseModal, onSuccess }: ProgressModalProps) =
 
           {workout?.exercises?.map((exercise: ExerciseType, index: number) => (
             <SItem key={exercise._id}>
-              {/* <SItemTitle>Сколько раз вы сделали наклоны вперед?</SItemTitle> */}
               <SItemTitle>Сколько раз вы сделали {exercise.name.split(" (")[0]}?</SItemTitle>
               <Input
                 type="number"

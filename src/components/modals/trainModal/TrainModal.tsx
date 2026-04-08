@@ -16,8 +16,6 @@ export type TrainModalPropsType = {
 export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
   const navigate = useNavigate();
 
-  // const [workouts, setWorkouts] = useState([]);
-
   const { token } = useAuth();
   const { workouts, getWorkouts } = useCourses();
 
@@ -32,17 +30,12 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
 
 
   const handleStart = () => {
-    // console.log("Нажали кнопку Начать");
     if (selectedWorkoutId) {
       navigate(`/workout/${selectedWorkoutId}`);
     } else {
       console.error("Ошибка при открытии страницы тренировки");
     }
   };
-
-  // const handleCheck = () => {
-  //   console.log("Кликнули чек-бокс");
-  // };
 
 
   return (
@@ -56,9 +49,7 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
             <SItem key={workout._id}>
               <SItemContentWrapper>
                 <SCheckbox
-                  // type="checkbox"
                   type="radio"
-                  // onClick={handleCheck}
                   onChange={() => setSelectedWorkoutId(workout._id)}
                   checked={selectedWorkoutId === workout._id}
                 />

@@ -7,9 +7,6 @@ type MessageModalProps = {
 
 
 export const MessageModal = ({onCloseModal}: MessageModalProps) => {
-  // const onClose = () => {
-  //   console.log("Нажали кнопку Закрыть");
-  // };
 
   return (
     <SPageBackground onClick={onCloseModal}>

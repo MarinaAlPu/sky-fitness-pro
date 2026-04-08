@@ -126,7 +126,6 @@ export const CourseContent = () => {
               {!isAuth ?
                 <Button
                   width={{ desktop: "437px", mobile: "100%" }}
-                  // onClick={handleAddCourse}
                   onClick={handleLogin}
                 >
                   Войдите, чтобы добавить курс

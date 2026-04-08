@@ -16,8 +16,6 @@ export const MainContent = () => {
     }
   }, []);
 
-  // console.log("courses в MainContent: ", courses);
-
   const sortedCourses = [...courses].sort((a, b) => a.order - b.order);
 
 

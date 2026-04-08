@@ -1,7 +1,5 @@
-// import { useEffect, useRef, useState } from 'react';
 import { SWrapper, SHeaderContainer, SHeaderBlock, SHeaderBlockLeft, SHeaderLogoLink, SHeaderLogo, SHeaderDescription, SHeaderBlockRight, SHeaderUserInfoBlock, SHeaderUserName, SHeaderUserIcon, SArrow } from './Header.style';
 import { Button } from '../button/Button';
-// import { AuthForm } from '../authForm/AuthForm';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { UserModal } from '../modals/userModal/UserModal';
@@ -14,25 +12,15 @@ export const Header = () => {
 
   const { user, token } = useAuth();
 
-  // const token = localStorage.getItem("token");
-  // const userInfo = localStorage.getItem("userInfo")
-  // const userName = (JSON.parse(userInfo)).userName;
-  // const email = (JSON.parse(userInfo)).email;
   const userName = user?.userName || "";
 
   const isAuth = !!token;
-  // console.log("isAuth: ", isAuth);
-
 
   const [isOpen, setIsOpen] = useState(false);
 
 
   const handleLogin = () => {
-    // console.log('Нажали кнопку "Войти"');
-    // setIsAuthFormOpen(true);
-    // navigate("/login");
     const currentPath = location.pathname === "/" ? "/" : location.pathname;
-    // console.log("currentPath: ", currentPath);
     navigate(`${currentPath}/login`);
   };
 
@@ -69,16 +57,9 @@ export const Header = () => {
               </Button>
             }
 
-            {/* {isOpen && <UserModal />} */}
-
           </SHeaderBlockRight>
         </SHeaderBlock>
       </SHeaderContainer>
-
-      {/* {isAuthFormOpen && (
-        <AuthForm  ref={authFormRef}/>
-      )} */}
-
     </SWrapper>
   )
 }

@@ -1,12 +1,10 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "../button/Button";
 import { SHeaderLogo } from "../header/Header.style";
 import { Input } from "../input/Input";
 import { SPageBackground, SButtonBlock, SInputBlock, SWrapper, SError, SForm } from "./AuthForm.style";
-import { useLocation, useNavigate } from "react-router-dom";
-// import { login, registration } from "../../services/auth";
-// import axios from "axios";
-import { AuthContext, useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 
 type AuthFormProps = {
@@ -16,7 +14,6 @@ type AuthFormProps = {
 
 export const AuthForm = ({ isLogin }: AuthFormProps) => {
   const navigate = useNavigate();
-  // const location = useLocation();
 
   const {
     userData,
@@ -28,17 +25,13 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
     handleRegister
   } = useAuth();
 
-  // // const authFormRef = useRef<string | null>(null);
   const authFormRef = useRef<HTMLDivElement>(null);
-
-  // const [errorMessage, setErrorMessage] = useState("");
 
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       if (authFormRef.current && !authFormRef.current.contains(e.target as Node)) {
         const parentPath = window.location.pathname.replace(/\/(login|registration)$/, "");
-        // navigate("/");
         navigate(parentPath || "/");
       }
     };
@@ -61,9 +54,7 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
       >
         <SHeaderLogo src='/logo.svg' alt="logo" />
 
-        <SForm
-        // onSubmit={handleSubmit}
-        >
+        <SForm>
 
           <SInputBlock>
 
@@ -93,8 +84,6 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
 
           </SInputBlock>
 
-          {/* <SError>Данная почта уже используется. Попробуйте войти.</SError> */}
-          {/* {errorMessage && <SError>{errorMessage}</SError>} */}
           {errorMessage && <SError>{errorMessage}</SError>}
 
           <SButtonBlock>
@@ -104,7 +93,6 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
                   <Button
                     htmlType="submit"
                     onClick={handleLogin}
-                  // onClick={() => console.log("Нажали кнопку Войти в форме входа")}
                   >
                     Войти</Button>
                   <Button
@@ -121,7 +109,6 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
                   <Button
                     htmlType="submit"
                     onClick={handleRegister}
-                  // onClick={() => console.log("Нажали кнопку зарегистрироваться в форме регистрации")}
                   >
                     Зарегистритоваться</Button>
                   <Button

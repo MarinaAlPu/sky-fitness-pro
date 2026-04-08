@@ -16,9 +16,6 @@ export const Workout = () => {
 
   const { getWorkoutData, workout, getCourses, courses, currentCourseName, currentCourseId, workoutProgress, getUserCourseProgress, getUserWorkoutProgress } = useCourses();
 
-  // console.log("workout в Workout до useEffect: ", workout);
-  // console.log("currentCourseId в Workout до useEffect: ", currentCourseId);
-
   const [isProgressModalOpen, setIsProgressModalOpen] = useState<boolean>(false);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState<boolean>(false);
 
@@ -47,13 +44,6 @@ export const Workout = () => {
 
   }, [currentCourseId, id, token]);
 
-
-  // console.log("courseProgress в Workout после useEffect: ", courseProgress);
-  // console.log("workoutProgress в Workout после useEffect: ", workoutProgress);
-
-  // const handleSetProgress = () => {
-  //   console.log("Нажали кнопку Заполнить свой прогресс");
-  // };
 
   const handleOpenProgressModal = () => {
     setIsProgressModalOpen(true);
@@ -88,8 +78,6 @@ export const Workout = () => {
         <SContainer>
           <STitle>{currentCourseName}</STitle>
           <SVideo
-            // src="/images/video.png"
-            // alt="Видео"
             src={workout.video}
             title={workout.name}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -106,19 +94,7 @@ export const Workout = () => {
 
             <SWorkoutExercises>
               {workout.exercises.map((exercise, index) => {
-                // const progress = 40;
-
-                // const currentWorkoutProgress = (courseProgress as any)?.workoutsProgress?.find((item: any) => item.workoutId === id);
-
-                // const currentWorkoutProgress = (workoutProgress as any)?.progressData?.[index] || 0;
                 const currentWorkoutProgress = workoutProgress?.progressData?.[index] || 0;
-
-                // const exerciseCount = currentWorkoutProgress?.progressData?.[index] || 0;
-
-                // const currentProgress = exercise.quantity > 0 ? (exerciseCount/exercise.quantity)*100 : 0;
-
-                // const currentProgress = exercise.quantity > 0 ? Math.min(100, Math.round((currentWorkoutProgress / exercise.quantity) * 100)) : 0;
-
                 const currentProgress = formatProgress(currentWorkoutProgress, exercise.quantity);
 
                 return (
@@ -149,8 +125,6 @@ export const Workout = () => {
       </SWrapper>
       {isProgressModalOpen && (<ProgressModal
         onCloseModal={onCloseModal}
-        // workoutId={activeWorkoutId}
-        // onOpenProgressModal={onOpenProgressModal}
         onSuccess={onOpenMessageModal}
       />)}
       {isMessageModalOpen && <MessageModal

@@ -12,13 +12,7 @@ type CardProps = {
   durationInDays: number;
   dailyDurationInMinutes: dailyDurationInMinutesType;
   difficulty: "начальный" | "средний" | "сложный";
-  // description: string;
-  // directions: string[];
-  // fitting: string[];
-  // nameEN: string;
-  // nameRU: string;
   order: number;
-  // workouts: string[];
   page: string;
   onOpenTrainModal?: (courseId: string) => void;
   onCloseModal?: () => void;
@@ -30,60 +24,36 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
   const navigate = useNavigate();
   const { token } = useAuth();
 
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const {addUserCourse} = useContext(CoursesContext);
   const { addUserCourse, userCourses, deleteUserCourse } = useCourses();
 
   const isCourseAdded = userCourses.includes(id);
-  // console.log("Курс добавлен: ", isCourseAdded);
 
 
   const handleAddCourse = (e: React.MouseEvent) => {
-    // console.log("Нажали кнопку Добавить курс");
     e.preventDefault();
     e.stopPropagation();
 
     if (!token) {
-      // console.log("Токена нет, отправляем на логин");
       navigate("/login");
       return;
     }
 
-    // // const courseId = "q02a6i";
-    // addUserCourse(id, token)
-    //   .then((data) => console.log("Курс добавлен:", data))
-    //   .catch((err) => console.error("Ошибка при добавлении:", err));
     addUserCourse(id, token);
   };
 
   const handleDeleteCourse = (e: React.MouseEvent) => {
-    // console.log("Нажали кнопку Удалить курс");
     e.preventDefault();
     e.stopPropagation();
 
-
     if (!token) {
-      // console.log("Токена нет, иди залогинься");
       navigate("/login");
       return;
     }
 
-    // const courseId = "q02a6i";
     deleteUserCourse(id, token)
-    // .then((data) => console.log("Курс добавлен:", data))
-    // .catch((err) => console.error("Ошибка при удалении курса:", err));
   };
 
-
-  // const progress = 40;
-
-
-  // const handleWorkout = () => {
-  //   console.log("Нажали кнопку Продолжить");
-  // };
   const handleOpenWorkoutsModal = (e?: React.MouseEvent) => {
-    // console.log(`Открыть модалку с тренировками курса с id "${id}"`);
     e?.preventDefault();
     e?.stopPropagation();
 

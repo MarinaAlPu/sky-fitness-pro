@@ -16,7 +16,6 @@ export const ProfileContent = () => {
   const { handleLogout, user, token } = useAuth();
 
   const { courses, userCourses, getCourses, getUserCourseProgress, courseProgress } = useCourses();
-  // console.log("userCourses: ", userCourses);
   const [activeCourseId, setActiveCourseId] = useState<string | null>(null);
 
 
@@ -52,22 +51,11 @@ export const ProfileContent = () => {
 
   const userName = user?.userName || null;
 
-  // const handleLogout = () => {
-  //   console.log("Нажали кнопку Выйти");
-  // };
-
-
   const userCoursesSelected = courses.filter((course) => userCourses.includes(course._id));
-  // console.log("userCoursesSelected: ", userCoursesSelected);
 
   const onOpenTrain = () => {
-    // console.log("Нажали кнопку Начать");
-
   };
 
-
-  // console.log("Данные всех прогрессов в профиле:", courseProgress);
-  // console.log("ID курсов пользователя:", userCourses);
 
   return (
     <>
@@ -98,25 +86,9 @@ export const ProfileContent = () => {
 
             {userCoursesSelected.length > 0 ? (
               userCoursesSelected.map((course) => {
-                // console.log("course после маппинга курсов в профиле", course);
                 const progressData = (courseProgress as Record<string, CourseProgressReturnType>)[course._id];
-                console.log(progressData);
-
-                // const workouts = progressData?.workoutsProgress || [];
-
-                // const completedCount = workouts.filter((workout: any) => workout.workoutCompleted).length;
-
-                // const percent = workouts.length > 0 ? (completedCount / workouts.length * 100) : 0;
-
-
                 const workoutsInCourse = course.workouts?.length || 0;
-                // console.log(`количество тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, workoutsInCourse);
-
                 const completedWorkouts = (progressData?.workoutsProgress || []).filter((workout) => workout.workoutCompleted).length;
-                // console.log(`количество завершённых тренировок в курсе "${course.nameRU}" после маппинга курсов в профиле`, completedWorkouts);
-
-                // const courseProgressInCard = workoutsInCourse > 0 ? Math.min(100, Math.round((completedWorkouts / workoutsInCourse) * 100)) : 0;
-
                 const courseProgressInCard = formatProgress(completedWorkouts, workoutsInCourse);
 
                 return (

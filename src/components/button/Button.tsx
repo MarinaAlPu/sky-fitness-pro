@@ -9,7 +9,6 @@ type ButtonProps = {
   disabled?: boolean,
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void,
   children: React.ReactNode,
-  // text?: string
   display?: DisplayType
 }
 
