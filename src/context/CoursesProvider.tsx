@@ -28,7 +28,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
       return [];
     }
   });
-  const [workouts, setWorkouts] = useState<getCourseWorkoutsReturnType | []>([]);
+  const [workouts, setWorkouts] = useState<getCourseWorkoutsReturnType>([]);
   const [workout, setWorkout] = useState<getWorkoutReturnType | null>(null);
   const [currentCourseName, setCurrentCourseName] = useState<string>("");
   const [courseProgress, setCourseProgress] = useState<Record<string, CourseProgressReturnType>>({});

@@ -12,7 +12,7 @@ export type CoursesContextType = {
   removeUserCoursesFromLS: () => void;
   getUserCourses: (token: string) => void;
   getWorkouts: (courseId: string, token: string) => void;
-  workouts: getCourseWorkoutsReturnType[];
+  workouts: getCourseWorkoutsReturnType;
   getWorkoutData: (workoutId: string, token: string) => void;
   workout: getWorkoutReturnType | null;
   currentCourseName: string;

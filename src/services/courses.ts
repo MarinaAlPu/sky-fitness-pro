@@ -13,12 +13,14 @@ export type getUserCoursesReturnType = {
   }
 };
 
-export type getCourseWorkoutsReturnType = {
-  _id: string;
-  name: string;
-  video: string;
-  exercises: [];
-};
+// export type getCourseWorkoutsReturnType = {
+//   _id: string;
+//   name: string;
+//   video: string;
+//   exercises: [];
+// };
+
+export type getCourseWorkoutsReturnType = getWorkoutReturnType[];
 
 export type ExerciseType = {
   name: string;
