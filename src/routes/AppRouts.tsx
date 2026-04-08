@@ -8,6 +8,7 @@ import { ProfilePage } from "../pages/ProfilePage.tsx";
 import { LoginPage } from "../pages/LoginPage.tsx";
 import { RegistrationPage } from "../pages/RegistrationPage.tsx";
 import { Layout } from "../components/layout/Layout.tsx";
+import { PrivateRoute } from "./PrivateRoute.tsx";
 
 
 export function AppRoutes() {
@@ -26,11 +27,10 @@ export function AppRoutes() {
       </Route>
 
 
-      {/* <Route element={<PrivateRoute />}> */}
-      {/* <Route path="/workout/:id" element={<WorkoutPage />} /> */}
-      <Route path="/workout/:id" element={<WorkoutPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      {/* </Route> */}
+      <Route element={<PrivateRoute />}>
+        <Route path="/workout/:id" element={<WorkoutPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Route>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
