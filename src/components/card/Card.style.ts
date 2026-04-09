@@ -32,6 +32,7 @@ export const SContainer = styled.div`
   gap: 40px;
   padding: 24px 30px 15px 30px;
   background-color: #FFFFFF;
+  border-radius: 30px;
 
   @media screen and (max-width: 376px) {
     padding: 24px 21.5px 15px;
