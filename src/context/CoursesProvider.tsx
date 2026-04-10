@@ -184,6 +184,10 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
     }
   };
 
+  const clearWorkouts = () => {
+    setWorkouts([]);
+  };
+
 
   return (
     <CoursesContext.Provider
@@ -206,6 +210,7 @@ export const CoursesProvider = ({ children }: CoursesProviderProps) => {
         workoutProgress,
         currentCourseId,
         saveProgress,
+        clearWorkouts
       }}
     >
       {children}

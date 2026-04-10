@@ -15,7 +15,7 @@ export const ProfileContent = () => {
 
   const { handleLogout, user, token } = useAuth();
 
-  const { courses, userCourses, getCourses, getUserCourseProgress, courseProgress } = useCourses();
+  const { courses, userCourses, getCourses, getUserCourseProgress, courseProgress, clearWorkouts } = useCourses();
   const [activeCourseId, setActiveCourseId] = useState<string | null>(null);
 
 
@@ -46,6 +46,7 @@ export const ProfileContent = () => {
 
   const onCloseModal = () => {
     setActiveCourseId(null);
+    clearWorkouts([]);
   };
 
 
