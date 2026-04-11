@@ -68,7 +68,7 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
     <SWrapper to={`/course/${id}`}>
       <SImageContainer
         $order={order}>
-        <SImage src={getAssetPath("images/main-page/mask-${order}.svg")}
+        <SImage src={getAssetPath(`images/main-page/mask-${order}.svg`)}
           alt={title} />
         {isCourseAdded ?
           (<SRoundButton
