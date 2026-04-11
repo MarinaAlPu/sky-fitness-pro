@@ -1,5 +1,10 @@
 import styled from "styled-components";
+import { getAssetPath } from "../../../utils/getAssetPath";
 
+
+type SCheckboxProps = {
+  $done?: boolean;
+}
 
 export const SPageBackground = styled.div`
   width: 100vw;
@@ -75,7 +80,7 @@ export const SItem = styled.li`
   align-items: center;
 `;
 
-export const SCheckbox = styled.input`
+export const SCheckbox = styled.input<SCheckboxProps>`
   appearance: none;
   -webkit-appearance: none;
   display: flex;
@@ -86,12 +91,20 @@ export const SCheckbox = styled.input`
   cursor: pointer;
   flex-shrink: 0;
 
-  background-image: url(${() => import.meta.env.BASE_URL}icons/check-off-icon.svg);
+  background-image: ${({ $done }) => {
+    const icon = $done ? "check-done-icon.svg" : "check-off-icon.svg";
+    return `url(${getAssetPath(`icons/${icon}`)})`;
+  }};
+
   background-size: contain;
   background-repeat: no-repeat;
 
   &:checked {
     background-image: url(${() => import.meta.env.BASE_URL}icons/check-on-icon.svg);
+    /* background-image: ${({ $done }) => {
+      const icon = $done ? "check-done-icon.svg" : "check-on-icon.svg";
+      return `url(${getAssetPath(`icons/${icon}`)})`;
+  }}; */
   }
 
   &:focus {
