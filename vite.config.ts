@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
+  base: "/sky-fitness-pro/",
+  define: {
+    "process.env.BASE_URL": JSON.stringify("/sky-fitness-pro/"),
+  },
   plugins: [react()],
 })
