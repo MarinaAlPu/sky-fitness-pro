@@ -101,10 +101,6 @@ export const SCheckbox = styled.input<SCheckboxProps>`
 
   &:checked {
     background-image: url(${() => import.meta.env.BASE_URL}icons/check-on-icon.svg);
-    /* background-image: ${({ $done }) => {
-      const icon = $done ? "check-done-icon.svg" : "check-on-icon.svg";
-      return `url(${getAssetPath(`icons/${icon}`)})`;
-  }}; */
   }
 
   &:focus {

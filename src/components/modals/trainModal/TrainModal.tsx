@@ -21,10 +21,7 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
   const { workouts, getWorkouts, courseProgress } = useCourses();
 
   const currentCourseProgress = courseProgress[courseId];
-  // console.log("currentCourseProgress: ", currentCourseProgress);
-
   const workoutsProgress = currentCourseProgress?.workoutsProgress as WorkoutProgressReturnType[];
-  // console.log("workoutsProgress: ", workoutsProgress);
 
   const [selectedWorkoutId, setSelectedWorkoutId] = useState<string | null>(null);
 
@@ -56,10 +53,8 @@ export const TrainModal = ({ onCloseModal, courseId }: TrainModalPropsType) => {
             const currentWorkoutProgress = workoutsProgress?.find(
               (item) => item.workoutId === workout._id
             );
-            // console.log("currentWorkoutProgress: ", currentWorkoutProgress);
 
             const isDone = currentWorkoutProgress?.workoutCompleted === true;
-            // console.log("isDone: ", isDone);
 
 
             return (
