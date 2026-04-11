@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom';
 
+if (typeof global.import === 'undefined') {
+  global.import = { meta: { env: { BASE_URL: '/' } } };
+};
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({

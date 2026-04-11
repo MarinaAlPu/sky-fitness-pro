@@ -1,11 +1,11 @@
 module.exports = {
-  testEnvironment: 'jest-fixed-jsdom', 
+  testEnvironment: 'jest-fixed-jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   transform: {
-    '^.+\\.(t|j)sx?$': 'babel-jest',
+    "^.+\\.(t|j)sx?$": "babel-jest",
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
     '\\.(css|scss|sass)$': 'identity-obj-proxy',
-  },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': 'identity-obj-proxy',
+  }
 };
