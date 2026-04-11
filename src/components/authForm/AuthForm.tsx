@@ -100,7 +100,7 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
                     type="secondary"
                     onClick={handleOpenRegistrationForm}
                   >
-                    Зарегистритоваться</Button>
+                    Зарегистрироваться</Button>
                 </>
               )
               :
@@ -110,7 +110,7 @@ export const AuthForm = ({ isLogin }: AuthFormProps) => {
                     htmlType="submit"
                     onClick={handleRegister}
                   >
-                    Зарегистритоваться</Button>
+                    Зарегистрироваться</Button>
                   <Button
                     htmlType="button"
                     type="secondary"
