@@ -4,6 +4,7 @@ import type { dailyDurationInMinutesType } from "../../types/types";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useCourses } from "../../context/CoursesContext";
+import { getAssetPath } from "../../utils/getAssetPath";
 
 
 type CardProps = {
@@ -67,18 +68,18 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
     <SWrapper to={`/course/${id}`}>
       <SImageContainer
         $order={order}>
-        <SImage src={`${import.meta.env.BASE_URL}images/main-page/mask-${order}.svg`}
+        <SImage src={getAssetPath("images/main-page/mask-${order}.svg")}
           alt={title} />
         {isCourseAdded ?
           (<SRoundButton
-            src={`${import.meta.env.BASE_URL}icons/delete-button.svg`}
+            src={getAssetPath("icons/delete-button.svg")}
             alt="Удалить"
             title="Удалить курс"
             onClick={handleDeleteCourse}
           />)
           :
           (<SRoundButton
-            src={`${import.meta.env.BASE_URL}icons/add-button.svg`}
+            src={getAssetPath("icons/add-button.svg")}
             alt="Добавить"
             title="Добавить курс"
             onClick={handleAddCourse}
@@ -110,11 +111,12 @@ export const Card = ({ id, title, durationInDays, dailyDurationInMinutes, diffic
             <SPropertyContainer>
               <SDifficultyIcon
                 src={
-                  difficulty === "начальный" ? `${import.meta.env.BASE_URL}icons/difficulty-beginner.svg`
+                  difficulty === "начальный" ? getAssetPath("icons/difficulty-beginner.svg")
                     :
-                    difficulty === "средний" ? `${import.meta.env.BASE_URL}icons/difficulty-intermediate.svg`
+                    difficulty === "средний" ? getAssetPath("icons/difficulty-intermediate.svg")
                       :
-                      `${import.meta.env.BASE_URL}icons/difficulty-advanced.svg`}
+                      getAssetPath("icons/difficulty-advanced.svg")
+                }
                 alt="Сложность" />
               <SPropertyText>{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</SPropertyText>
             </SPropertyContainer>

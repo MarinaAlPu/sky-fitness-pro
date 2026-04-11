@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { UserModal } from '../modals/userModal/UserModal';
 import { useAuth } from '../../context/AuthContext';
+import { getAssetPath } from '../../utils/getAssetPath';
 
 
 export const Header = () => {
@@ -35,14 +36,14 @@ export const Header = () => {
         <SHeaderBlock>
           <SHeaderBlockLeft>
             <SHeaderLogoLink to="/">
-              <SHeaderLogo src={`${import.meta.env.BASE_URL}logo.svg`} alt="logo" />
+              <SHeaderLogo src={getAssetPath("logo.svg")} alt="logo" />
             </SHeaderLogoLink>
             <SHeaderDescription>Онлайн-тренировки для занятий дома</SHeaderDescription>
           </SHeaderBlockLeft>
           <SHeaderBlockRight>
             {isAuth ?
               <SHeaderUserInfoBlock onClick={handleOpenLogout}>
-                <SHeaderUserIcon src={`${import.meta.env.BASE_URL}icons/profile.svg`} alt="Иконка пользователя" />
+                <SHeaderUserIcon src={getAssetPath("icons/profile.svg")} alt="Иконка пользователя" />
                 <SHeaderUserName>{userName}</SHeaderUserName>
                 <SArrow $isOpen={isOpen} />
                 {isOpen && <UserModal />}
